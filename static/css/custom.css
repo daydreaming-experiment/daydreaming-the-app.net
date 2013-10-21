@@ -1,6 +1,8 @@
 /* Space out content a bit */
 body {
   padding-bottom: 20px;
+  background-color: #023;
+  color: #fff;
 }
 
 /* Special class on .container surrounding .navbar, used for positioning it into place. */
@@ -17,23 +19,13 @@ body {
   padding-right: 15px;
 }
 
-/* Custom page header */
-.header {
-  border-bottom: 1px solid #e5e5e5;
-}
-/* Make the masthead heading the same height as the navigation */
-.header h3 {
-  margin-top: 0;
-  margin-bottom: 0;
-  line-height: 40px;
-  padding-bottom: 19px;
-}
-
 /* Custom page footer */
 .footer {
   padding-top: 19px;
-  color: #777;
-  border-top: 1px solid #e5e5e5;
+  margin: 0px auto;
+  max-width: 600px;
+  color: #057;
+  border-top: 1px solid #057;
 }
 
 /* Customize container */
@@ -59,18 +51,37 @@ body {
 .jumbotron {
   text-align: center;
   border-bottom: 1px solid #e5e5e5;
+  background: #04A8DA url('/static/img/jumbo.png') no-repeat top center;
+}
+.jumbotron .content {
+  padding-top: 150px;
 }
 .jumbotron .btn {
   font-size: 21px;
   padding: 14px 24px;
 }
+.jumbotron .btn-app {
+  background-color: #058;
+  color: #fff;
+}
+.jumbotron .btn-app:hover {
+  background-color: #708;
+}
+
+.navbar-inverse {
+  background-color: #058;
+}
+.navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-brand {
+  color: #fff;
+}
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-brand:hover {
+  color: #eee;
+  background-color: #046;
+}
 
 /* Supporting marketing content */
 .marketing {
   margin: 40px 0;
-}
-.marketing p + h4 {
-  margin-top: 28px;
 }
 
 /* Responsive: Portrait tablets and up */
