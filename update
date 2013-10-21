@@ -1,0 +1,7 @@
+#!/bin/bash
+# Update the release on Tal's server
+
+git pull
+jekyll build
+ln -s ../../srv/releases _site/releases
+ln -s ../../srv/experiment-static _site/experiment-static
