@@ -2,7 +2,7 @@
 body {
   padding-bottom: 20px;
   background-color: #023;
-  color: #fff;
+  color: #ccc;
 }
 
 a {
@@ -13,6 +13,20 @@ a {
 .navbar-wrapper {
   position: relative;
   z-index: 15;
+}
+
+.navbar-inverse {
+  background-color: #058;
+}
+.navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-brand {
+  color: #fff;
+}
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-nav > .active > a:hover {
+  color: #fff;
+  background-color: #046;
+}
+.navbar-inverse .navbar-nav > .active > a {
+  background-color: #236;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -26,7 +40,7 @@ a {
 /* Custom page footer */
 .footer {
   padding-top: 19px;
-  margin: 0px auto;
+  margin: 30px auto 0px;
   max-width: 600px;
   color: #057;
   border-top: 1px solid #057;
@@ -59,6 +73,7 @@ a {
 }
 .jumbotron .content {
   padding-top: 150px;
+  color: #eee;
 }
 .jumbotron .btn {
   font-size: 21px;
@@ -72,18 +87,9 @@ a {
   background-color: #708;
 }
 
-.navbar-inverse {
-  background-color: #058;
-}
-.navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-brand {
-  color: #fff;
-}
-.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-nav > .active > a:hover {
-  color: #fff;
-  background-color: #046;
-}
-.navbar-inverse .navbar-nav > .active > a {
-  background-color: #236;
+.inside-picture {
+  margin: 20px 20px;
+  clear: both;
 }
 
 /* Supporting marketing content */
