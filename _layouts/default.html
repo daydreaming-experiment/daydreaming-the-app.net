@@ -1,47 +1,59 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>{{ page.title }}</title>
-        <meta name="viewport" content="width=device-width">
+  <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>{{ page.title }}</title>
+      <meta name="viewport" content="width=device-width">
 
-        {% css_asset_tag global %}
-        - /_assets/css/bootstrap.min.css
-        - /_assets/css/syntax.css
-        {% css_asset_tag %}
+      <!-- syntax highlighting CSS -->
+      <link rel="stylesheet" href="/static/css/syntax.css">
 
-        {% javascript_asset_tag global %}
-        - /_assets/js/bootstrap.min.js
-        {% javascript_asset_tag %}
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="/static/css/bootstrap.min.css">
 
-    </head>
-    <body>
+      <!-- Custom CSS -->
+      <link rel="stylesheet" href="/static/css/jumbotron-narrow.css">
 
-        <div class="site">
-          <div class="header">
-            <h1 class="title"><a href="/">{{ site.name }}</a></h1>
-            <a class="extra" href="/">home</a>
-          </div>
+  </head>
+  <body>
 
-          {{ content }}
+    <div class="navbar-wrapper">
+      <div class="container">
 
-          <div class="footer">
-            <div class="contact">
-              <p>
-                Your Name<br />
-                What You Are<br />
-                you@example.com
-              </p>
+        <div class="navbar navbar-inverse navbar-static-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <!--<h3 class="text-muted">{{ site.name }}</h3>-->
+              <a class="navbar-brand" href="/">{{ site.name }}</a>
             </div>
-            <div class="contact">
-              <p>
-                <a href="https://github.com/yourusername">github.com/yourusername</a><br />
-                <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br />
-              </p>
+            <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li><a href="/privacy">Privacy</a></li>
+                <li><a href="/media">News &amp; Media</a></li>
+                <li><a href="/about">About us</a></li>
+              </ul>
             </div>
           </div>
         </div>
 
-    </body>
+      </div><!-- .container -->
+    </div><!-- .navbar-wrapper -->
+
+    <div class="container">
+
+      {{ content }}
+
+    </div><!-- .container -->
+
+    <!-- JQuery, for Bootstrap -->
+    <script src="/static/js/jquery-2.0.3.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="/static/js/bootstrap.min.js"></script>
+  </body>
 </html>
