@@ -4,11 +4,11 @@ title: Get the app
 tag: app
 ---
 
-<img class="img-rounded pull-right inside-picture" style="clear: right" width="150px" height="150px" src="http://daydreaming-the-app.net/releases/daydreaming-0.8.1.png" alt="Daydreaming 0.8.1 QR code" />
+<img class="img-rounded pull-right inside-picture" style="clear: right" width="150px" height="150px" src="http://daydreaming-the-app.net/releases/daydreaming-latest-qrlink.png" alt="Daydreaming QR code" />
 
 # Get going now!
 
-The latest version of the app is [available here](http://daydreaming-the-app.net/releases/daydreaming-0.8.1.apk). Alternatively you can scan this QR code which will bring you to the same link. Please note that there is no iOS version, it is only for Android.
+The latest version of the app is [available here](http://daydreaming-the-app.net/releases/daydreaming-latest.apk). Alternatively you can scan this QR code which will bring you to the same link. Please note that there is no iOS version, it is only for Android.
 
 ## Installing
 
