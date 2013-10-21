@@ -5,6 +5,10 @@ body {
   color: #fff;
 }
 
+a {
+  color: #d5f;
+}
+
 /* Special class on .container surrounding .navbar, used for positioning it into place. */
 .navbar-wrapper {
   position: relative;
@@ -61,7 +65,7 @@ body {
   padding: 14px 24px;
 }
 .jumbotron .btn-app {
-  background-color: #058;
+  background-color: #36a;
   color: #fff;
 }
 .jumbotron .btn-app:hover {
