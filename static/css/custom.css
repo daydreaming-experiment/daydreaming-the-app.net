@@ -1,7 +1,7 @@
 /* Space out content a bit */
 body {
   padding-bottom: 20px;
-  background-color: #023;
+  background: #023 url('/static/img/background.png');
   color: #ccc;
 }
 
@@ -17,6 +17,7 @@ a {
 
 .navbar-inverse {
   background-color: #058;
+  border: none;
 }
 .navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-brand {
   color: #fff;
@@ -68,7 +69,6 @@ a {
 /* Main marketing message and sign up button */
 .jumbotron {
   text-align: center;
-  border-bottom: 1px solid #e5e5e5;
   background: #04A8DA url('/static/img/jumbo.png') no-repeat top center;
 }
 .jumbotron .content {
