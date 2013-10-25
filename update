@@ -5,3 +5,4 @@ git pull
 jekyll build
 ln -s ../../srv/releases _site/releases
 ln -s ../../srv/experiment-static _site/experiment-static
+ln -s ../../srv/presentations _site/presentations
