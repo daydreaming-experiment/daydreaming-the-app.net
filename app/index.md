@@ -4,11 +4,7 @@ title: Get the app
 tag: app
 ---
 
-
-
-#<center> <font color="red">!!! BETA : You may test the app but we won't look at your data yet !!!</font> </center>
-
-
+##<center> <font color="red">!!! BETA : You may test the app but we won't look at your data yet !!!</font> </center>
 
 <img class="img-rounded pull-right inside-picture" style="clear: right" width="150px" height="150px" src="http://daydreaming-the-app.net/releases/daydreaming-latest-qrlink.png" alt="Daydreaming QR code" />
 
@@ -22,7 +18,7 @@ The app is in testing phase just before launching, which means it's not yet in t
 
 You can then open the downloaded file (choose *Package Installer* if Android asks you which application to open the file with).
 
-</textarea>
+## How does it work?
 
 After a short introduction and a few preliminary questions, the app will be running and will start asking you questions about your current thoughts from time to time, while also keeping a rough record of your position. In some cases the questions will interrupt you in a mind-wandering episode and this is what we want. You can of course choose the time window when you want to be notified.
 
