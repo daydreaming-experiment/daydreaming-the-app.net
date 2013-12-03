@@ -4,6 +4,8 @@ title: Get the app
 tag: app
 ---
 
+##<center> <font color="red">!!! BETA : You may test the app but we won't look at your data yet !!!</font> </center>
+
 <img class="img-rounded pull-right inside-picture" style="clear: right" width="150px" height="150px" src="http://daydreaming-the-app.net/releases/daydreaming-latest-qrlink.png" alt="Daydreaming QR code" />
 
 # Get going now!
@@ -16,7 +18,7 @@ The app is in testing phase just before launching, which means it's not yet in t
 
 You can then open the downloaded file (choose *Package Installer* if Android asks you which application to open the file with).
 
-# How does it work?
+## How does it work?
 
 After a short introduction and a few preliminary questions, the app will be running and will start asking you questions about your current thoughts from time to time, while also keeping a rough record of your position. In some cases the questions will interrupt you in a mind-wandering episode and this is what we want. You can of course choose the time window when you want to be notified.
 
@@ -30,13 +32,18 @@ Classical experiments studying mindwandering involve having subjects come to a l
 
 This app does the same thing except that subjects are now anyone using the app in their natural environment. This methodology will lead to a large amount of *in vivo* data, impossible to obtain in a lab.
 
+
 <div class="clearfix"></div>
 <img class="img-rounded pull-left inside-picture" width="125" height="228px" src="/static/img/daydreaming-screenshot.jpg" alt="Daydreaming screenshot" />
 
-# Private beta
+# Private beta  
 
 Since the app is still in testing phase there might be a few glitches here and there. Any crashes will be automatically reported to us, but if you have suggestions or remarks on how to improve things, we'd be <a href="mailto:feedback@daydreaming-the-app.net">delighted to hear from you</a>.
 
 ## Free software
 
 This experiment is free software: the app and all its related software are released under the GNU/GPLv3 license, and the code is available [on GitHub](https://github.com/wehlutyk/daydreaming).
+
+
+
+
