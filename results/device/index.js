@@ -1,31 +1,16 @@
 "use strict";
-$(document).ready(function() {
 
-  $("<p>App versionCode: " + injectedResults.getVersionCode() + "</p>").insertAfter("div#main p:last-child");
-
-  $("<p>And now...</p>").insertAfter("div#main p:last-child");
+function getResults() {
+  // TODO: in further versions, check versionCode if method of passing results changes.
+  console.log('App versionCode: ' + injectedResults.getVersionCode());
 
   var resultsWrap = JSON.parse(injectedResults.getResultsWrap());
-  var nResults = resultsWrap.results.length();
-  $("<p>Number of results: " + nResults + "</p>").insertAfter("div#main p:last-child");
+  return resultsWrap.results;
+}
 
-  //var data = [4, 8, 15, 16, 23, 42];
-  //var x = d3.scale.linear()
-      //.domain([0, d3.max(data)])
-      //.range([0, 320]);
-  //var t = d3.scale.linear()
-      //.domain([0, d3.max(data)])
-      //.range([0, 2000]);
+$(document).ready(function() {
 
-  //d3.select('.chart')
-    //.selectAll('div')
-      //.data(data)
-    //.enter().append('div')
-      //.style('width', '0')
-      //.text(function(d) { return d; })
-      //.transition('linear')
-      //.ease('linear')
-      //.duration(function(d) { return t(d) })
-      //.style('width', function(d) { return x(d) + 'px'; });
+  var results = getResults();
+  $("<p>Number of results: " + results.length + "</p>").insertAfter("div#main p:last-child");
 
 });
