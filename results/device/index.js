@@ -61,10 +61,18 @@ function getFixtures() {
 function getResults() {
   // TODO: in further versions, check versionCode if method of passing results changes.
 
-  var realResults = injectedResults || getFixtures();
-  console.log('App versionCode: ' + injectedResults.getVersionCode());
+  var realResults;
+  if (typeof injectedResults == "undefined") {
+    // We're in the browser
+    realResults = getFixtures();
+  } else {
+    // We're in the app
+    realResults = injectedResults;
+  }
 
+  console.log('App versionCode: ' + realResults.getVersionCode());
   var resultsWrap = JSON.parse(realResults.getResultsWrap());
+
   return resultsWrap.results;
 }
 
