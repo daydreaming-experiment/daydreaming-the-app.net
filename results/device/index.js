@@ -7,6 +7,11 @@ $(document).ready(function() {
     return "hsl(" + Math.random() * 360 + ",100%,50%)";
   });
 
+  alert('App version code: ' + injectedResults.getVersionCode());
+  var resultsWrap = JSON.parse(injectedResults.getResultsWrap());
+  var nResults = resultsWrap.results.length();
+  alert('Number of results: ' + nResults);
+
   var data = [4, 8, 15, 16, 23, 42];
   var x = d3.scale.linear()
       .domain([0, d3.max(data)])
