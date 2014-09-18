@@ -3,6 +3,8 @@ $(document).ready(function() {
 
   $("<p>App versionCode: " + injectedResults.getVersionCode() + "</p>").insertAfter("div#main p:last-child");
 
+  $("<p>And now...</p>").insertAfter("div#main p:last-child");
+
   var resultsWrap = JSON.parse(injectedResults.getResultsWrap());
   var nResults = resultsWrap.results.length();
   $("<p>Number of results: " + nResults + "</p>").insertAfter("div#main p:last-child");
