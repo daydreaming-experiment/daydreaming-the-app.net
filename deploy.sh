@@ -7,6 +7,8 @@ echo "## Pushing to upstream"
 echo "##"
 echo
 
+git push
+
 echo "##"
 echo "## Ssh-ing to Tal's server to update"
 echo "##"
