@@ -3,6 +3,11 @@
 set -e
 
 echo "##"
+echo "## Pushing to upstream"
+echo "##"
+echo
+
+echo "##"
 echo "## Ssh-ing to Tal's server to update"
 echo "##"
 echo
