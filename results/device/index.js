@@ -59,13 +59,15 @@ function getFixtures() {
 
 
 function getResults() {
-  // First get fixtures if we're not in the app, but in a real browser
-  if (injectedResults === undefined) {
-    var injectedResults = getFixtures();
-  }
-
   // TODO: in further versions, check versionCode if method of passing results changes.
-  console.log('App versionCode: ' + injectedResults.getVersionCode());
+  //
+  try {
+    console.log('App versionCode: ' + injectedResults.getVersionCode());
+  } catch (e) {
+    // We're in the browser, so get fixtures
+    var injectedResults = getFixtures();
+    console.log('App versionCode: ' + injectedResults.getVersionCode());
+  }
 
   var resultsWrap = JSON.parse(injectedResults.getResultsWrap());
   return resultsWrap.results;
