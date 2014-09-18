@@ -71,6 +71,6 @@ function getResults() {
 $(document).ready(function() {
 
   var results = getResults();
-  $("<p>ooo Number of results: " + results.length + "</p>").insertAfter("div#main p:last-child");
+  $("<p>Number of results: " + results.length + "</p>").insertAfter("div#main p:last-child");
 
 });
