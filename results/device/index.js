@@ -60,9 +60,10 @@ function getFixtures() {
 
 function getResults() {
   // TODO: in further versions, check versionCode if method of passing results changes.
-  //
+
   try {
-    console.log('App versionCode: ' + injectedResults.getVersionCode());
+    // Try reading versionCode. If we're in the browser it'll fail.
+    injectedResults.getVersionCode();
   } catch (e) {
     // We're in the browser, so get fixtures
     var injectedResults = getFixtures();
