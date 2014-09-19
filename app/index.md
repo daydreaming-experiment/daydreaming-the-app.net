@@ -20,17 +20,17 @@ You can then open the downloaded file (choose *Package Installer* if Android ask
 
 ## How does it work?
 
-After a short introduction and a few preliminary questions, the app will be running and will start asking you questions about your current thoughts from time to time, while also keeping a rough record of your position. In some cases the questions will interrupt you in a mind-wandering episode and this is what we want. You can of course choose the time window when you want to be notified.
+After a short introduction and a few preliminary questions, the app will be running and will start asking you questions about your current thoughts from time to time, while also keeping a rough record of your position. In some cases the questions will interrupt you in a mind-wandering episode and this is what we want. You can of course choose the time window when you want to be notified. During the first three days, you will also be able to complete three psychological questionnaires about your mental habits. Finally, every morning and every morning the app will ask you a couple of questions about your past night and your past day. 
 
 ## Why should I use it?
 
-You're participating in a research project that might lead to very interesting discoveries. From the data we collect we will generate a personalized feedback on many aspects of your daily mental life. More general results will be shown on this website.
+You're participating in a research project that might lead to very interesting discoveries in how the human mind works in everyday life. To thank you for your participation, we will generate a personalized feedback on many aspects of your own mental life. This feedback will be private, but you will be able to share it with whom you want. 
 
 ## Why use an app for this?
 
-Classical experiments studying mindwandering involve having subjects come to a lab, wainting for them to mind-wander and suddenly assessing the content of their thoughts (this is referred to as "thought sampling").
+Classical experiments studying mindwandering involve having subjects come to a lab, waiting for them to mind wander and suddenly assessing the content of their thoughts (this is referred to as "thought sampling").
 
-This app does the same thing except that subjects are now anyone using the app in their natural environment. This methodology will lead to a large amount of *in vivo* data, impossible to obtain in a lab.
+This app does the same thing except that subjects are now anyone using the app in their natural environment. This methodology will allow the assessment of mind wandering in an incredible variety of contexts and activities, and the collection of a large amount of *in vivo* data, impossible to obtain in a lab.
 
 
 <div class="clearfix"></div>
