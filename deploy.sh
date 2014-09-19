@@ -3,10 +3,11 @@
 set -e
 
 echo "##"
-echo "## Pushing to upstream"
+echo "## Pulling and pushing to upstream"
 echo "##"
 echo
 
+git pull
 git push
 
 echo "##"
