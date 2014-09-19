@@ -6,9 +6,14 @@ tag: app
 
 ##<center> <font color="red">!!! BETA : You may test the app but we won't look at your data yet !!!</font> </center>
 
-<img class="img-rounded pull-right inside-picture" style="clear: right" width="150px" height="150px" src="http://daydreaming-the-app.net/releases/daydreaming-latest-qrlink.png" alt="Daydreaming QR code" />
 
 # Get going now!
+
+<a href="https://play.google.com/store/apps/details?id=com.brainydroid.daydreaming" >
+  <img alt="Get it on Google Play"
+        src="/images/brand/en_generic_rgb_wo_60.png"
+        align="right" />
+</a>
 
 The latest version of the app is [available here](http://daydreaming-the-app.net/releases/daydreaming-latest.apk). Alternatively you can scan this QR code which will bring you to the same link. Please note that there is no iOS version, it is only for Android.
 
