@@ -10,9 +10,12 @@ We are an international team of researchers from the UK, USA, Germany and France
 
 This project has many facets:
 
-* On the scientific side, Jonathan Smallwood, his students Florence Ruby and Haakon Engen (Leipzig, Germany) are experts in the study of mind wandering. This app adresses some open questions on the nature of this object of  their studies.
+* On the scientific side, Jérôme Sackur and his PhD student [Mikael Bastian] (Paris, France) are experts in the study of mind wandering. This app adresses questions on the mechanisms underlying our ability to daydream.
 * On the technical side, Vincent Adam (London, UK), Sebastien Lerique (Berlin, Germany) are very interested in the exploratory use of new ways to gather in vivo data through new technologies.
-* One a larger scale, the joint analysis of large datasets in the psychology field is a key interest of Tal Yarkoni (Boulder Colorado, USA), who recently created his Lab in the emerging field of Psychoinformatics.
+
+This app is developed in the context of the project [Science en Poche] that aims to promote and ease the development of mobile applications for scientific purposes.
+Science en Poche is hosted at the [Complex Systems Institute] headed by [David Chavalarias] and is funded by the city of Paris.
+The app wouldn't be that nice without the help of our designer ([Gislain Delaire]).
 
 ## Contact
 
