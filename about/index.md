@@ -17,11 +17,14 @@ This app is developed in the context of the project [Science en Poche](http://ww
 Science en Poche is hosted at the [Complex Systems Institute](http://www.iscpif.fr/tiki-index.php?page=home) headed by [David Chavalarias](http://chavalarias.com/) and is funded by the city of Paris.
 The app wouldn't be that nice without the help of our designer [Gislain Delaire](http://cargocollective.com/gislaindelaire).
 
-[{% img /images/logos/SEP_logo_rvb.svg 100x logo %}](http://www.iscpif.fr/tiki-index.php?page=SEP)
-[{% img /images/logos/logo_ens.png 100x logo %}](http://www.ens.fr/)
-[{% img /images/logos/logo_ucl.png 100x logo %}](http://www.ucl.ac.uk)
-[{% img /images/logos/logo_mb.png 100x logo %}](http://www.cmb.hu-berlin.de/en/)
-[{% img /images/logos/logo_gis.png 100x logo %}](http://cargocollective.com/gislaindelaire)
+<div class="logos-container">
+  <a href="http://www.iscpif.fr/tiki-index.php?page=SEP"><img src="/images/logos/SEP_logo_rvb.svg" style="width:100px;"></a>
+  <a href="http://www.ens.fr/"><img src="/images/logos/logo_ens.png" style="width:100px;"></a>
+  <a href="http://www.ucl.ac.uk"><img src="/images/logos/logo_ucl.png" style="width:100px;"></a>
+  <a href="http://www.cmb.hu-berlin.de/en/"><img src="/images/logos/logo_mb.png" style="width:100px;"></a>
+  <a href="http://cargocollective.com/gislaindelaire"><img src="/images/logos/logo_gis.png" style="width:100px;"></a>
+  <span class="stretch"></span>
+</div>
 
 ## Contact
 
