@@ -17,6 +17,12 @@ This app is developed in the context of the project [Science en Poche](http://ww
 Science en Poche is hosted at the [Complex Systems Institute](http://www.iscpif.fr/tiki-index.php?page=home) headed by [David Chavalarias](http://chavalarias.com/) and is funded by the city of Paris.
 The app wouldn't be that nice without the help of our designer [Gislain Delaire](http://cargocollective.com/gislaindelaire).
 
+[{% img /images/logos/SEP_logo_rvb.svg 100x %}](http://www.iscpif.fr/tiki-index.php?page=SEP)
+[{% img /images/logos/logo_ens.png 100x %}](http://www.ens.fr/)
+[{% img /images/logos/logo_ucl.png 100x %}](http://www.ucl.ac.uk)
+[{% img /images/logos/logo_mb.png 100x %}](http://www.cmb.hu-berlin.de/en/)
+[{% img /images/logos/logo_gis.png 100x %}](http://cargocollective.com/gislaindelaire)
+
 ## Contact
 
 Any questions, remarks, anything really, is very welcome! Don't hesitate to write: [contact@daydreaming-the-app.net](mailto:contact@daydreaming-the-app.net).
