@@ -18,6 +18,7 @@ Science en Poche is hosted at the [Complex Systems Institute](http://www.iscpif.
 The app wouldn't be that nice without the help of our designer [Gislain Delaire](http://cargocollective.com/gislaindelaire).
 
 <div class="logos-container">
+  <span class="stretch"></span>
   <a href="http://www.iscpif.fr/tiki-index.php?page=SEP"><img src="/images/logos/SEP_logo_rvb.svg" style="width:100px;"></a>
   <a href="http://www.ens.fr/"><img src="/images/logos/logo_ens.png" style="width:100px;"></a>
   <a href="http://www.ucl.ac.uk"><img src="/images/logos/logo_ucl.png" style="width:100px;"></a>
