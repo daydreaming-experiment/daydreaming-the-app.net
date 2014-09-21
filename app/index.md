@@ -30,11 +30,8 @@ After a short introduction and a few preliminary questions, the app will be runn
 * three psychological questionnaires that you can fill at any moment in the first three days. They aim at better undersanding your mental habits.
 * a couple of questions every morning about your sleep quality. Does dream influence daydream?
 * a couple of questions every evening about your free time. How does what you do in your free time influence your daydream?
-* the possibility to describe at any moment your thoughts - as you are experiencing them, mind wandering or not.
 * daily notifications at random moments about the quality of your thoughts - these unanticipated description might well be surprizing! They also tell us the percentage of time spent mind wandering.
-* three psychological questionnaires that you can fill at any moment in the first three days
-* a couple of questions every morning about your sleep quality 
-* a couple of questions every evening about your free time
+* the possibility to describe at any moment your thoughts - as you are experiencing them, mind wandering or not.
 
 Because your mind is (probably) rich and complex, and many mundane things could have a surprising impact on it. Of course your mental habits, but also your sleep quality and how you spend your free time will be useful information to get a grasp on what makes your mental life so specific.
 
