@@ -15,11 +15,12 @@ tag: app
         align="right" />
 </a>
 
-The latest version of the app is [available here](http://daydreaming-the-app.net/releases/daydreaming-latest.apk). Alternatively you can scan this QR code which will bring you to the same link. Please note that there is no iOS version, it is only for Android.
+The app is in testing phase just before launching, which means the latest version of the app is mostly [available here](http://daydreaming-the-app.net/releases/daydreaming-latest.apk). Alternatively, it is available in the Google Play Store, [but you must be registered among beta testers] to be able to see it there. If you are interested don't hesitate to <a href="mailto:daydreaming-beta-testers@googlegroups.com">ask for such a registration</a>.
+Please note that there is no iOS version, it is only for Android.
 
 ## Installing
 
-The app is in testing phase just before launching, which means it's only on the Google Play Store for beta testers. So to install the file you just downloaded above, you must tell Android that this file is safe: go to your system settings, navigate to the *Security* section, and tick the *Unknown sources* checkbox.
+Given that the app is still in testing phase, you may need to tell Android that the file you just downloaded above is safe: go to your system settings, navigate to the *Security* section, and tick the *Unknown sources* checkbox.
 
 You can then open the downloaded file (choose *Package Installer* if Android asks you which application to open the file with).
 
