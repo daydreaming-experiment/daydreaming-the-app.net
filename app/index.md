@@ -9,7 +9,6 @@ tag: app
 
 # Get going now!
 
-<<<<<<< HEAD
 <a href="https://groups.google.com/forum/#!forum/daydreaming-beta-testers" >
   <img alt="Get it on Google Play"
         src="/images/brand/en_generic_rgb_wo_60_beta.png"
@@ -21,20 +20,6 @@ We are currently looking for users to try the application. Registration can be d
 ## Installing
 
 Once that you are in the [google-group](https://groups.google.com/forum/#!forum/daydreaming-beta-testers) and that you have [accepted to be a tester](https://play.google.com/apps/testing/com.brainydroid.daydreaming), you may download the app from the playstore [here](https://play.google.com/store/apps/details?id=com.brainydroid.daydreaming). The latter link will only work if you satisfy the aforementioned conditions.
-=======
-<a href="https://play.google.com/store/apps/details?id=com.brainydroid.daydreaming" >
-  <img alt="Get it on Google Play" src="/images/brand/en_generic_rgb_wo_60.png" class="pull-right inside-picture" />
-</a>
-
-The app is in testing phase just before launching, which means the latest version of the app is mostly [available here](http://daydreaming-the-app.net/releases/daydreaming-latest.apk). Alternatively, it is available in the Google Play Store, but you must be registered among beta testers to be able to see it there. If you are interested don't hesitate to <a href="mailto:daydreaming-beta-testers@googlegroups.com">ask for such a registration</a>.
-Please note that there is no iOS version, it is only for Android.
-
-## Installing
-
-Given that the app is still in testing phase, you may need to tell Android that the file you just downloaded above is safe: go to your system settings, navigate to the *Security* section, and tick the *Unknown sources* checkbox.
-
-You can then open the downloaded file (choose *Package Installer* if Android asks you which application to open the file with).
->>>>>>> c9a2cd0f3785fefa51198135d3c9d72072a27810
 
 ## How does it work?
 
