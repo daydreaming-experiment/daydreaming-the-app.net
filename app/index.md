@@ -4,24 +4,22 @@ title: Get the app
 tag: app
 ---
 
-##<center> <font color="red">!!! BETA : You may test the app but we won't look at your data yet !!!</font> </center>
+##<center> <font color="red">!!! BETA : You may test the app now, your feedback will be use to make it better before it is released !!!</font> </center>
 
 
 # Get going now!
 
-<a href="https://play.google.com/store/apps/details?id=com.brainydroid.daydreaming" >
+<a href="https://groups.google.com/forum/#!forum/daydreaming-beta-testers" >
   <img alt="Get it on Google Play"
-        src="/images/brand/en_generic_rgb_wo_60.png"
+        src="/images/brand/en_generic_rgb_wo_60_beta.png"
         align="right" />
 </a>
 
-The latest version of the app is [available here](http://daydreaming-the-app.net/releases/daydreaming-latest.apk). Alternatively you can scan this QR code which will bring you to the same link. Please note that there is no iOS version, it is only for Android.
+We are currently looking for users to try the application. Registration can be done through the dedicated google group that you may find by clicking on the Badge on the right. Please note that there is no iOS version, it is only for Android.
 
 ## Installing
 
-The app is in testing phase just before launching, which means it's only on the Google Play Store for beta testers. So to install the file you just downloaded above, you must tell Android that this file is safe: go to your system settings, navigate to the *Security* section, and tick the *Unknown sources* checkbox.
-
-You can then open the downloaded file (choose *Package Installer* if Android asks you which application to open the file with).
+Once that you are in the [google-group](https://groups.google.com/forum/#!forum/daydreaming-beta-testers) and that you have [accepted to be a tester](https://play.google.com/apps/testing/com.brainydroid.daydreaming), you may download the app from the playstore [here](https://play.google.com/store/apps/details?id=com.brainydroid.daydreaming). The latter link will only work if you satisfy the aforementioned conditions.
 
 ## How does it work?
 
