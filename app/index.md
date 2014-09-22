@@ -4,7 +4,7 @@ title: Get the app
 tag: app
 ---
 
-##<center> <font color="red">!!! BETA : You may test the app now, your feedback will be use to make it better before it is released !!!</font> </center>
+##<center> <font color="red">!!! BETA : You may test the app now, your feedback will be used to make it better before it is released !!!</font> </center>
 
 
 # Get going now!
