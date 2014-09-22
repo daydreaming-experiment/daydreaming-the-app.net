@@ -19,7 +19,7 @@ We are currently looking for users to try the application. Registration can be d
 
 ## Installing
 
-Once you're in the [google-group](https://groups.google.com/forum/#!forum/daydreaming-beta-testers) and that you have [accepted to be a tester](https://play.google.com/apps/testing/com.brainydroid.daydreaming), you may download the app from the playstore [here](https://play.google.com/store/apps/details?id=com.brainydroid.daydreaming). The latter link will only work if you satisfy the aforementioned conditions.
+Once you're in the [google-group](https://groups.google.com/forum/#!forum/daydreaming-beta-testers) and you have [accepted to be a tester](https://play.google.com/apps/testing/com.brainydroid.daydreaming), you may download the app from the playstore [here](https://play.google.com/store/apps/details?id=com.brainydroid.daydreaming). The latter link will only work if you satisfy the aforementioned conditions.
 
 ## How does it work?
 
