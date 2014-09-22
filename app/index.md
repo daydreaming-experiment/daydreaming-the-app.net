@@ -10,9 +10,7 @@ tag: app
 # Get going now!
 
 <a href="https://play.google.com/store/apps/details?id=com.brainydroid.daydreaming" >
-  <img alt="Get it on Google Play"
-        src="/images/brand/en_generic_rgb_wo_60.png"
-        align="right" />
+  <img alt="Get it on Google Play" src="/images/brand/en_generic_rgb_wo_60.png" class="pull-right inside-picture" />
 </a>
 
 The app is in testing phase just before launching, which means the latest version of the app is mostly [available here](http://daydreaming-the-app.net/releases/daydreaming-latest.apk). Alternatively, it is available in the Google Play Store, [but you must be registered among beta testers] to be able to see it there. If you are interested don't hesitate to <a href="mailto:daydreaming-beta-testers@googlegroups.com">ask for such a registration</a>.
