@@ -8,7 +8,6 @@ jekyll build
 
 # Redo symbolic links
 ln -s ../../srv/releases _site/releases
-ln -s ../../srv/experiment-static _site/experiment-static
 ln -s ../../srv/presentations _site/presentations
 
 # Clean up
