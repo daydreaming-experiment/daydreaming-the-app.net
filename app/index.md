@@ -4,10 +4,10 @@ title: Get the app
 tag: app
 ---
 
-##<center> <font color="red">!!! BETA : You may test the app now, your feedback will be used to make it better before it is released !!!</font> </center>
+##<center> <font color="red">!!! BETA : Test the app NOW and obtain your results after only 20 days! Your feedback is very welcome at daydreaming.experiment@gmail.com !!!</font> </center>
 
 
-# Get going now!
+## Installing
 
 <a href="https://groups.google.com/forum/#!forum/daydreaming-beta-testers" >
   <img alt="Get it on Google Play"
@@ -15,30 +15,27 @@ tag: app
         align="right" />
 </a>
 
-We are currently looking for users to try the application. Registration can be done through the dedicated google group that you may find by clicking on the Badge on the right. Please note that there is no iOS version, it is only for Android.
-
-## Installing
-
-Once you're in the [google-group](https://groups.google.com/forum/#!forum/daydreaming-beta-testers) and you have [accepted to be a tester](https://play.google.com/apps/testing/com.brainydroid.daydreaming), you may download the app from the playstore [here](https://play.google.com/store/apps/details?id=com.brainydroid.daydreaming). The latter link will only work if you satisfy the aforementioned conditions.
+You can download the app from the playstore [here](https://play.google.com/store/apps/details?id=com.brainydroid.daydreaming) or by clicking on the Badge on the right.
+Please note that there is no iOS version, the app only works on Android.
 
 ## How does it work?
 
 After a short introduction and a few preliminary questions, the app will be running. It contains:
 
-* three psychological questionnaires that you can fill at any moment in the first three days. They aim at better undersanding your mental habits.
-* a couple of questions every morning about your sleep quality. Does dream influence daydream?
-* a couple of questions every evening about your free time. How does what you do in your free time influence your daydream?
+* three <b>psychological questionnaires</b> to fill at any moment within the first three days,
+* a couple of <b>questions every morning</b> about your sleep quality,
+* a couple of <b>questions every evening</b> about your activities during the past day.
 
-Because... your mind is (probably) rich and complex, and many mundane things could have a surprising impact on it. Of course your mental habits, but also your sleep quality and how you spend your free time will be useful information to get a grasp on what makes your mental life so specific.
+Why? because many mundane things could have a surprising impact on the richness of your mind. Of course information about your mental habits, but also about your sleep quality and how you spend your free time will be useful to get a grasp on what makes your mental life what it is.
 
 And crucially, the app also contains:
 
-* the possibility to describe at any moment your thoughts
-* daily notifications at random moments about the quality of your thoughts
+* the possibility to <b>describe at any moment your thoughts</b>,
+* daily <b>notifications at random moments</b> about the quality of your thoughts
 
-Because... human’s thought is an ephemeral phenomenon. It is short-lived, and soon cleared from memory as you start attending to other things. The scientific study of thought has been challenging, but we now know that people’s descriptions of their thoughts are the most accurate when they are the most immediate.
+Why? because human’s thought is an ephemeral phenomenon. It is short-lived, and soon cleared from memory as you start attending to other things. The scientific study of thought has been challenging, but we now know that people’s descriptions of their thoughts are the most accurate when they are the most immediate.
 
-Therefore, at any moment, you will be able to describe to the app your thoughts as you were just having them, whether daydreaming or not. Of course, you should not think too much about your thoughts! That is why, at random moments during the day, you will receive notifications asking you questions about your thoughts as you are having them – without anticipating the app.
+Therefore, at any moment, you will be able to describe to the app your thoughts as you were just having them, whether daydreaming or not. Of course, you should not think too much about your thoughts! That is why you will receive notifications asking you questions about your thoughts as you are having them at random moment of the day – with no possibility to anticipate them. Note that these random probes are the most representative of your real trains of thoughts - do not overlook them!
 
 ## Why should I use it?
 
@@ -47,7 +44,7 @@ You're participating in a *research project* that might lead to very interesting
 * concretely pay attention to each of your own thoughts with the tools of science
 * pay attention to specific behaviors and mental habits
 
-*After 30 days*, to thank you for your helpful participation, you will also
+*After 30 days* (20 days for early testers), to thank you for your helpful participation, you will also
 
 * receive a detailed report of your real daydreaming style. With it you'll get a unique chance to notice regular and unexpected patterns of your mental functionning that appear only after dozens of observations have been collected.
 * be able to share this report on your favorite social medias
