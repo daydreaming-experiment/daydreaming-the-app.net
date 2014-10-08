@@ -4,18 +4,19 @@ title: Get the app
 tag: app
 ---
 
-##<center> <font color="red">!!! BETA : Test the app NOW and obtain your results after only 20 days! Your feedback is very welcome at daydreaming.experiment@gmail.com !!!</font> </center>
+##<center> <font color="red">BETA : Test the app NOW and obtain your results after only 20 days! </font> </center>
 
+### Your feedback is welcome at daydreaming.experiment@gmail.com
 
 ## Installing
 
-<a href="https://groups.google.com/forum/#!forum/daydreaming-beta-testers" >
+<a href="https://play.google.com/store/apps/details?id=com.brainydroid.daydreamingbeta" >
   <img alt="Get it on Google Play"
         src="/images/brand/en_generic_rgb_wo_60_beta.png"
         align="right" />
 </a>
 
-You can download the app from the playstore [here](https://play.google.com/store/apps/details?id=com.brainydroid.daydreaming) or by clicking on the Badge on the right.
+You can download the app from the playstore [here](https://play.google.com/store/apps/details?id=com.brainydroid.daydreamingbeta) or by clicking on the Badge on the right.
 Please note that there is no iOS version, the app only works on Android.
 
 ## How does it work?
