@@ -4,7 +4,8 @@ title: Get the app
 tag: app
 ---
 
-##<center> <font color="red">!!! BETA : Test the app NOW and obtain your results after only 20 days! Your feedback is very welcome at daydreaming.experiment@gmail.com !!!</font> </center>
+##<center> <font color="red">BETA : Test the app NOW and obtain your results after only 20 days!</font> </center>
+##<center> <font color="red"> Your feedback is very welcome at daydreaming.experiment@gmail.com</font> </center>
 
 
 ## Installing
