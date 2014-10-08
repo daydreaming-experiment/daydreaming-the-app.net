@@ -7,7 +7,6 @@ tag: app
 ##<center> <font color="red">BETA : Test the app NOW and obtain your results after only 20 days!</font> </center>
 ##<center> <font color="red"> Your feedback is very welcome at daydreaming.experiment@gmail.com</font> </center>
 
-
 ## Installing
 
 <a href="https://play.google.com/store/apps/details?id=com.brainydroid.daydreamingbeta" >
@@ -72,7 +71,3 @@ Since the app is still in testing phase there might be a few glitches here and t
 ## Free software
 
 This experiment is free software: the app and all its related software are released under the GNU/GPLv3 license, and the code is available [on GitHub](https://github.com/wehlutyk/daydreaming).
-
-
-
-
