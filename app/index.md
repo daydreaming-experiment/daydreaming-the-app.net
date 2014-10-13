@@ -5,7 +5,7 @@ tag: app
 ---
 
 ##<center> <font color="red">BETA : Test the app now and obtain your results after only 15 days!</font> </center>
-##<center> <font color="red"> Your <a href="mailto:feedback@daydreaming-the-app.net"> feedback </a> is very welcome at feedback@daydreaming-the-app.net</font> </center>
+##<center> <font color="red"> Your feedback is very welcome at <a href="mailto:feedback@daydreaming-the-app.net">feedback@daydreaming-the-app.net</a></font> </center>
 
 ## Installing
 
