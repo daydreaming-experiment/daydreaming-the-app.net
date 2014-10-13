@@ -4,8 +4,8 @@ title: Get the app
 tag: app
 ---
 
-##<center> <font color="red">BETA : Test the app NOW and obtain your results after only 20 days!</font> </center>
-##<center> <font color="red"> Your feedback is very welcome at daydreaming.experiment@gmail.com</font> </center>
+##<center> <font color="red">BETA : Test the app now and obtain your results after only 15 days!</font> </center>
+##<center> <font color="red"> Your <a href="mailto:feedback@daydreaming-the-app.net"> feedback </a> is very welcome at feedback@daydreaming-the-app.net</font> </center>
 
 ## Installing
 
@@ -70,4 +70,4 @@ Since the app is still in testing phase there might be a few glitches here and t
 
 ## Free software
 
-This experiment is free software: the app and all its related software are released under the GNU/GPLv3 license, and the code is available [on GitHub](https://github.com/wehlutyk/daydreaming).
+This experiment is free software: the app and all its related software are released under the GNU/GPLv3 license, and the code is available [on GitHub](https://github.com/daydreaming-experiment).
