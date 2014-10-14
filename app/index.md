@@ -15,7 +15,7 @@ tag: app
         align="right" />
 </a>
 
-You can download the app from the Play Store by clicking on the Badge on the right.
+To download the app from the Play Store, click on the Badge on the right.
 Please note that there is no iOS version, the app is developed for Android only.
 
 ## How does it work?
@@ -44,7 +44,7 @@ You're participating in a *research project* that might lead to very interesting
 * concretely pay attention to each of your own thoughts with the tools of science
 * pay attention to specific behaviors and mental habits
 
-*After 30 days* (20 days for early testers), to thank you for your helpful participation, you will also
+*After 30 days* (15 days for early testers), to thank you for your helpful participation, you will also
 
 * receive a detailed report of your real daydreaming style. With it you'll get a unique chance to notice regular and unexpected patterns of your mental functionning that appear only after dozens of observations have been collected.
 * be able to share this report on your favorite social medias
