@@ -6,3 +6,35 @@
   margin: 1px;
   color: white;
 }
+
+
+/*
+ * UI white test: #EBFBFF
+ * UI blue background: #00A2D4
+ */
+
+body {
+  font-family: Roboto, sans-serif;
+  background-color: #00A2D4;
+  color: #EBFBFF;
+}
+
+h1.title {
+  text-align: center;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'), url(/static/fonts/Roboto.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Roboto Bold'), local('Roboto-Bold'), url(/static/fonts/Roboto-Bold.woff) format('woff');
+}
