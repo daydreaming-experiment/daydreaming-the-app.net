@@ -27,6 +27,7 @@ h1 {
 }
 
 h2 {
+  text-align: center;
   font-weight: bold;
   font-size: 1.125em;
 }
@@ -46,8 +47,11 @@ h2 {
 }
 
 .static-plot-container img.static-plot {
-  width: 100px;
-  height: 100px;
+  display: block;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1em;
 }
 
 
