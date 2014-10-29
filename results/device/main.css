@@ -19,12 +19,41 @@ body {
   color: #EBFBFF;
 }
 
-h1.title {
+h1 {
   text-align: center;
   font-weight: bold;
   font-size: 1.56em;
   text-transform: uppercase;
 }
+
+h2 {
+  font-weight: bold;
+  font-size: 1.125em;
+}
+
+.static-plot-container {
+  text-align: justify;
+}
+
+.static-plot-container:after {
+  content: '';
+  width: 100%; /* Ensures there are at least 2 lines of text, so justification works */
+  display: inline-block;
+}
+
+.static-plot-container .static-plot {
+  display: inline-block;
+}
+
+.static-plot-container img.static-plot {
+  width: 100px;
+  height: 100px;
+}
+
+
+/*
+ * Fonts
+ */
 
 @font-face {
   font-family: 'Roboto';

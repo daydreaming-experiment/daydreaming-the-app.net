@@ -48,7 +48,8 @@ function onResults(callback) {
 $(document).ready(function() {
 
   onResults(function(results) {
-    $("<p>Number of results: " + results.length + "</p>").insertAfter("div#main p:last-child");
+    console.log("Got " + results.length + " results to process");
+    //$("<p>Number of results: " + results.length + "</p>").insertAfter("div#main p:last-child");
   });
 
 });
