@@ -9,14 +9,18 @@
 
 
 /*
- * UI white test: #EBFBFF
- * UI blue background: #00A2D4
+ * Mimick the app's UI
  */
 
 body {
   font-family: Roboto, sans-serif;
   background-color: #00A2D4;
   color: #EBFBFF;
+}
+
+#main {
+  padding-left: 1em;
+  padding-right: 1em;
 }
 
 h1 {
@@ -31,6 +35,11 @@ h2 {
   font-weight: bold;
   font-size: 1.125em;
 }
+
+
+/*
+ * Plot flowing
+ */
 
 .static-plot-container {
   text-align: justify;
@@ -52,6 +61,19 @@ h2 {
   margin-left: auto;
   margin-right: auto;
   margin-top: 1em;
+}
+
+
+/*
+ * Switch
+ */
+
+#global, #personal {
+  display: none;
+}
+
+#global.selected, #personal.selected {
+  display: block;
 }
 
 

@@ -52,4 +52,11 @@ $(document).ready(function() {
     //$("<p>Number of results: " + results.length + "</p>").insertAfter("div#main p:last-child");
   });
 
+  var global = $('#global'),
+      personal = $('#personal');
+  $('#switch').click(function() {
+    global.toggleClass('selected');
+    personal.toggleClass('selected');
+  });
+
 });
