@@ -33,10 +33,6 @@ h3 {
   font-size: 0.9em;
 }
 
-p {
-  text-align: left;
-}
-
 img {
   font-style: italic;
 }
@@ -45,23 +41,12 @@ img {
  * Plot flowing
  */
 
-.static-plot-container {
-  text-align: justify;
-}
-
-.static-plot-container:after {
-  content: '';
-  width: 100%; /* Ensures there are at least 2 lines of text, so justification works */
-  display: inline-block;
-}
-
 .static-plot {
   display: block;
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 2em;
-  margin-bottom: 3em;
+  margin-top: 1em;
 }
 
 img.width-80 {
