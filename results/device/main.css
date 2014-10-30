@@ -55,16 +55,17 @@ img {
   display: inline-block;
 }
 
-.static-plot-container .static-plot {
-  display: inline-block;
-}
-
-.static-plot-container img.static-plot {
+.static-plot {
   display: block;
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 1em;
+  margin-top: 2em;
+  margin-bottom: 3em;
+}
+
+img.width-80 {
+  width: 80%;
 }
 
 
