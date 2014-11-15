@@ -1,3 +1,95 @@
+/*
+ * Mimick the app's UI
+ */
+
+body {
+  font-family: Roboto, sans-serif;
+  background-color: #00A2D4;
+  color: #EBFBFF;
+}
+
+#main {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+h1 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.56em;
+  text-transform: uppercase;
+}
+
+h2 {
+  margin-top: 3em;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.125em;
+}
+
+h3 {
+  margin-top: 2.5em;
+  font-weight: bold;
+  font-size: 0.9em;
+}
+
+img {
+  font-style: italic;
+}
+
+/*
+ * Plot flowing
+ */
+
+.static-plot {
+  display: block;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1em;
+}
+
+img.width-80 {
+  width: 80%;
+}
+
+
+/*
+ * Switch
+ */
+
+#global, #personal {
+  display: none;
+}
+
+#global.selected, #personal.selected {
+  display: block;
+}
+
+
+/*
+ * Fonts
+ */
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'), url(/static/fonts/Roboto.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Roboto Bold'), local('Roboto-Bold'), url(/static/fonts/Roboto-Bold.woff) format('woff');
+}
+
+/*
+ *  vincent added
+ */
+
+
 .chart div {
   font: 10px sans-serif;
   background-color: steelblue;
@@ -5,4 +97,43 @@
   padding: 3px;
   margin: 1px;
   color: white;
+}
+/*
+ * UI white test: #EBFBFF
+ * UI blue background: #00A2D4
+ */
+body {
+  font-family: Roboto, sans-serif;
+  background-color: #00A2D4;
+  color: #EBFBFF;
+}
+h1.title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.56em;
+  text-transform: uppercase;
+}
+
+
+.slice text {
+  font-size: 20pt;
+  font-family: Arial;
+}
+body {
+  font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin: auto;
+  position: relative;
+  width: 960px;
+}
+text {
+  font: 11px sans-serif;
+}
+
+.caption {
+  font: 15px sans-serif;
+}
+form {
+  position: absolute;
+  right: 10px;
+  top: 10px;
 }

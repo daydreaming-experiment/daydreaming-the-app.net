@@ -11,9 +11,36 @@
 
   <div id="main">
     <h1>Results</h1>
-    <p>This is a test results page.</p>
-  </div>
-  <div class="chart">
+    <!--<a id="switch" href="#">Global <-> personal</a>-->
+    <p>Lucky you! You get to see the global results we analysed before everyone else.</p>
+    <p>Thanks for being a beta tester!</p>
+
+    <div class="selected" id="global">
+      <div class="static-plot-container">
+        <h2>Global results</h2>
+        <p>On average, people mind-wander a lot: over 40% of their time.</p>
+        <h3>Weekly rhythms</h3>
+        <p>Mind-wandering depends on the day of the week. See the mind-wandering peaks on Mondays and Fridays!</p>
+        <div id="focus_weekly_rythms"></div>
+        <h3>Know yourself</h3>
+        <p>People are usually aware of their mind-wandering 49% of the time. But they can be more or less aware of it &mdash; see how much.</p>
+        <div id="mindwandering_awareness"></div>
+        <h3>Words or images? Maybe sounds</h3>
+        <p>Most people think a lot in words. See how this changes depending on whether people are mind-wandering or not.</p>
+        <div id="words_and_sounds"></div>
+        <h3>Surroundings</h3>
+        <p>People's awareness of their surroundings is pretty much independant of where they are...</p>
+        <div id="awareness_of_surroundings_location"></div>
+        <p>... but it sure depends on how many people are around! The more people around, the greater the awareness, except when we're alone or in a crowd.</p>
+        <div id="awareness_of_surroundings_people"></div>
+        <h2>That's it for today</h2>
+
+      </div>
+    </div>
+    <!--<div id="personal">-->
+        <!--<h2>Personal results</h2>-->
+        <!--<p>Your personal results are still being worked on! Come back around November 6 for these.</p>-->
+    <!--</div>-->
   </div>
 
   <script src="/static/js/jquery-2.1.1.min.js"></script>
@@ -22,3 +49,4 @@
   <script src="/results/device/index.js"></script>
 </body>
 </html>
+
