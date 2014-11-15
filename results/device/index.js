@@ -18,10 +18,12 @@ function onFixtures(callback) {
             callback(fixturedInjectedResults);
         }
     });
+
 }
 
 
 function onResults(callback) {
+<<<<<<< HEAD
     // TODO: in further versions, check versionCode if method of passing results changes.
 
     var onResultsReady = function (realResults) {
@@ -43,6 +45,7 @@ function onResults(callback) {
         console.log('App detected');
         onResultsReady(injectedResults);
     }
+
 }
 
 $(document).ready(function () {
@@ -423,6 +426,7 @@ $(document).ready(function () {
                     .attr("height", height)
                     .append("svg:g") //make a group to hold our pie chart
                     .attr("transform", "translate(" + width/2 + "," + (radius+margins.top) + ")") // translate center
+
 
                 // declaring the arc form
                 var arc = d3.svg.arc() //this will create <path> elements for us using arc data
@@ -938,6 +942,7 @@ $(document).ready(function () {
 
 
     });
+
 
 });
 

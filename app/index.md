@@ -4,8 +4,7 @@ title: Get the app
 tag: app
 ---
 
-##<center> <font color="red">BETA : Test the app NOW and obtain your results after only 20 days!</font> </center>
-##<center> <font color="red"> Your feedback is very welcome at daydreaming.experiment@gmail.com</font> </center>
+##<center> <font color="red"> Your feedback is very welcome at <br> <a href="mailto:feedback@daydreaming-the-app.net">feedback@daydreaming-the-app.net</a></font> </center>
 
 ## Installing
 
@@ -15,8 +14,8 @@ tag: app
         align="right" />
 </a>
 
-You can download the app from the playstore [here](https://play.google.com/store/apps/details?id=com.brainydroid.daydreamingbeta) or by clicking on the Badge on the right.
-Please note that there is no iOS version, the app only works on Android.
+To download the app from the Play Store, click on the Badge on the right.
+Please note that there is no iOS version, the app is developed for Android only.
 
 ## How does it work?
 
@@ -44,7 +43,7 @@ You're participating in a *research project* that might lead to very interesting
 * concretely pay attention to each of your own thoughts with the tools of science
 * pay attention to specific behaviors and mental habits
 
-*After 30 days* (20 days for early testers), to thank you for your helpful participation, you will also
+*After 30 days*, to thank you for your helpful participation, you will also
 
 * receive a detailed report of your real daydreaming style. With it you'll get a unique chance to notice regular and unexpected patterns of your mental functionning that appear only after dozens of observations have been collected.
 * be able to share this report on your favorite social medias
@@ -54,20 +53,16 @@ You're participating in a *research project* that might lead to very interesting
 * you will finally reveive a comparison on how your daydreaming style differs from others.
 * the app will keep on working. How does your daydreaming style changes with the day of the week, along seasons, if you start a new activity? You will be able to answer these questions by assessing your own data.
 
+<div class="clearfix"></div>
+<img class="img-rounded pull-left inside-picture" width="125" height="228px" src="/static/img/daydreaming-screenshot.jpg" alt="Daydreaming screenshot" />
+
 ## Why use an app for this?
 
 Classical experiments studying mindwandering involve having subjects come to a lab, waiting for them to mind wander and suddenly assessing the content of their thoughts (this is referred to as "thought sampling").
 
 This app does the same thing except that subjects are now anyone using the app in their natural environment. This methodology will allow the assessment of mind wandering in an incredible variety of contexts and activities, and the collection of a large amount of *in vivo* data, impossible to obtain in a lab.
 
-
-<div class="clearfix"></div>
-<img class="img-rounded pull-left inside-picture" width="125" height="228px" src="/static/img/daydreaming-screenshot.jpg" alt="Daydreaming screenshot" />
-
-# Private beta
-
-Since the app is still in testing phase there might be a few glitches here and there. Any crashes will be automatically reported to us, but if you have suggestions or remarks on how to improve things, we'd be <a href="mailto:feedback@daydreaming-the-app.net">delighted to hear from you</a>.
-
 ## Free software
 
-This experiment is free software: the app and all its related software are released under the GNU/GPLv3 license, and the code is available [on GitHub](https://github.com/wehlutyk/daydreaming).
+This experiment is free software: the app and all its related software are released under the GNU/GPLv3 license, and the code is available [on GitHub](https://github.com/daydreaming-experiment).
+Any crashes will be automatically reported to us, but if you have suggestions or remarks on how to improve things, we'd be <a href="mailto:feedback@daydreaming-the-app.net">delighted to hear from you</a>.
