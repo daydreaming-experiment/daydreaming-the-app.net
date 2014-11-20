@@ -8,14 +8,14 @@ tag: app
 
 ## Installing
 
-<a href="https://play.google.com/store/apps/details?id=com.brainydroid.daydreamingbeta" >
+<a href="https://play.google.com/store/apps/details?id=com.brainydroid.daydreaming" >
   <img alt="Get it on Google Play"
-        src="/images/brand/en_generic_rgb_wo_60_beta.png"
+        src="/images/brand/en_generic_rgb_wo_60.png"
         align="right" />
 </a>
 
 To download the app from the Play Store, click on the Badge on the right.
-Please note that there is no iOS version, the app is developed for Android only.
+Please note that there is no iOS version yet, the app has only been developed for Android.
 
 ## How does it work?
 
