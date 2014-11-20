@@ -23,7 +23,6 @@ function onFixtures(callback) {
 
 
 function onResults(callback) {
-<<<<<<< HEAD
     // TODO: in further versions, check versionCode if method of passing results changes.
 
     var onResultsReady = function (realResults) {
