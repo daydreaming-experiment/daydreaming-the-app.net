@@ -8,7 +8,7 @@ tag: app
 
 ## Installing
 
-<a href="https://play.google.com/store/apps/details?id=com.brainydroid.daydreaming" >
+<a id="app-button" href="https://play.google.com/store/apps/details?id=com.brainydroid.daydreaming" >
   <img alt="Get it on Google Play"
         src="/images/brand/en_generic_rgb_wo_60.png"
         align="right" />
