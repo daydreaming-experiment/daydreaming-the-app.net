@@ -65,24 +65,26 @@
     <script src="/static/js/bootstrap.min.js"></script>
     <!-- Android detection -->
     <script>
-      "use strict";
-      var ua = navigator.userAgent.toLowerCase();
-      var isAndroid = ua.indexOf("android") > -1;
-      if(isAndroid) {
-        console.log("Android detected");
-        var appButton = $("#app-button");
-        if (appButton.length > 0) {
-          var url = appButton.attr("href");
-          var details = url.substring(url.indexOf("details?id="));
-          var market = "market://" + details;
-          appButton.attr("href", market);
-          console.log("Found app button, replaced link with '" + market + "'");
+      (function() {
+        "use strict";
+        var ua = navigator.userAgent.toLowerCase();
+        var isAndroid = ua.indexOf("android") > -1;
+        if(isAndroid) {
+          console.log("Android detected");
+          var appButton = $("#app-button");
+          if (appButton.length > 0) {
+            var url = appButton.attr("href");
+            var details = url.substring(url.indexOf("details?id="));
+            var market = "market://" + details;
+            appButton.attr("href", market);
+            console.log("Found app button, replaced link with '" + market + "'");
+          } else {
+            console.log("No app button found");
+          }
         } else {
-          console.log("No app button found");
+          console.log("Non-android detected");
         }
-      } else {
-        console.log("Non-android detected");
-      }
+      })();
     </script>
 
     <!-- Piwik -->
