@@ -6,6 +6,9 @@ body {
   font-family: Roboto, sans-serif;
   background-color: #00A2D4;
   color: #EBFBFF;
+  margin: auto;
+  position: relative;
+  width: 320px;
 }
 
 #main {
@@ -14,6 +17,13 @@ body {
 }
 
 h1 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.56em;
+  text-transform: uppercase;
+}
+
+h1.title {
   text-align: center;
   font-weight: bold;
   font-size: 1.56em;
@@ -89,7 +99,6 @@ img.width-80 {
  *  vincent added
  */
 
-
 .chart div {
   font: 10px sans-serif;
   background-color: steelblue;
@@ -99,33 +108,12 @@ img.width-80 {
   color: white;
 }
 
-/*
- * UI white test: #EBFBFF
- * UI blue background: #00A2D4
- */
-body {
-  font-family: Roboto, sans-serif;
-  background-color: #00A2D4;
-  color: #EBFBFF;
-}
-h1.title {
-  text-align: center;
-  font-weight: bold;
-  font-size: 1.56em;
-  text-transform: uppercase;
-}
-
 
 .slice text {
   font-size: 20pt;
   font-family: Arial;
 }
-body {
-  font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
-  margin: auto;
-  position: relative;
-  width: 960px;
-}
+
 text {
   font: 11px sans-serif;
 }
@@ -133,8 +121,4 @@ text {
 .caption {
   font: 15px sans-serif;
 }
-form {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-}
+
