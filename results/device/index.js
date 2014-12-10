@@ -393,8 +393,7 @@ $(document).ready(function () {
 
 //-------------------DIMENSIONS-----------------------
 
-    var width = 320, //width
-        height = 250; //height
+
 
     var barPadding = 1;
 
@@ -406,14 +405,17 @@ $(document).ready(function () {
       bottom_caption:20
     };
 
+    var width = 320 - (margins_bar.left + margins_bar.right), //width
+        height = 250; //height
+
     var  margins_pie = {
       top: 30,
-      right: 20,
+      right: 30,
       bottom:30,
       left: 50
     };
 
-    var radius = Math.min(width-margins_pie.left-margins_pie.right, height-margins_pie.top-margins_pie.bottom)*0.5, //radius
+    var radius = Math.min(width-margins_pie.left-margins_pie.right, height-margins_pie.top-margins_pie.bottom)*0.4, //radius
         inner_radius = radius*1,
         outer_radius = radius*0.5,
         color = d3.scale.category20c(); //builtin range of colors
@@ -576,10 +578,24 @@ $(document).ready(function () {
             .attr("fill", "white")
             .attr("text-anchor", "middle");
 
+
+        //
+
+        vis.append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 0 )
+            .attr("x", 0 - (height / 2))
+            .attr("dy", "1em")
+            .style("text-anchor", "middle")
+            .attr("fill", "white")
+            .attr("class", "caption")
+            .text("Type strength");
+
         // adding legend
 
-        var legend_sq_size = 20
+        var legend_sq_size = 20;
         var legend_txt_size = (width-margins_bar.left-margins_bar.right)/4
+        var delta = 2;
 
         vis.selectAll("rect.legend")
             .data(ws_bar.data.slice(0, 3)) // pick 3 first
@@ -602,10 +618,10 @@ $(document).ready(function () {
             .enter()
             .append("text")
             .attr("x", function(d, i) {
-              return margins_bar.left + i*(legend_sq_size+legend_txt_size);
+              return margins_bar.left + (i)*(legend_sq_size+legend_txt_size)  + delta;
             })
             .attr("y", function(d, i) {
-              return  legend_sq_size*1.5  ;
+              return  legend_sq_size*1.8  ;
             })
             .text(function(d, i) {
               return  d.label ;
@@ -613,8 +629,6 @@ $(document).ready(function () {
             .style("fill","white");
       }
     }
-
-
 
 
 // =============== Line plot weekly rythm ==================
@@ -734,8 +748,9 @@ $(document).ready(function () {
 
       data : dataset_awareness_loc,
       display : function () {
-
-        var rect_width = ((width-margins_bar.left-margins_bar.right) / aware_loc_bar.data.length);
+        alert(aware_loc_bar.data.length)
+        var rect_width = ((width-margins_bar.left-margins_bar.right) / (aware_loc_bar.data.length));
+        var nbars = (aware_loc_bar.data.length);
 
         var labels = [];
         for (var i = 0; i < aware_loc_bar.data.length; i++) {
@@ -749,7 +764,7 @@ $(document).ready(function () {
 
         var x = d3.scale.ordinal()
                 .domain(labels)
-                .rangePoints([margins_bar.left+rect_width/2, width-margins_bar.right-margins_bar.left+rect_width/2]),
+                .rangePoints([margins_bar.left + rect_width/2 , margins_bar.left + rect_width/2 + (nbars-1)*rect_width]),
 
             yRange = d3.scale.linear().range([height - margins_bar.bottom, margins_bar.top])
                 .domain([0, d3.max(aware_loc_bar.data, function(d) {
@@ -776,8 +791,6 @@ $(document).ready(function () {
             .attr("transform", "rotate(-25)")
             .style("text-anchor", "end");
 
-
-
         vis.append('svg:g')
             .attr('class', 'y axis')
             .attr('transform', 'translate(' + (margins_bar.left) + ',0)')
@@ -794,7 +807,7 @@ $(document).ready(function () {
             .attr("y", function(d) {
               return yRange(d.value) ;
             })
-            .attr("width", (width-margins_bar.left-margins_bar.right) / aware_loc_bar.data.length - barPadding)
+            .attr("width", rect_width - barPadding)
             .attr("height", function(d) {
               return  (height - margins_bar.bottom) - (yRange(d.value) );
             })
@@ -828,6 +841,7 @@ $(document).ready(function () {
       display : function () {
 
         var rect_width = ((width-margins_bar.left-margins_bar.right) / aware_loc_bar.data.length);
+        var nbars = (aware_loc_bar.data.length);
 
         var labels = [];
         for (var i = 0; i < aware_ppl_bar.data.length; i++) {
@@ -839,13 +853,10 @@ $(document).ready(function () {
             .attr("width", width)
             .attr("height", height);
 
-        //var x = d3.scale.ordinal()
-        //        .domain(labels)
-        //        .rangePoints([margins_bar.left+rect_width/2, width-margins_bar.right-margins_bar.left]),
 
         var x = d3.scale.ordinal()
                 .domain(labels)
-                .rangePoints([margins_bar.left+rect_width/2, width-margins_bar.right-margins_bar.left+rect_width/2]),
+                .rangePoints([margins_bar.left + rect_width/2 , margins_bar.left + rect_width/2 + (nbars-1)*rect_width]),
 
             yRange = d3.scale.linear().range([height - margins_bar.bottom-margins_bar.bottom_caption, margins_bar.top])
                 .domain([0, d3.max(aware_ppl_bar.data, function(d) {
