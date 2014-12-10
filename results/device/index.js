@@ -748,7 +748,6 @@ $(document).ready(function () {
 
       data : dataset_awareness_loc,
       display : function () {
-        alert(aware_loc_bar.data.length)
         var rect_width = ((width-margins_bar.left-margins_bar.right) / (aware_loc_bar.data.length));
         var nbars = (aware_loc_bar.data.length);
 
