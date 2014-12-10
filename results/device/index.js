@@ -3,23 +3,39 @@
 
 $(document).ready(function () {
 
+  var getRandomInt = function(min, max) {
+      return Math.floor(Math.random() * (max - min)) + min;
+  };
+
   var onFixtures = function(callback) {
-    var fixturesURL = 'http://daydreaming-the-app.net/results/device/results-fixtures.json';
+    var profileIdsURL ='/results/device/fixtures/profile_ids.json',
+        baseResultsURL = '/results/device/fixtures/results-',
+        postfixResultsURL = '.json';
 
-    $.getJSON(fixturesURL, function (data) {
-      var fixturedInjectedResults = {
-        getVersionCode: function () {
-          return -1;
-        },
-        getResultsWrap: function () {
-          return JSON.stringify(data);
+    var onProfileIdsReceived = function(data) {
+      var nProfiles = data.profile_ids.length,
+          profile_id = data.profile_ids[getRandomInt(0, nProfiles)],
+          resultsUrl = baseResultsURL + profile_id + postfixResultsURL;
+      console.log(nProfiles + " fixture profiles available");
+      console.log("Randomly selected profile id: " + profile_id);
+
+      $.getJSON(resultsUrl, function(data) {
+        var fixturedInjectedResults = {
+          getVersionCode: function () {
+            return -1;
+          },
+          getResultsWrap: function () {
+            return JSON.stringify(data);
+          }
+        };
+
+        if (callback !== undefined) {
+          callback(fixturedInjectedResults);
         }
-      };
+      });
+    };
 
-      if (callback !== undefined) {
-        callback(fixturedInjectedResults);
-      }
-    });
+    $.getJSON(profileIdsURL, onProfileIdsReceived);
 
   };
 
@@ -38,12 +54,12 @@ $(document).ready(function () {
 
     if (typeof injectedResults == "undefined") {
       // We're in the browser
-      console.log('Browser detected');
+      console.log('Browser detected, using fixtures');
       // Get fixtures from url, then call onResultsReady
       onFixtures(onResultsReady);
     } else {
       // We're in the app
-      console.log('App detected');
+      console.log('App detected, using injected results');
       onResultsReady(injectedResults);
     }
 
