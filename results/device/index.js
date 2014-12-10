@@ -1,53 +1,54 @@
 "use strict";
 
 
-function onFixtures(callback) {
-  var fixturesURL = 'http://daydreaming-the-app.net/results/device/results-fixtures.json';
+$(document).ready(function () {
 
-  $.getJSON(fixturesURL, function (data) {
-    var fixturedInjectedResults = {
-      getVersionCode: function () {
-        return -1;
-      },
-      getResultsWrap: function () {
-        return JSON.stringify(data);
+  var onFixtures = function(callback) {
+    var fixturesURL = 'http://daydreaming-the-app.net/results/device/results-fixtures.json';
+
+    $.getJSON(fixturesURL, function (data) {
+      var fixturedInjectedResults = {
+        getVersionCode: function () {
+          return -1;
+        },
+        getResultsWrap: function () {
+          return JSON.stringify(data);
+        }
+      };
+
+      if (callback !== undefined) {
+        callback(fixturedInjectedResults);
+      }
+    });
+
+  };
+
+
+  var onResults = function(callback) {
+    // TODO: in further versions, check versionCode if method of passing results changes.
+
+    var onResultsReady = function (realResults) {
+      console.log('App versionCode: ' + realResults.getVersionCode());
+      var resultsWrap = JSON.parse(realResults.getResultsWrap());
+
+      if (callback !== undefined) {
+        callback(resultsWrap.results);
       }
     };
 
-    if (callback !== undefined) {
-      callback(fixturedInjectedResults);
+    if (typeof injectedResults == "undefined") {
+      // We're in the browser
+      console.log('Browser detected');
+      // Get fixtures from url, then call onResultsReady
+      onFixtures(onResultsReady);
+    } else {
+      // We're in the app
+      console.log('App detected');
+      onResultsReady(injectedResults);
     }
-  });
 
-}
-
-
-function onResults(callback) {
-  // TODO: in further versions, check versionCode if method of passing results changes.
-
-  var onResultsReady = function (realResults) {
-    console.log('App versionCode: ' + realResults.getVersionCode());
-    var resultsWrap = JSON.parse(realResults.getResultsWrap());
-
-    if (callback !== undefined) {
-      callback(resultsWrap.results);
-    }
   };
 
-  if (typeof injectedResults == "undefined") {
-    // We're in the browser
-    console.log('Browser detected');
-    // Get fixtures from url, then call onResultsReady
-    onFixtures(onResultsReady);
-  } else {
-    // We're in the app
-    console.log('App detected');
-    onResultsReady(injectedResults);
-  }
-
-}
-
-$(document).ready(function () {
 
   onResults(function (results) {
 
