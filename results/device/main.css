@@ -78,6 +78,11 @@ text {
   font-size: 15px;
 }
 
+svg {
+  display: block;
+  margin: 0 auto;
+}
+
 
 /*
  * Switch
