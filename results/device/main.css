@@ -47,6 +47,7 @@ img {
   font-style: italic;
 }
 
+
 /*
  * Plot flowing
  */
@@ -61,6 +62,20 @@ img {
 
 img.width-80 {
   width: 80%;
+}
+
+
+/*
+ *  Plot formatting
+ */
+
+text {
+  font-size: 11px;
+  font-family: Roboto, sans-serif;
+}
+
+.caption {
+  font-size: 15px;
 }
 
 
@@ -94,31 +109,3 @@ img.width-80 {
   font-weight: 700;
   src: local('Roboto Bold'), local('Roboto-Bold'), url(/static/fonts/Roboto-Bold.woff) format('woff');
 }
-
-/*
- *  vincent added
- */
-
-.chart div {
-  font: 10px sans-serif;
-  background-color: steelblue;
-  text-align: right;
-  padding: 3px;
-  margin: 1px;
-  color: white;
-}
-
-
-.slice text {
-  font-size: 20pt;
-  font-family: Arial;
-}
-
-text {
-  font: 11px sans-serif;
-}
-
-.caption {
-  font: 15px sans-serif;
-}
-
