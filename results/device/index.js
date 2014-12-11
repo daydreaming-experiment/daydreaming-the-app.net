@@ -539,7 +539,7 @@ $(document).ready(function () {
             .attr("y", function (d) {
               var a = d.startAngle + (d.endAngle - d.startAngle) / 2 - Math.PI / 2;
               d.cy = Math.sin(a) * (radius - 80);
-              return d.y = Math.sin(a) * (radius-50);
+              return d.y = Math.sin(a) * (radius-5);
             })
             .text(function (d, i) {
               // Do not plot results pie label if no contribution to pie chart
