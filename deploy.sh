@@ -7,8 +7,8 @@ echo "## Pulling and pushing to upstream"
 echo "##"
 echo
 
-git pull
-git push
+git pull origin master
+git push origin master
 
 echo "##"
 echo "## Ssh-ing to Tal's server to update"

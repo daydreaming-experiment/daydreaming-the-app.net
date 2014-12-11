@@ -4,7 +4,7 @@
 $(document).ready(function () {
 
   var getRandomInt = function(min, max) {
-      return Math.floor(Math.random() * (max - min)) + min;
+    return Math.floor(Math.random() * (max - min)) + min;
   };
 
   var onFixtures = function(callback) {
@@ -115,7 +115,6 @@ $(document).ready(function () {
     var aware_cat = Object.keys(mw_aware_count);
     var people_cat = Object.keys(aw_surround_people_list);
     var location_cat = Object.keys(aw_surround_loc_list);
-    var thinking_cat = Object.keys(thinking_focus_list);
 
 
     // function to discretize [0,100] into categories
@@ -181,6 +180,10 @@ $(document).ready(function () {
     //----------------------------
 
 
+    // some global stats on results
+    var n_probe_results = 0
+
+
     // iterating over all results for a particular subject
     for (var ir = 0; ir < results.length; ir++) {
 
@@ -189,12 +192,13 @@ $(document).ready(function () {
 
       // parsing probe sequences only
       if (tipe === "probe") {
+        n_probe_results += 1
 
         // extract pageGroups
         var pageGroups = rdata["pageGroups"];
         var systemTimestamp = pageGroups[0]['pages'][0]['systemTimestamp']
         var d = new Date(systemTimestamp);
-        var day = days_list[d.getDay() - 1]; // getting day name from index
+        var day = days_list[d.getDay()]; // getting day name from index
         var focus;
         var aware;
         var location;
@@ -222,8 +226,11 @@ $(document).ready(function () {
                 // - daily rythm (% mindwandering / day)
                 if ("How focused were you on what you were doing?" in answers) {
                   var answer = answers["How focused were you on what you were doing?"]
-                  mindwandering_day_list[day].push(answer)
-                  focus = (answer > 50) ? "Focused Mind" : "Wandering Mind";
+
+                  if (answer != undefined) {
+                    mindwandering_day_list[day].push(answer)
+                    focus = (answer > 50) ? "Focused Mind" : "Wandering Mind";
+                  }
                   // $("<p> Focus (1:focused, 0: mindwander)" + focus +  "</p>").insertAfter("div#main p:last-child");
                 }
 
@@ -295,6 +302,7 @@ $(document).ready(function () {
 
                 //$("<p>" + questionName  + "</p>").insertAfter("div#main p:last-child");
 
+                location = null;
                 if (questionName == "probe.location") {
                   if (subquestion["answer"] != undefined) {
                     location = subquestion["answer"]['choices'];
@@ -307,6 +315,7 @@ $(document).ready(function () {
                   }
                 }
 
+                people = null;
                 if (questionName == "probe.people") {
                   if (subquestion["answer"] != undefined) {
                     people = subquestion["answer"]['sliders']["How many people are there?"];
@@ -323,9 +332,17 @@ $(document).ready(function () {
 
 
         if (aware > -1) {
-          aw_surround_people_list[getCategory(people, 0, 100, people_cat)].push(aware);
-          aw_surround_loc_list[getCategory(people, 0, 100, location_cat)].push(aware);
+          if (people != undefined) {
+            aw_surround_people_list[getCategory(people, 0, 100, people_cat)].push(aware);
+          }
+          if (location != undefined) {
+            // location is a list from the location matrix
+            for (var i = 0; i < location.length; i++) {
+              aw_surround_loc_list[location[i]].push(aware);
+            }
+          }
         }
+
 
       }
 
@@ -339,7 +356,6 @@ $(document).ready(function () {
     var aw_surround_loc_av = mean_of_dict_lists(aw_surround_loc_list)
 
     // ---------------- awareness of mind wandering (Totally / mostly aware-unaware)
-
 
     // Names
     // data_awareness_mw
@@ -358,6 +374,10 @@ $(document).ready(function () {
     var daily_rythm_mw = dict_to_list(mindwandering_day_av,["x","y"]);
 
     // ------------------------------------------------------------
+
+
+
+
 
 
 // my try to do a grap design where I understand every single line
@@ -523,16 +543,14 @@ $(document).ready(function () {
             .attr("width", width)
             .attr("height", height);
 
+
         var x = d3.scale.ordinal()
                 .domain(ws_bar.labels)
                 .rangePoints([rect_width*1.5 +margins_bar.left, width-margins_bar.right-rect_width*1.5]),
 
             yRange = d3.scale.linear().range([height - margins_bar.bottom, margins_bar.top])
-                .domain([d3.min(ws_bar.data, function(d) {
-                  return d.value;
-                }), d3.max(ws_bar.data, function(d) {
-                  return d.value;
-                })*1.3  ]), // extend graph by 20% to allow for legend on top
+                .domain([d3.min(ws_bar.data, function(d) {return d.value;}),
+                  d3.max(ws_bar.data, function(d) {return d.value;})*1.3]), // extend graph by 20% to allow for legend on top
 
             xAxis = d3.svg.axis()
                 .scale(x)
@@ -544,6 +562,7 @@ $(document).ready(function () {
                 .tickSize(1)
                 .orient('left')
                 .tickSubdivide(true);
+
 
         vis.append('svg:g')
             .attr('class', 'x axis')
@@ -588,7 +607,7 @@ $(document).ready(function () {
               return i * (width / ws_bar.data.length) + (width / ws_bar.data.length - barPadding) / 2;
             })
             .attr("y", function(d) {
-              return h - (d.value * 4) + 14;  //15 is now 14
+              return height - (d.value * 4) + 14;  //15 is now 14
             })
             .attr("font-family", "sans-serif")
             .attr("font-size", "11px")
@@ -971,12 +990,54 @@ $(document).ready(function () {
 
 //------------- Display graph objects
 
-    awareness_pie.display();
-    ws_bar.display();
-    weekly_line.display();
-    aware_loc_bar.display();
-    aware_ppl_bar.display();
+    function pie_ok() {
+      var total = 0;
+      for (var i = 0; i < data_awareness_mw.length; i++) {
+        total += data_awareness_mw[i].value;
+      }
+      return total>0;
+    }
 
+
+    if (n_probe_results > 10) {
+
+      $('#stats-intro').append('Displayed results are based on ' + n_probe_results.toString() + ' answers to our daily questionnaires')
+
+      // Construct results dynamically
+      $("#results").append("<h2>Personal results</h2>");
+      $("#results").append("<p>On average, people mind-wander a lot: over 40% of their time.</p>");
+      $("#results").append("<h3>Weekly rhythms</h3>");
+      $("#results").append("<p>Mind-wandering depends on the day of the week!</p>")
+      $("#results").append("<div id='focus_weekly_rythms'></div>")
+      $("#results").append("<h3>Know yourself</h3>")
+      $("#results").append("<p>People are usually aware of their mind-wandering 49% of the time. But they can be more or less aware of it &mdash; see how much.</p>");
+      $("#results").append("<div id='mindwandering_awareness'></div>")
+      $("#results").append("<h3>Words or images? Maybe sounds</h3>");
+      $("#results").append("<p>Most people think a lot in words. See how this changes depending on whether people are mind-wandering or not.</p>");
+      $("#results").append("<div id='words_and_sounds'></div>")
+      $("#results").append("<h3>Surroundings</h3>");
+      $("#results").append("<p>People's awareness of their surroundings is pretty much independant of where they are...</p>");
+      $("#results").append("<div id='awareness_of_surroundings_location'></div>");
+      $("#results").append("<p>... but it sure depends on how many people are around! The more people around, the greater the awareness, except when we're alone or in a crowd.</p>")
+      $("#results").append("<div id='awareness_of_surroundings_people'></div>")
+
+
+
+      // check awareness data
+      if (pie_ok()) {
+        awareness_pie.display();
+      }
+      ws_bar.display();
+      weekly_line.display();
+      aware_loc_bar.display();
+      aware_ppl_bar.display();
+    } else {
+      $('#stats-intro').append("Sorry! You haven't completed enough questionnaires for us to build results (Need more than 10 answers, you have "+n_probe_results.toString()+")")
+
+    }
+
+    $("#results").append("<h2>That's it for today!</h2>");
+    $("#results").append("<p>Thanks again for using the app!</p>")
 
   });
 
