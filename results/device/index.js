@@ -3,6 +3,20 @@
 
 $(document).ready(function () {
 
+  var getParameters = function() {
+    var match,
+        pl     = /\+/g,  // Regex for replacing addition symbol with a space
+        search = /([^&=]+)=?([^&]*)/g,
+        decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+        query  = window.location.search.substring(1);
+
+    var urlParams = {};
+    while (match = search.exec(query))
+       urlParams[decode(match[1])] = decode(match[2])
+
+    return urlParams;
+  };
+
   var getRandomInt = function(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
   };
@@ -10,15 +24,28 @@ $(document).ready(function () {
   var onFixtures = function(callback) {
     var profileIdsURL ='/results/device/fixtures/profile_ids.json',
         baseResultsURL = '/results/device/fixtures/results-',
-        postfixResultsURL = '.json';
+        postfixResultsURL = '.json',
+        urlParams = getParameters();
 
     var onProfileIdsReceived = function(data) {
       var nProfiles = data.profile_ids.length,
-          profile_id = data.profile_ids[getRandomInt(0, nProfiles)],
-          resultsUrl = baseResultsURL + profile_id + postfixResultsURL;
+          profile_id, resultsUrl;
       console.log(nProfiles + " fixture profiles available");
-      console.log("Randomly selected profile id: " + profile_id);
 
+      if (!!urlParams && 'fixture' in urlParams) {
+        if (data.profile_ids.indexOf(urlParams['fixture']) >= 0) {
+          profile_id = urlParams['fixture'];
+          console.log("Fixture profile id specified by url parameter: " + profile_id);
+        } else {
+          throw new Error("Requested fixture profile id '" +
+                          urlParams['fixture'] + "' not found in fixtures");
+        }
+      } else {
+        profile_id = data.profile_ids[getRandomInt(0, nProfiles)],
+        console.log("Randomly selected fixture profile id: " + profile_id);
+      }
+
+      resultsUrl = baseResultsURL + profile_id + postfixResultsURL;
       $.getJSON(resultsUrl, function(data) {
         var fixturedInjectedResults = {
           getVersionCode: function () {
