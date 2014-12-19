@@ -249,48 +249,49 @@ $(document).ready(function () {
 
                 // all thought questions are sliders
                 var answers = questions[iq]["answer"]["sliders"];
+                if (answers != undefined) {
 
-                // - daily rythm (% mindwandering / day)
-                if ("How focused were you on what you were doing?" in answers) {
-                  var answer = answers["How focused were you on what you were doing?"]
+                  // - daily rythm (% mindwandering / day)
+                  if ("How focused were you on what you were doing?" in answers) {
+                    var answer = answers["How focused were you on what you were doing?"]
 
-                  if (answer != undefined) {
-                    mindwandering_day_list[day].push(answer)
-                    focus = (answer > 50) ? "Focused Mind" : "Wandering Mind";
+                    if (answer != undefined) {
+                      mindwandering_day_list[day].push(answer)
+                      focus = (answer > 50) ? "Focused Mind" : "Wandering Mind";
+                    }
+                    // $("<p> Focus (1:focused, 0: mindwander)" + focus +  "</p>").insertAfter("div#main p:last-child");
                   }
-                  // $("<p> Focus (1:focused, 0: mindwander)" + focus +  "</p>").insertAfter("div#main p:last-child");
-                }
 
-                // - awareness of mind wandering (Totally / mostly aware-unaware)
-                if ("How aware were you of your mind wandering?" in answers) {
-                  aware = answers["How aware were you of your mind wandering?"]
+                  // - awareness of mind wandering (Totally / mostly aware-unaware)
+                  if ("How aware were you of your mind wandering?" in answers) {
+                    aware = answers["How aware were you of your mind wandering?"]
 
-                  if (aware>-1) {
-                    mw_aware_count[getCategory(aware,0,100,aware_cat)] += 1;
-                    mindwandering_aware.push(aware)
+                    if (aware>-1) {
+                      mw_aware_count[getCategory(aware,0,100,aware_cat)] += 1;
+                      mindwandering_aware.push(aware)
+                    }
+                  }
+
+                  // - when mindwandering: thinking in images
+                  if ("Were you thinking with visual images?" in answers) {
+                    var images = answers["Were you thinking with visual images?"]
+                    //$("<p> Focus (1:focused, 0: mindwander)" + focus +  "</p>").insertAfter("div#main p:last-child");
+                  }
+                  // - when mindwandering: thinking in words
+                  if ("Were you thinking in words?" in answers) {
+                    var words = answers["Were you thinking in words?"]
+
+                  }
+                  // - when mindwandering: thinking in sounds
+                  if ("Were you thinking with sounds?" in answers) {
+                    var sounds = answers["Were you thinking with sounds?"]
+                  }
+
+                  // - awareness of surrounding depending on loc
+                  if ("How aware were you of your surroundings?" in answers) {
+                    var aware = answers["How aware were you of your surroundings?"]
                   }
                 }
-
-                // - when mindwandering: thinking in images
-                if ("Were you thinking with visual images?" in answers) {
-                  var images = answers["Were you thinking with visual images?"]
-                  //$("<p> Focus (1:focused, 0: mindwander)" + focus +  "</p>").insertAfter("div#main p:last-child");
-                }
-                // - when mindwandering: thinking in words
-                if ("Were you thinking in words?" in answers) {
-                  var words = answers["Were you thinking in words?"]
-
-                }
-                // - when mindwandering: thinking in sounds
-                if ("Were you thinking with sounds?" in answers) {
-                  var sounds = answers["Were you thinking with sounds?"]
-                }
-
-                // - awareness of surrounding depending on loc
-                if ("How aware were you of your surroundings?" in answers) {
-                  var aware = answers["How aware were you of your surroundings?"]
-                }
-
               }
 
             }
@@ -538,7 +539,7 @@ $(document).ready(function () {
             .attr("y", function (d) {
               var a = d.startAngle + (d.endAngle - d.startAngle) / 2 - Math.PI / 2;
               d.cy = Math.sin(a) * (radius - 80);
-              return d.y = Math.sin(a) * (radius-50);
+              return d.y = Math.sin(a) * (radius-5);
             })
             .text(function (d, i) {
               // Do not plot results pie label if no contribution to pie chart
