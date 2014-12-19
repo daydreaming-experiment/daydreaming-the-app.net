@@ -7,8 +7,8 @@ set -e
 jekyll build
 
 # Redo symbolic links
-#ln -s ../../srv/releases _site/releases
-#ln -s ../../srv/presentations _site/presentations
+#ln -s ../../srv/releases build/releases
+#ln -s ../../srv/presentations build/presentations
 
 # Clean up
-rm -f _site/update.sh _site/deploy.sh _site/README.md
+rm -f build/update.sh build/deploy.sh build/README.md
