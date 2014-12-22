@@ -47,6 +47,12 @@ img {
   font-style: italic;
 }
 
+a#save-raw {
+  text-decoration: none;
+  color: #00617F;
+  border-bottom: 1px #00617F dotted;
+}
+
 
 /*
  * Plot flowing

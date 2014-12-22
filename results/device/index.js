@@ -1065,7 +1065,15 @@ $(document).ready(function () {
     }
 
     $("#results").append("<h2>That's it for today!</h2>");
-    $("#results").append("<p>Thanks again for using the app!</p>")
+    $("#results").append("<p>Thanks again for using the app!</p>");
+    $("#results").append('<p>Want some more? <a href="#" id="save-raw">Explore your raw results</a></p>');
+    $("#save-raw").click(function() {
+      var resultsBlob = new Blob([JSON.stringify({"results": results}, null, '  ')],
+                                 {type: "text/plain;charset=utf-8"}),
+          now = new Date().toISOString();
+
+      saveAs(resultsBlob, "results-" + now + ".json");
+    });
 
   });
 
