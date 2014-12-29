@@ -4,8 +4,6 @@ title: Get the app
 tag: app
 ---
 
-##<center> <font color="red"> Your feedback is very welcome at <br> <a href="mailto:feedback@daydreaming-the-app.net">feedback@daydreaming-the-app.net</a></font> </center>
-
 ## Installing
 
 <a id="app-button" href="https://play.google.com/store/apps/details?id=com.brainydroid.daydreaming" >
