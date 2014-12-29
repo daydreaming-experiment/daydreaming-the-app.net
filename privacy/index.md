@@ -14,7 +14,7 @@ The app measures the following:
 
 * Basic personal details (age, gender, psychological traits)
 * The answers to the questions popping up every now and then
-* Your location at regular intervals throughout the day and when you're answering questions. Note that this location is collected through mobile network and is therefore not as precise as the GPS, that we're deliberately avoiding to use. Hence, your location is coarse, with a best precision around 50 meters.
+* Your location at regular intervals throughout the day and when you're answering questions. Note that this location is collected through mobile network and is therefore not as precise as the GPS, that we're deliberately avoiding to use. Hence, this location remains coarse, being no more precise than 50 meters.
 
 ## How anonymous will it be?
 
