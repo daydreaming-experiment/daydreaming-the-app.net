@@ -42,6 +42,7 @@ $(document).ready(function () {
         }
       } else {
         profile_id = data.profile_ids[getRandomInt(0, nProfiles)],
+        profile_id = '00f8d2cf1c753f591e4a53a92046d334f63dd5e822f933aedaeae0f2625b3c47'
         console.log("Randomly selected fixture profile id: " + profile_id);
       }
 
@@ -205,12 +206,16 @@ $(document).ready(function () {
     // - awareness of surrounding depending on loc
     // - awareness of surrounding depending on people around
     //----------------------------
+    // Questionnaire parsing
+    //
+
 
 
     // some global stats on results
     var n_probe_results = 0
 
-
+	 var begin_questionnaire = []  
+	 var end_questionnaire = []  
     // iterating over all results for a particular subject
     for (var ir = 0; ir < results.length; ir++) {
 
@@ -372,10 +377,40 @@ $(document).ready(function () {
         }
 
 
-      }
+      } else if (tipe === "endQuestionnaire" || tipe === "beginQuestionnaire") {
+      	$("#results").append('<p>'+tipe+'</p>');
+      	var pageGroups = rdata["pageGroups"];
+			// iterating over page groups
+         for (var i = 0; i < pageGroups.length; i++) {
+          // questions
+            var questionnaire_name = pageGroups[i]['name']  // MAAS, SODAS ...
+            // iterating over pages
+         	var pages = pageGroups[i]['pages']
+            for (var j = 0; j < pages.length; j++){
+	            var questionnaire_page_name = pages[j]['name']  // MAASPage1, SODASPage1 ...
+	            var questions = pages[j]['questions'];
+	            for (var k = 0; k < questions.length; k++){
+	            	var question = questions[k]
+	            	var question_name = question['questionName']
+	            	var question_string = Object.keys(question['answer']['sliders'])[0] // dictionnary has a single key
+	            	var answer = question['answer']['sliders'][question_string]
+	            	$("#results").append('<p>'+question_name+' : '+answer.toString()+'</p>');
+	            	
+	            	if (tipe === "endQuestionnaire") {
+	            		var dict = {}
+	            		dict[question_name]=answer
+							end_questionnaire.push(dict)	
+	            	} else if (tipe === "beginQuestionnaire") {
+							begin_questionnaire.push({ question_name : answer })	
+	            	}
+	            }         
+            }
+          
+       }
+      } 
 
     }
-
+	 $("#results").append('<p>'+JSON.stringify(end_questionnaire)+'</p>');
     // ---------------- daily rythms mindwandering
 
 
