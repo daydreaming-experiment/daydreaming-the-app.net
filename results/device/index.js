@@ -206,8 +206,10 @@ $(document).ready(function () {
     // - awareness of surrounding depending on loc
     // - awareness of surrounding depending on people around
     //----------------------------
-    // Questionnaire parsing
-    //
+    // Begin and end Questionnaire parsing (aim is to produce a report)
+    // - pairs {question:answer}
+    // Morning Questionnaire
+    // - {"day":[1,365], "day_string":"Wed Oct 22 2014" "morning.dreams": amount slept, "morning.valence": valence of dreams, ..}
 
 
 
@@ -216,6 +218,8 @@ $(document).ready(function () {
 
 	 var begin_questionnaire = []  
 	 var end_questionnaire = []  
+	 
+	 var morning_questionnaire = []
     // iterating over all results for a particular subject
     for (var ir = 0; ir < results.length; ir++) {
 
@@ -358,8 +362,6 @@ $(document).ready(function () {
               }
             }
           }
-
-
         }
         // end of loop over page groups
 
@@ -378,7 +380,7 @@ $(document).ready(function () {
 
 
       } else if (tipe === "endQuestionnaire" || tipe === "beginQuestionnaire") {
-      	$("#results").append('<p>'+tipe+'</p>');
+      	//$("#results").append('<p>'+tipe+'</p>');
       	var pageGroups = rdata["pageGroups"];
 			// iterating over page groups
          for (var i = 0; i < pageGroups.length; i++) {
@@ -396,21 +398,61 @@ $(document).ready(function () {
 	            	var answer = question['answer']['sliders'][question_string]
 	            	$("#results").append('<p>'+question_name+' : '+answer.toString()+'</p>');
 	            	
-	            	if (tipe === "endQuestionnaire") {
-	            		var dict = {}
-	            		dict[question_name]=answer
+	            	var dict = {}
+	            	dict[question_name]=answer
+	            	if (tipe === "endQuestionnaire") {	           
 							end_questionnaire.push(dict)	
 	            	} else if (tipe === "beginQuestionnaire") {
-							begin_questionnaire.push({ question_name : answer })	
+							begin_questionnaire.push(dict)	
 	            	}
 	            }         
             }
           
        }
-      } 
+      } else if (tipe === "morningQuestionnaire") {
+
+      	var pageGroups = rdata["pageGroups"];
+      	// getting date information
+        var systemTimestamp = pageGroups[0]['pages'][0]['systemTimestamp']
+        var d = new Date(systemTimestamp);
+ 		  var start = new Date(d.getFullYear(), 0, 0);
+        var diff = d - start;
+        var oneDay = 1000 * 60 * 60 * 24;
+        var day = Math.floor(diff / oneDay);
+        
+
+			// iterating over page groups
+         for (var i = 0; i < pageGroups.length; i++) {
+          // questions
+            var questionnaire_name = pageGroups[i]['name']  // morning
+
+         	var page = pageGroups[i]['pages'][0] // single page 
+	            var questionnaire_page_name = page['name']  // MorningUniquePage
+	            var questions = page['questions'];
+	            
+	            
+	            // 3 questions
+	            var dict = {}
+	            dict["day"]=day	
+	            dict["day_string"]=d.toDateString()	                        
+	            for (var k = 0; k < questions.length; k++){
+	            	var question = questions[k]
+	            	var question_name = question['questionName'] // morning.valence, morning.sleep, morning dreams
+	            	var question_string = Object.keys(question['answer']['sliders'])[0] // dictionnary has a single key
+	            	var answer = question['answer']['sliders'][question_string]
+	            	dict[question_name]=answer
+	            }   
+	            morning_questionnaire.push(dict)                            
+       }
+      }
 
     }
-	 $("#results").append('<p>'+JSON.stringify(end_questionnaire)+'</p>');
+    
+    
+	 //$("#results").append('<p>'+JSON.stringify(end_questionnaire)+'</p>');
+	 //$("#results").append('<p>'+JSON.stringify(morning_questionnaire)+'</p>');
+	 
+	 
     // ---------------- daily rythms mindwandering
 
 
