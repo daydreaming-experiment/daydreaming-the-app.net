@@ -219,7 +219,7 @@ $(document).ready(function () {
 	 var begin_questionnaire = []  
 	 var end_questionnaire = []  
 	 
-	 var morning_questionnaire = []
+	 var morning_q = []
     // iterating over all results for a particular subject
     for (var ir = 0; ir < results.length; ir++) {
 
@@ -396,7 +396,7 @@ $(document).ready(function () {
 	            	var question_name = question['questionName']
 	            	var question_string = Object.keys(question['answer']['sliders'])[0] // dictionnary has a single key
 	            	var answer = question['answer']['sliders'][question_string]
-	            	$("#results").append('<p>'+question_name+' : '+answer.toString()+'</p>');
+	            	//$("#results").append('<p>'+question_name+' : '+answer.toString()+'</p>');
 	            	
 	            	var dict = {}
 	            	dict[question_name]=answer
@@ -434,15 +434,15 @@ $(document).ready(function () {
 	            // 3 questions
 	            var dict = {}
 	            dict["day"]=day	
-	            dict["day_string"]=d.toDateString()	                        
+	            dict["day_string"]=d.toDateString().substring(0,10)	// String of the day                         
 	            for (var k = 0; k < questions.length; k++){
 	            	var question = questions[k]
-	            	var question_name = question['questionName'] // morning.valence, morning.sleep, morning dreams
+	            	var question_name = question['questionName'].split(".")[1] // morning.valence, morning.sleep, morning dreams (Removing the morning)
 	            	var question_string = Object.keys(question['answer']['sliders'])[0] // dictionnary has a single key
 	            	var answer = question['answer']['sliders'][question_string]
 	            	dict[question_name]=answer
 	            }   
-	            morning_questionnaire.push(dict)                            
+	            morning_q.push(dict)                            
        }
       }
 
@@ -450,7 +450,7 @@ $(document).ready(function () {
     
     
 	 //$("#results").append('<p>'+JSON.stringify(end_questionnaire)+'</p>');
-	 //$("#results").append('<p>'+JSON.stringify(morning_questionnaire)+'</p>');
+
 	 
 	 
     // ---------------- daily rythms mindwandering
@@ -480,11 +480,21 @@ $(document).ready(function () {
 
     // ------------------------------------------------------------
 
-
-
-
-
-
+	 morning_q.sort(function(a, b){return a.day-b.day}) // sorting increasing date
+	 var exp_days = []
+	 var exp_days_string = []
+	 
+    for (var i = 0, length = morning_q.length; i < length; i++) {
+      exp_days.push(morning_q[i].day)
+      exp_days_string.push(morning_q[i].day_string)
+    }	
+    var day_start = Math.min.apply(null, exp_days)
+    var day_end = Math.max.apply(null, exp_days)
+	 //$("#results").append('<p>'+JSON.stringify(morning_q)+'</p>');
+	 $("#results").append('<p> exp_days:'+JSON.stringify(exp_days)+'</p>');
+	 $("#results").append('<p> exp_days_string:'+JSON.stringify(exp_days_string)+'</p>');
+	 $("#results").append('<p> max:'+day_start+'</p>');
+	 $("#results").append('<p> min:'+day_end.toString()+'</p>');
 // my try to do a grap design where I understand every single line
 
 //------------------DATA----------------------
@@ -882,6 +892,94 @@ $(document).ready(function () {
     }
 
 
+// =============== Line plot daily sleep ==================
+
+
+    var sleep_line = {
+
+      data : morning_q,
+      display : function () {
+
+        var vis =  d3.select("#sleep_line")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height);
+
+
+        var x = d3.scale.linear()
+                .domain([day_start, day_end])
+                .range([margins_bar.left, width-margins_bar.right]),
+                				 
+            yRange = d3.scale.linear().range([height - margins_bar.bottom , margins_bar.top]).domain([0,100]),
+
+            xAxis = d3.svg.axis()
+                .scale(x)
+                .tickSize(1)
+                .orient("bottom"),
+
+            yAxis = d3.svg.axis()
+                .scale(yRange)
+                .tickSize(1)
+                .orient('left')
+                .tickSubdivide(true);
+
+        vis.append('svg:g')
+            .attr('class', 'x axis')
+            .attr("fill", "white")
+            .attr('transform', 'translate(0,' + (height - margins_bar.bottom) + ')')
+            .call(xAxis)
+            .selectAll("text")
+            .attr("transform", "rotate(-25)")
+            .style("text-anchor", "end");;
+
+        vis.append('svg:g')
+            .attr('class', 'y axis')
+            .attr('transform', 'translate(' + (margins_bar.left) + ',0)')
+            .attr("fill", "white")
+            .call(yAxis);
+
+        var lineFunc = d3.svg.line()
+            .x(function(d,i) {
+              return x(d.day);
+            })
+            .y(function(d,i) {
+              return yRange(d.sleep);
+            })
+            .interpolate('linear');
+
+
+
+        vis.append('svg:path')
+            .attr('d', lineFunc(morning_q))
+            .attr('stroke-width', 2)
+            .attr("stroke", "white")
+            .attr('fill', 'none');
+
+
+
+        vis.append("text")
+            .attr("x", width / 2 )
+            .attr("y",  height - margins_bar.bottom_caption )
+            .style("text-anchor", "middle")
+            .attr("fill", "white")
+            .attr("class", "caption")
+            .text("Date");
+
+        vis.append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 0 )
+            .attr("x", 0 - (height / 2))
+            .attr("dy", "1em")
+            .style("text-anchor", "middle")
+            .attr("fill", "white")
+            .attr("class", "caption")
+            .text("% MindWandering");
+      }
+    }
+
+
+
+
 
 //==============awareness_of_surroundings_location==================
 
@@ -1126,7 +1224,7 @@ $(document).ready(function () {
       $("#results").append("<p>... but it sure depends on how many people are around! The more people around, the greater the awareness, except when we're alone or in a crowd.</p>")
       $("#results").append("<div id='awareness_of_surroundings_people'></div>")
 
-
+      $("#results").append("<div id='sleep_line'></div>")
 
       // check awareness data
       if (pie_ok()) {
@@ -1136,6 +1234,8 @@ $(document).ready(function () {
       weekly_line.display();
       aware_loc_bar.display();
       aware_ppl_bar.display();
+		sleep_line.display();      
+      
     } else {
       $('#stats-intro').append("Sorry! You haven't completed enough questionnaires for us to build results (Need more than 10 answers, you have "+n_probe_results.toString()+")")
 
