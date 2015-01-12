@@ -41,8 +41,8 @@ $(document).ready(function () {
                           urlParams['fixture'] + "' not found in fixtures");
         }
       } else {
-        profile_id = data.profile_ids[getRandomInt(0, nProfiles)],
-        profile_id = '00f8d2cf1c753f591e4a53a92046d334f63dd5e822f933aedaeae0f2625b3c47'
+        profile_id = data.profile_ids[getRandomInt(0, nProfiles)];
+        //profile_id = '00f8d2cf1c753f591e4a53a92046d334f63dd5e822f933aedaeae0f2625b3c47'
         console.log("Randomly selected fixture profile id: " + profile_id);
       }
 
@@ -216,11 +216,12 @@ $(document).ready(function () {
     // some global stats on results
     var n_probe_results = 0
 
-	 var begin_questionnaire = []  
-	 var end_questionnaire = []  
-	 var questionnaires_raw = []
+	 var begin_questionnaire = [];
+	 var end_questionnaire = [];
+	 var questionnaires_raw = [];
+
+	 var morning_q = [];
 	 
-	 var morning_q = []
     // iterating over all results for a particular subject
     for (var ir = 0; ir < results.length; ir++) {
 
@@ -398,21 +399,21 @@ $(document).ready(function () {
 	            	var question_string = Object.keys(question['answer']['sliders'])[0] // dictionnary has a single key
 	            	var answer = question['answer']['sliders'][question_string]
 	            	//$("#results").append('<p>'+question_name+' : '+answer.toString()+'</p>');
-	            	
+
 	            	var dict = {}
 	            	dict["value"]=answer
 	            	dict["name"]=questionnaire_name
 	            	dict["index"]= parseInt(question_name.substring(questionnaire_name.length))
 	            	dict["type"]=tipe
 	            	questionnaires_raw.push(dict)
-	            	if (tipe === "endQuestionnaire") {	           
-							end_questionnaire.push(dict)	
+	            	if (tipe === "endQuestionnaire") {
+							end_questionnaire.push(dict)
 	            	} else if (tipe === "beginQuestionnaire") {
-							begin_questionnaire.push(dict)	
+							begin_questionnaire.push(dict)
 	            	}
-	            }         
+	            }
             }
-          
+
        }
       } else if (tipe === "morningQuestionnaire") {
 
@@ -424,39 +425,43 @@ $(document).ready(function () {
         var diff = d - start;
         var oneDay = 1000 * 60 * 60 * 24;
         var day = Math.floor(diff / oneDay);
-        
+
 
 			// iterating over page groups
          for (var i = 0; i < pageGroups.length; i++) {
           // questions
             var questionnaire_name = pageGroups[i]['name']  // morning
 
-         	var page = pageGroups[i]['pages'][0] // single page 
+         	var page = pageGroups[i]['pages'][0] // single page
 	            var questionnaire_page_name = page['name']  // MorningUniquePage
 	            var questions = page['questions'];
-	            
-	            
+
+
 	            // 3 questions
 	            var dict = {}
-	            dict["day"]=day	
-	            dict["day_string"]=d.toDateString().substring(0,10)	// String of the day 
-	            dict["date"]=d                        
+	            dict["day"]=day
+	            dict["day_string"]=d.toDateString().substring(0,10)	// String of the day
+	            dict["date"]=d
 	            for (var k = 0; k < questions.length; k++){
 	            	var question = questions[k]
 	            	var question_name = question['questionName'].split(".")[1] // morning.valence, morning.sleep, morning dreams (Removing the morning)
-	            	var question_string = Object.keys(question['answer']['sliders'])[0] // dictionnary has a single key
-	            	var answer = question['answer']['sliders'][question_string]
-	            	if (question_name === "sleep") { answer = Math.floor(answer*16/100); }
-	            	dict[question_name]=answer
-	            }   
-	            morning_q.push(dict)                            
+
+					   if('answer' in question) {       // si la reponse est dans la question ...   	
+		            	var question_string = Object.keys(question['answer']['sliders'])[0] // dictionnary has a single key
+		            	var answer = question['answer']['sliders'][question_string]
+		            	if (question_name === "sleep") { answer = Math.floor(answer*16/100); }
+	   	         	dict[question_name]=answer
+	            	}
+	            }
+	            morning_q.push(dict)
        }
       }
 
     }
 
-	 
-	 
+
+
+
     // ---------------- daily rythms mindwandering
 
 
@@ -483,6 +488,8 @@ $(document).ready(function () {
     var daily_rythm_mw = dict_to_list(mindwandering_day_av,["x","y"]);
 
     // ------------------------------------------------------------
+    
+    if (morning_q.length >0) {
 
 	 morning_q.sort(function(a, b){return a.day-b.day}) // sorting increasing date
 	 var exp_days = []
@@ -490,19 +497,19 @@ $(document).ready(function () {
     for (var i = 0, length = morning_q.length; i < length; i++) {
       exp_days.push(morning_q[i].day)
       exp_days_string.push(morning_q[i].day_string)
-    }	
+    }
     var day_start = exp_days[0]
     var day_end = exp_days[exp_days.length-1]
     var date_start = morning_q[0].date
     var date_end = morning_q[morning_q.length-1].date
 
-
+	}
 	// ----------------------------------------------------------------
 	// Computing questionnaires' scores
-	
+
    var q_names = ["Mindfulness", "Dissociation", "Rumination", "Reflection"];
 
-	
+
 	function scores(array) {
 		var score = [[],[],[],[]];
 		var score_mean = [];
@@ -511,23 +518,23 @@ $(document).ready(function () {
     		var type = item.type;
     		if (item.name==="MAAS" && item.index<16){ score[0].push(100-item.value);}
     		if (item.name==="SODAS"){ score[1].push(item.value);}
-    		if (item.name==="RR"){    		
+    		if (item.name==="RR"){
     			var value = item.value;
-    			if ($.inArray(item.index, [ 6, 9, 10, 13, 14, 17, 20, 24 ])) {value = 100-item.value;}	
+    			if ($.inArray(item.index, [ 6, 9, 10, 13, 14, 17, 20, 24 ])) {value = 100-item.value;}
     			if (item.index<13){score[2].push(value);}
     			if (item.index>12){score[3].push(value);}
 			}
 		}
-		
-    for (var i = 0; i < score.length; i++) {	
+
+    for (var i = 0; i < score.length; i++) {
     		var dict = {};
     		dict["index"]=i
     		dict["name"]=q_names[i]
     		dict["type"]=type
     		dict["value"]=	parseFloat(mean(score[i]).toFixed(1))
-    		score_mean.push(dict);}		
-    return score_mean;           
- };   
+    		score_mean.push(dict);}
+    return score_mean;
+ };
 
    var beg_score = scores(begin_questionnaire);
    var end_score = scores(end_questionnaire);
@@ -705,23 +712,24 @@ $(document).ready(function () {
       		.domain(["Mindfulness", "Dissociation", "Rumination", "Reflection"])
       		.rangePoints([local_top_margin, local_height]),
     
+
          xAxis = d3.svg.axis()
             .scale(x)
             .tickValues([0,100])
             .tickSize(1)
             .orient("bottom"),
-            
+
          yAxis = d3.svg.axis()
             .scale(o)
             .tickSize(1)
             .orient("left");
-            
+
         vis.append('svg:g')
             .attr('class', 'x axis')
             .attr("fill", "white")
             .attr('transform', 'translate(0,' + (local_top_margin+ local_height) + ')')
             .call(xAxis);
-            
+
         vis.append('svg:g')
             .attr('class', 'yaxis')
             .attr('transform', 'translate(' + local_left + ',0)')
@@ -746,9 +754,7 @@ $(document).ready(function () {
             .attr("cy", function(d, i) { return o(d.name); })
             .attr("r", 5)
             .attr("fill", function(d, i) { if (d.type === "beginQuestionnaire"){return "white";} 
-            else {return "red";} });
-                
-
+            else {return "red";} });               
       }
     }
 
@@ -1015,28 +1021,33 @@ $(document).ready(function () {
             .attr("width", width)
             .attr("height", height);
 
+
         
         //we want less than 10 dates on screen, which means we have to skip total/10
          var day_skip = Math.ceil((date_end - date_start) / (1000*60*60*24)/10)
+
+
 			var everyDate = d3.time.day.range(date_start, date_end);
 			var everyOtherCorrect = everyDate.filter(function (d, i) {
    			 return i % day_skip == 0;
 			});
-        
+
         var x = d3.time.scale()
         			.domain([ date_start, date_end ])
                .range([margins_bar.left, width-margins_bar.right]),
+
                				 
             yRange = d3.scale.linear().range([height - margins_bar.bottom , margins_bar.top]).domain([0,16]),
+
 
             xAxis = d3.svg.axis()
                 .scale(x)
                 //.ticks(d3.time.days.utc, 2)
-					 .tickValues(everyOtherCorrect)                
+					 .tickValues(everyOtherCorrect)
                 .tickFormat(d3.time.format('%b %a %d'))
                 .tickSize(0.7)
                 .orient("bottom"),
-		
+
          yAxis = d3.svg.axis()
                 .scale(yRange)
                 .tickSize(1)
@@ -1052,7 +1063,7 @@ $(document).ready(function () {
             .attr("transform", "rotate(-45)")
             .style("text-anchor", "end");;
 
-			
+
 
         vis.append('svg:g')
             .attr('class', 'y axis')
@@ -1064,9 +1075,8 @@ $(document).ready(function () {
             .x(function(d,i) { return x(d.date); })
             .y(function(d,i) { return yRange(d.sleep); })
             .interpolate('linear');
-     
 
-                 
+
         vis.append('svg:path')
             .attr('d', lineFunc(morning_q))
             .attr('stroke-width', 2)
@@ -1343,15 +1353,17 @@ $(document).ready(function () {
       $("#results").append("<div id='awareness_of_surroundings_location'></div>");
       $("#results").append("<p>... but it sure depends on how many people are around! The more people around, the greater the awareness, except when we're alone or in a crowd.</p>")
       $("#results").append("<div id='awareness_of_surroundings_people'></div>")
-      
+
       $("#results").append("<h3>Sleep Analysis</h3>");
       $("#results").append("<div id='sleep_line'></div>")
+
       $("#results").append("<p align='center'> Size: Vivacity of Sleep</p> <p align='center'> Color: Valence <font color='black'>-</font>/<font color='white'>+</font> </p>")
       
       $("#results").append("<h3>Personality Analysis</h3>");
       $("#results").append("<div id='personality_questionnaire_results'></div>")
       $("#results").append("<p align='center'>  <font color='white'>Begin</font>, <font color='red'>End</font>, <font color='grey'>Population average</font> </p>")
       
+
       // check awareness data
       if (pie_ok()) {
         awareness_pie.display();
@@ -1360,8 +1372,8 @@ $(document).ready(function () {
       weekly_line.display();
       aware_loc_bar.display();
       aware_ppl_bar.display();
-		sleep_line.display();      
-      quest_plot.display();      
+		sleep_line.display();
+      quest_plot.display();
     } else {
       $('#stats-intro').append("Sorry! You haven't completed enough questionnaires for us to build results (Need more than 10 answers, you have "+n_probe_results.toString()+")")
 
@@ -1369,14 +1381,14 @@ $(document).ready(function () {
 
     $("#results").append("<h2>That's it for today!</h2>");
     $("#results").append("<p>Thanks again for using the app!</p>");
-    $("#results").append('<p>Want some more? <a href="#" id="save-raw">Explore your raw results</a></p>');
-    $("#save-raw").click(function() {
-      var resultsBlob = new Blob([JSON.stringify({"results": results}, null, '  ')],
-                                 {type: "text/plain;charset=utf-8"}),
-          now = new Date().toISOString();
+    //$("#results").append('<p>Want some more? <a href="#" id="save-raw">Explore your raw results</a></p>');
+    //$("#save-raw").click(function() {
+      //var resultsBlob = new Blob([JSON.stringify({"results": results}, null, '  ')],
+                                 //{type: "text/plain;charset=utf-8"}),
+          //now = new Date().toISOString();
 
-      saveAs(resultsBlob, "results-" + now + ".json");
-    });
+      //saveAs(resultsBlob, "results-" + now + ".json");
+    //});
 
   });
 
