@@ -216,11 +216,12 @@ $(document).ready(function () {
     // some global stats on results
     var n_probe_results = 0
 
-	 var begin_questionnaire = []
-	 var end_questionnaire = []
-	 var questionnaires_raw = []
+	 var begin_questionnaire = [];
+	 var end_questionnaire = [];
+	 var questionnaires_raw = [];
 
-	 var morning_q = []
+	 var morning_q = [];
+	 
     // iterating over all results for a particular subject
     for (var ir = 0; ir < results.length; ir++) {
 
@@ -444,9 +445,13 @@ $(document).ready(function () {
 	            for (var k = 0; k < questions.length; k++){
 	            	var question = questions[k]
 	            	var question_name = question['questionName'].split(".")[1] // morning.valence, morning.sleep, morning dreams (Removing the morning)
-	            	var question_string = Object.keys(question['answer']['sliders'])[0] // dictionnary has a single key
-	            	var answer = question['answer']['sliders'][question_string]
-	            	dict[question_name]=answer
+
+					   if('answer' in question) {       // si la reponse est dans la question ...   	
+		            	var question_string = Object.keys(question['answer']['sliders'])[0] // dictionnary has a single key
+		            	var answer = question['answer']['sliders'][question_string]
+		            	if (question_name === "sleep") { answer = Math.floor(answer*16/100); }
+	   	         	dict[question_name]=answer
+	            	}
 	            }
 	            morning_q.push(dict)
        }
@@ -454,8 +459,6 @@ $(document).ready(function () {
 
     }
 
-
-	 //$("#results").append('<p>'+JSON.stringify(end_questionnaire)+'</p>');
 
 
 
@@ -485,6 +488,8 @@ $(document).ready(function () {
     var daily_rythm_mw = dict_to_list(mindwandering_day_av,["x","y"]);
 
     // ------------------------------------------------------------
+    
+    if (morning_q.length >0) {
 
 	 morning_q.sort(function(a, b){return a.day-b.day}) // sorting increasing date
 	 var exp_days = []
@@ -498,16 +503,7 @@ $(document).ready(function () {
     var date_start = morning_q[0].date
     var date_end = morning_q[morning_q.length-1].date
 
-//$("#results").append('<p>'+JSON.stringify(begin_questionnaire)+'</p>');
-
-	 //$("#results").append('<p>'+JSON.stringify(morning_q)+'</p>');
-	 //$("#results").append('<p> exp_days:'+JSON.stringify(exp_days)+'</p>');
-	 //$("#results").append('<p> exp_days_string:'+JSON.stringify(exp_days_string)+'</p>');
-	 //$("#results").append('<p> min:'+date_start.toDateString()+'</p>');
-	 //$("#results").append('<p> max:'+date_end.toDateString()+'</p>');
-// my try to do a grap design where I understand every single line
-
-
+	}
 	// ----------------------------------------------------------------
 	// Computing questionnaires' scores
 
@@ -543,8 +539,9 @@ $(document).ready(function () {
    var beg_score = scores(begin_questionnaire);
    var end_score = scores(end_questionnaire);
    var score = beg_score.concat(end_score)
+   
+   var score_av_pop = [{"name":"Mindfulness", "value":54.5},  {"name":"Dissociation", "value":50}, {"name":"Rumination", "value":53.5},  {"name":"Reflection", "value":61.5}];
 
-	//$("#results").append('<p>'+JSON.stringify(score)+'</p>');
 
 //------------------DATA----------------------
 
@@ -698,20 +695,23 @@ $(document).ready(function () {
       display : function () {
 
 		 var local_height = 100;
-		var local_left= 100;
+		 var local_top_margin = 10;
+		 var local_bottom_padding = 30;
+		 var local_left= 100;
 
-        var vis = d3.select("#personality_questionnaire_results")
+       var vis = d3.select("#personality_questionnaire_results")
             .append("svg")
             .attr("width", width)
-            .attr("height", local_height);
+            .attr("height", local_top_margin + local_height+local_bottom_padding);
 
-        var x = d3.scale.linear()
+       var x = d3.scale.linear()
                 .domain([0,100])
                 .range([local_left , width-margins_bar.right]),
 
 	 		o = d3.scale.ordinal()
       		.domain(["Mindfulness", "Dissociation", "Rumination", "Reflection"])
-      		.rangePoints([10, local_height-10]),
+      		.rangePoints([local_top_margin, local_height]),
+    
 
          xAxis = d3.svg.axis()
             .scale(x)
@@ -727,27 +727,34 @@ $(document).ready(function () {
         vis.append('svg:g')
             .attr('class', 'x axis')
             .attr("fill", "white")
-            .attr('transform', 'translate(0,' + 5 + ')')
+            .attr('transform', 'translate(0,' + (local_top_margin+ local_height) + ')')
             .call(xAxis);
 
         vis.append('svg:g')
-            .attr('class', 'y axis')
+            .attr('class', 'yaxis')
             .attr('transform', 'translate(' + local_left + ',0)')
-            .attr("fill", "white")
             .call(yAxis);
-
-        vis.selectAll("circle")
-            .data(score)
+        
+        vis.selectAll("circle_mean")
+            .data(score_av_pop)
             .enter()
             .append("circle")
             .attr("cx", function(d, i) { return x(d.value); })
             .attr("cy", function(d, i) { return o(d.name); })
             .attr("r", 5)
-            .attr("fill", function(d, i) { if (d.type === "beginQuestionnaire"){return "red";}
-            else {return "white";} });
+            .attr("fill", "grey")
+            .style("opacity", "0.5");
 
-
-
+        vis.selectAll("circle_sub")
+            .data(score)
+            .enter()
+            .append("circle")
+            .attr('class', 'q')
+            .attr("cx", function(d, i) { return x(d.value); })
+            .attr("cy", function(d, i) { return o(d.name); })
+            .attr("r", 5)
+            .attr("fill", function(d, i) { if (d.type === "beginQuestionnaire"){return "white";} 
+            else {return "red";} });               
       }
     }
 
@@ -1015,21 +1022,23 @@ $(document).ready(function () {
             .attr("height", height);
 
 
-        //var x = d3.scale.linear()
-        //        .domain([day_start, day_end])
-        //        .range([margins_bar.left, width-margins_bar.right]),
+        
+        //we want less than 10 dates on screen, which means we have to skip total/10
+         var day_skip = Math.ceil((date_end - date_start) / (1000*60*60*24)/10)
 
 
 			var everyDate = d3.time.day.range(date_start, date_end);
 			var everyOtherCorrect = everyDate.filter(function (d, i) {
-   			 return i % 3 == 0;
+   			 return i % day_skip == 0;
 			});
 
         var x = d3.time.scale()
         			.domain([ date_start, date_end ])
                .range([margins_bar.left, width-margins_bar.right]),
 
-            yRange = d3.scale.linear().range([height - margins_bar.bottom , margins_bar.top]).domain([0,100]),
+               				 
+            yRange = d3.scale.linear().range([height - margins_bar.bottom , margins_bar.top]).domain([0,16]),
+
 
             xAxis = d3.svg.axis()
                 .scale(x)
@@ -1066,62 +1075,25 @@ $(document).ready(function () {
             .x(function(d,i) { return x(d.date); })
             .y(function(d,i) { return yRange(d.sleep); })
             .interpolate('linear');
-        var lineFunc2 = d3.svg.line()
-            .x(function(d,i) { return x(d.date); })
-            .y(function(d,i) { return yRange(d.dreams); })
-            .interpolate('linear');
-        var lineFunc3 = d3.svg.line()
-            .x(function(d,i) { return x(d.date); })
-            .y(function(d,i) { return yRange(d.valence); })
-            .interpolate('linear');
-
-        vis.selectAll("dot")
-            .data(morning_q)
-            .enter().append("circle")
-            .attr("r", 3.5)
-            .attr("fill", "white")
-            .attr("cx", function(d,i) { return x(d.date); })
-            .attr("cy", function(d) { return yRange(d.sleep); });
-        vis.selectAll("dot")
-            .data(morning_q)
-            .enter().append("circle")
-            .attr("r", 3.5)
-            .attr("fill", "red")
-            .attr("cx", function(d,i) { return x(d.date); })
-            .attr("cy", function(d) { return yRange(d.dreams); });
-        vis.selectAll("dot")
-            .data(morning_q)
-            .enter().append("circle")
-            .attr("r", 3.5)
-            .attr("fill", "green")
-            .attr("cx", function(d,i) { return x(d.date); })
-            .attr("cy", function(d) { return yRange(d.valence); });
 
 
         vis.append('svg:path')
             .attr('d', lineFunc(morning_q))
             .attr('stroke-width', 2)
             .attr("stroke", "white")
-            .attr('fill', 'none');
-        vis.append('svg:path')
-            .attr('d', lineFunc2(morning_q))
-            .attr('stroke-width', 2)
-            .attr("stroke", "red")
-            .attr('fill', 'none');
-        vis.append('svg:path')
-            .attr('d', lineFunc3(morning_q))
-            .attr('stroke-width', 2)
-            .attr("stroke", "green")
-            .attr('fill', 'none');
+            .attr('fill', 'none')
+            .style("stroke-linejoin", "round");
+            
+        vis.selectAll("dot")
+            .data(morning_q)
+            .enter().append("ellipse")
+            //.attr("rx", 3.5)
+            .attr("ry", function(d,i) { return 3.5 + d.dreams*0.1; })
+            .attr("rx", function(d,i) { return 3.5 + d.dreams*0.1; })
+            .attr("fill", function(d,i) { var col = (Math.floor(d.dreams*2.55)).toString(); return "rgba("+col+","+col+","+col+",0.8)";} )
+            .attr("cx", function(d,i) { return x(d.date); })
+            .attr("cy", function(d) { return yRange(d.sleep); });          
 
-
-        //vis.append("text")
-        //    .attr("x", width / 2 )
-        //    .attr("y",  height - margins_bar.bottom_caption )
-        //    .style("text-anchor", "middle")
-        //    .attr("fill", "white")
-        //    .attr("class", "caption")
-        //    .text("Date");
 
         vis.append("text")
             .attr("transform", "rotate(-90)")
@@ -1131,7 +1103,7 @@ $(document).ready(function () {
             .style("text-anchor", "middle")
             .attr("fill", "white")
             .attr("class", "caption")
-            .text("% MindWandering");
+            .text("Hours of sleep");
       }
     }
 
@@ -1384,11 +1356,13 @@ $(document).ready(function () {
 
       $("#results").append("<h3>Sleep Analysis</h3>");
       $("#results").append("<div id='sleep_line'></div>")
-      $("#results").append("<p align='center'> Sleep, <font color='red'>Dreams</font>, <font color='green'>Valence</font> </p>")
 
+      $("#results").append("<p align='center'> Size: Vivacity of Sleep</p> <p align='center'> Color: Valence <font color='black'>-</font>/<font color='white'>+</font> </p>")
+      
       $("#results").append("<h3>Personality Analysis</h3>");
       $("#results").append("<div id='personality_questionnaire_results'></div>")
-      $("#results").append("<p align='center'>  <font color='red'>Begin</font>, End </p>")
+      $("#results").append("<p align='center'>  <font color='white'>Begin</font>, <font color='red'>End</font>, <font color='grey'>Population average</font> </p>")
+      
 
       // check awareness data
       if (pie_ok()) {
