@@ -90,6 +90,22 @@ svg {
 }
 
 
+.yaxis path,
+
+.yaxis line {
+    fill: none;
+    stroke: none;
+}
+.yaxis text {
+	 fill: white;
+    font-family: sans-serif;
+    font-size: 11px;
+    color: white;
+}
+
+
+
+
 /*
  * Switch
  */
