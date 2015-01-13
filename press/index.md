@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Press
-tag: media, news, press
+tag: press
 ---
 
 # Press, News & Media

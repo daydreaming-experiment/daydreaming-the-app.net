@@ -1,7 +1,7 @@
 ---
 layout: default
-title: About us
-tag: about
+title: Team
+tag: team
 ---
 
 # About us
