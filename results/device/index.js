@@ -1362,29 +1362,29 @@ $(document).ready(function () {
       // Construct results dynamically
       $("#results").append("<h2>Personal results</h2>");
       $("#results").append("<h3>Mind-wandering & Weekly rhythms</h3>");
-      $("#results").append("<p>People mind wander a lot: between 30% and 50% of their time. Look at the dotted line below to see your own percentage. And notice that mind-wandering also depends on the day of the week!</p>")
-      $("#results").append("<div id='focus_weekly_rythms'></div>")
-      $("#results").append("<h3>Knowing or loosing yourself in daydreams</h3>")
+      $("#results").append("<p>People mind wander a lot: between 30% and 50% of their time. Look at the dotted line below to see your own percentage. And notice that mind-wandering also depends on the day of the week!</p>");
+      $("#results").append("<div id='focus_weekly_rythms'></div>");
+      $("#results").append("<h3>Knowing or loosing yourself in daydreams</h3>");
       $("#results").append("<p>People are usually aware of their mind-wandering. Yet about 20% tends to be totally unnoticed. Has the phone ever caught you totally zoning out?</p>");
-      $("#results").append("<div id='mindwandering_awareness'></div>")
+      $("#results").append("<div id='mindwandering_awareness'></div>");
       $("#results").append("<h3>Words or images? Maybe sounds</h3>");
       $("#results").append("<p>Thought used to be described as a kind of inner speech. However, you may have noticed you were sometimes thinking with vivid visual or auditory images. See how this changed depending on whether you were focused or mind-wandering.</p>");
-      $("#results").append("<div id='words_and_sounds'></div>")
+      $("#results").append("<div id='words_and_sounds'></div>");
       $("#results").append("<h3>Surroundings</h3>");
       $("#results").append("<p>Awareness of your surroundings was pretty much independant of where you were...</p>");
       $("#results").append("<div id='awareness_of_surroundings_location'></div>");
-      $("#results").append("<p>... but it sure depended on how many people were around you!</p>")
-      $("#results").append("<div id='awareness_of_surroundings_people'></div>")
+      $("#results").append("<p>... but it sure depended on how many people were around you!</p>");
+      $("#results").append("<div id='awareness_of_surroundings_people'></div>");
 
       $("#results").append("<h3>Sleep Analysis</h3>");
-      $("#results").append("<p>And what about nightdreaming? See how much you slept each night of this month, and how vivid (size of the dot) and positive (pale) or negative (dark) your dreams were these very nights!"</p>);
-      $("#results").append("<div id='sleep_line'></div>")
-      $("#results").append("<p align='center'> Size: Dream Vivacity</p> <p align='center'> Color: Dream or Nightmare <font color='black'>-</font>/<font color='white'>+</font> </p>")
+      $("#results").append("<p>And what about nightdreaming? See how much you slept each night of this month, and how vivid (size of the dot) and positive (pale) or negative (dark) your dreams were these very nights!</p>");
+      $("#results").append("<div id='sleep_line'></div>");
+      $("#results").append("<p align='center'> Size: Dream Vivacity</p> <p align='center'> Color: Dream or Nightmare <font color='black'>-</font>/<font color='white'>+</font> </p>");
 
       $("#results").append("<h3>Personality Analysis</h3>");
       $("#results").append("<p>Finally, the questionnaires you filled at the experiment's end and beginning intended to measure your Mindfulness, Dissociation, Ruminative and Reflective habits. Compare yourself to the average, and to how you scored a month ago. Have you become more mindful?</p>");
-      $("#results").append("<div id='personality_questionnaire_results'></div>")
-      $("#results").append("<p align='center'>  <font color='white'>Begin</font>, <font color='red'>End</font>, <font color='grey'>Population average</font> </p>")
+      $("#results").append("<div id='personality_questionnaire_results'></div>");
+      $("#results").append("<p align='center'>  <font color='white'>Begin</font>, <font color='red'>End</font>, <font color='grey'>Population average</font> </p>");
       $("#results").append("<p>Note: Mindfulness is a tendency to be aware of yourself and your environment at each and every moment – without loosing yourself in automatization or in your thoughts. Meditation trains mindfulness. Dissociation is a tendency to totally ignore part of ourself or your environment. It seems a key component of hypnotizability, or the ability to be absorbed in games or movies. Rumination is related to the anxiety we sometimes feel about ourselves. Reflection is how much you a intectually interested by yourself – in philosophical ways. </p>");
 
       $("#results").append("<h2>What now?</h2>");
@@ -1404,8 +1404,7 @@ $(document).ready(function () {
 		sleep_line.display();
       quest_plot.display();
     } else {
-      $('#stats-intro').append("Sorry! You haven't completed enough questionnaires for us to build results (Need more than 10 answers, you have "+n_probe_results.toString()+"). You can respond to more notifications and your results will be available")
-
+      $('#stats-intro').append("Sorry! You haven't completed enough questionnaires for us to build results (Need more than 10 answers, you have "+n_probe_results.toString()+"). You can respond to more notifications and your results will be available");
     }
 
     $("#results").append("<h2>That's it for today!</h2>");
