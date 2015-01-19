@@ -80,13 +80,14 @@ $(document).ready(function () {
     var onResultsReady = function (realResults) {
       var versionCode = realResults.getVersionCode(),
           resultsWrap = JSON.parse(realResults.getResultsWrap()),
-          profileWrap, expStartTimestamp;
+          profileWrapJson, expStartTimestamp;
 
       if (realResults.getProfileWrap !== undefined) {
-        profileWrap = JSON.parse(realResults.getProfileWrap());
+        profileWrapJson = realResults.getProfileWrap();
       } else {
-        profileWrap = {profile: {}};
+        profileWrapJson = '{"profile": {}}';
       }
+      var profileWrap = JSON.parse(profileWrapJson);
 
       if (realResults.getExpStartTimestamp !== undefined) {
         expStartTimestamp = realResults.getExpStartTimestamp();
@@ -96,7 +97,7 @@ $(document).ready(function () {
 
       console.log('App versionCode: ' + versionCode);
       console.log('expStartTimestamp: ' + expStartTimestamp);
-      console.log('Profile: ' + realResults.getProfileWrap());
+      console.log('Profile: ' + profileWrapJson);
 
       if (callback !== undefined) {
         callback(versionCode, expStartTimestamp, profileWrap.profile, resultsWrap.results);
