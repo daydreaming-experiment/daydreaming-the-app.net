@@ -7,15 +7,18 @@ tag: app
 ## Installing
 
 <a id="app-button" href="https://play.google.com/store/apps/details?id=com.brainydroid.daydreaming" >
-  <img alt="Get it on Google Play"
-        src="/images/brand/en_generic_rgb_wo_60.png"
-        align="right" />
+  <img class="pull-right inside-picture" width="150" height="52" alt="Get it on Google Play" src="/images/brand/en_generic_rgb_wo_60.png" />
 </a>
 
 To download the app from the Play Store, click on the Badge on the right.
 Please note that there is no iOS version yet, the app has only been developed for Android.
 
 ## How does it work?
+
+<div class="clearfix"></div>
+<a href="/static/img/results-rhythms.png">
+  <img class="img-rounded pull-right inside-picture" width="150" height="250" src="/static/img/results-rhythms.png" alt="Results - daily rhythms" />
+</a>
 
 After a short introduction and a few preliminary questions, the app will be running. It contains:
 
@@ -29,6 +32,11 @@ And crucially, the app also contains:
 
 * the possibility to <b>describe at any moment your thoughts</b>,
 * daily <b>notifications at random moments</b> about the quality of your thoughts
+
+<div class="clearfix"></div>
+<a href="/static/img/results-type.png">
+  <img class="img-rounded pull-right inside-picture" width="150" height="250" src="/static/img/results-type.png" alt="Results - type of daydreaming" />
+</a>
 
 Why? because human’s thought is an ephemeral phenomenon. It is short-lived, and soon cleared from memory as you start attending to other things. The scientific study of thought has been challenging, but we now know that people’s descriptions of their thoughts are the most accurate when they are the most immediate.
 
@@ -52,7 +60,7 @@ You're participating in a *research project* that might lead to very interesting
 * the app will keep on working. How does your daydreaming style changes with the day of the week, along seasons, if you start a new activity? You will be able to answer these questions by assessing your own data.
 
 <div class="clearfix"></div>
-<img class="img-rounded pull-left inside-picture" width="125" height="228px" src="/static/img/daydreaming-screenshot.jpg" alt="Daydreaming screenshot" />
+<img class="img-rounded pull-left inside-picture" width="125" height="228" src="/static/img/daydreaming-screenshot.jpg" alt="Daydreaming screenshot" />
 
 ## Why use an app for this?
 
