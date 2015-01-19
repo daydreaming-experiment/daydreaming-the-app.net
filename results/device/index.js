@@ -1405,10 +1405,7 @@ $(document).ready(function () {
         resultsInterface.saveRawResults();
       });
     }
-    $("#results").append('<p>Debug info</p>');
-    $("#results").append('<p>Start: ' + expStartTimestamp + '</p>');
-    $("#results").append('<p>versionCode: ' + versionCode + '</p>');
-    $("#results").append('<p>Profile: ' + JSON.stringify(profile) + '</p>');
+
   });
 
 });
