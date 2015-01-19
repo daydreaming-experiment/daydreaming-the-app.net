@@ -1357,7 +1357,7 @@ $(document).ready(function () {
 
     if (n_probe_results > 10) {
 
-      $('#stats-intro').append('You now get to see your personnalized results, based on your ' + n_probe_results.toString() + ' answers to our daily notifications')
+      $('#stats-intro').append('You now get to see your personalized results, based on your ' + n_probe_results.toString() + ' answers to our daily notifications');
 
       // Construct results dynamically
       $("#results").append("<h2>Personal results</h2>");
