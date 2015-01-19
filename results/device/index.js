@@ -79,9 +79,20 @@ $(document).ready(function () {
 
     var onResultsReady = function (realResults) {
       var versionCode = realResults.getVersionCode(),
-          profileWrap = JSON.parse(realResults.getProfileWrap()),
-          expStartTimestamp = realResults.getExpStartTimestamp(),
           resultsWrap = JSON.parse(realResults.getResultsWrap());
+          profileWrap, expStartTimestamp;
+
+      if (realResults.getProfileWrap !== undefined) {
+        profileWrap = JSON.parse(realResults.getProfileWrap());
+      } else {
+        profileWrap = {profile: {}};
+      }
+
+      if (realResults.getExpStartTimestamp !== undefined) {
+        expStartTimestamp = realResults.getExpStartTimestamp(),
+      } else {
+        expStartTimestamp = -1;
+      }
 
       console.log('App versionCode: ' + versionCode);
       console.log('expStartTimestamp: ' + expStartTimestamp);
@@ -1406,6 +1417,10 @@ $(document).ready(function () {
       });
     }
 
+    $("#results").append('<p>Debug info</p>');
+    $("#results").append('<p>Start: ' + expStartTimestamp + '</p>');
+    $("#results").append('<p>versionCode: ' + versionCode + '</p>');
+    $("#results").append('<p>Profile: ' + JSON.stringify(profile) + '</p>');
   });
 
 });
