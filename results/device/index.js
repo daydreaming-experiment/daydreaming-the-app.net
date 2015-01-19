@@ -221,7 +221,7 @@ $(document).ready(function () {
 	 var questionnaires_raw = [];
 
 	 var morning_q = [];
-	 
+
     // iterating over all results for a particular subject
     for (var ir = 0; ir < results.length; ir++) {
 
@@ -446,7 +446,7 @@ $(document).ready(function () {
 	            	var question = questions[k]
 	            	var question_name = question['questionName'].split(".")[1] // morning.valence, morning.sleep, morning dreams (Removing the morning)
 
-					   if('answer' in question) {       // si la reponse est dans la question ...   	
+					   if('answer' in question) {       // si la reponse est dans la question ...
 		            	var question_string = Object.keys(question['answer']['sliders'])[0] // dictionnary has a single key
 		            	var answer = question['answer']['sliders'][question_string]
 		            	if (question_name === "sleep") { answer = Math.floor(answer*16/100); }
@@ -488,7 +488,7 @@ $(document).ready(function () {
     var daily_rythm_mw = dict_to_list(mindwandering_day_av,["x","y"]);
 
     // ------------------------------------------------------------
-    
+
     if (morning_q.length >0) {
 
 	 morning_q.sort(function(a, b){return a.day-b.day}) // sorting increasing date
@@ -539,7 +539,7 @@ $(document).ready(function () {
    var beg_score = scores(begin_questionnaire);
    var end_score = scores(end_questionnaire);
    var score = beg_score.concat(end_score)
-   
+
    var score_av_pop = [{"name":"Mindfulness", "value":54.5},  {"name":"Dissociation", "value":50}, {"name":"Rumination", "value":53.5},  {"name":"Reflection", "value":61.5}];
 
 
@@ -711,7 +711,7 @@ $(document).ready(function () {
 	 		o = d3.scale.ordinal()
       		.domain(["Mindfulness", "Dissociation", "Rumination", "Reflection"])
       		.rangePoints([local_top_margin, local_height]),
-    
+
 
          xAxis = d3.svg.axis()
             .scale(x)
@@ -734,7 +734,7 @@ $(document).ready(function () {
             .attr('class', 'yaxis')
             .attr('transform', 'translate(' + local_left + ',0)')
             .call(yAxis);
-        
+
         vis.selectAll("circle_mean")
             .data(score_av_pop)
             .enter()
@@ -753,8 +753,8 @@ $(document).ready(function () {
             .attr("cx", function(d, i) { return x(d.value); })
             .attr("cy", function(d, i) { return o(d.name); })
             .attr("r", 5)
-            .attr("fill", function(d, i) { if (d.type === "beginQuestionnaire"){return "white";} 
-            else {return "red";} });               
+            .attr("fill", function(d, i) { if (d.type === "beginQuestionnaire"){return "white";}
+            else {return "red";} });
       }
     }
 
@@ -1022,7 +1022,7 @@ $(document).ready(function () {
             .attr("height", height);
 
 
-        
+
         //we want less than 10 dates on screen, which means we have to skip total/10
          var day_skip = Math.ceil((date_end - date_start) / (1000*60*60*24)/10)
 
@@ -1036,7 +1036,7 @@ $(document).ready(function () {
         			.domain([ date_start, date_end ])
                .range([margins_bar.left, width-margins_bar.right]),
 
-               				 
+
             yRange = d3.scale.linear().range([height - margins_bar.bottom , margins_bar.top]).domain([0,16]),
 
 
@@ -1083,7 +1083,7 @@ $(document).ready(function () {
             .attr("stroke", "white")
             .attr('fill', 'none')
             .style("stroke-linejoin", "round");
-            
+
         vis.selectAll("dot")
             .data(morning_q)
             .enter().append("ellipse")
@@ -1092,7 +1092,7 @@ $(document).ready(function () {
             .attr("rx", function(d,i) { return 3.5 + d.dreams*0.1; })
             .attr("fill", function(d,i) { var col = (Math.floor(d.dreams*2.55)).toString(); return "rgba("+col+","+col+","+col+",0.8)";} )
             .attr("cx", function(d,i) { return x(d.date); })
-            .attr("cy", function(d) { return yRange(d.sleep); });          
+            .attr("cy", function(d) { return yRange(d.sleep); });
 
 
         vis.append("text")
@@ -1358,11 +1358,11 @@ $(document).ready(function () {
       $("#results").append("<div id='sleep_line'></div>")
 
       $("#results").append("<p align='center'> Size: Vivacity of Sleep</p> <p align='center'> Color: Valence <font color='black'>-</font>/<font color='white'>+</font> </p>")
-      
+
       $("#results").append("<h3>Personality Analysis</h3>");
       $("#results").append("<div id='personality_questionnaire_results'></div>")
       $("#results").append("<p align='center'>  <font color='white'>Begin</font>, <font color='red'>End</font>, <font color='grey'>Population average</font> </p>")
-      
+
 
       // check awareness data
       if (pie_ok()) {
@@ -1381,17 +1381,20 @@ $(document).ready(function () {
 
     $("#results").append("<h2>That's it for today!</h2>");
     $("#results").append("<p>Thanks again for using the app!</p>");
-    //$("#results").append('<p>Want some more? <a href="#" id="save-raw">Explore your raw results</a></p>');
-    //$("#save-raw").click(function() {
-      //var resultsBlob = new Blob([JSON.stringify({"results": results}, null, '  ')],
-                                 //{type: "text/plain;charset=utf-8"}),
-          //now = new Date().toISOString();
 
-      //saveAs(resultsBlob, "results-" + now + ".json");
-    //});
-
+    // Add raw results download if provided by the app
+    if (typeof resultsInterface == "undefined") {
+      // The app doesn't provide raw results download
+      console.log("App doesn't provide raw results download -> not showing button");
+    } else {
+      // The app does provide raw results download
+      console.log('App provides raw results download -> showing button');
+      $("#results").append('<p>Want some more? <a href="#" id="save-raw">Explore your raw results</a></p>');
+      $("#save-raw").click(function() {
+        resultsInterface.saveRawResults();
+      });
+    }
   });
-
 
 });
 
