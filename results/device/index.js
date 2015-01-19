@@ -1016,7 +1016,7 @@ $(document).ready(function () {
             .style("text-anchor", "middle")
             .attr("fill", "white")
             .attr("class", "caption")
-            .text("Date");
+            .text("Day");
 
         vis.append("text")
             .attr("transform", "rotate(-90)")
@@ -1357,7 +1357,7 @@ $(document).ready(function () {
 
     if (n_probe_results > 10) {
 
-      $('#stats-intro').append('Displayed results are based on ' + n_probe_results.toString() + ' answers to our daily questionnaires')
+      $('#stats-intro').append('You now get to see your personnalized results, based on your ' + n_probe_results.toString() + ' answers to our daily notifications')
 
       // Construct results dynamically
       $("#results").append("<h2>Personal results</h2>");
@@ -1379,7 +1379,7 @@ $(document).ready(function () {
       $("#results").append("<h3>Sleep Analysis</h3>");
       $("#results").append("<p>And what about nightdreaming? See how much you slept each night of this month, and how vivid (size of the dot) and positive (pale) or negative (dark) your dreams were these very nights!</p>");
       $("#results").append("<div id='sleep_line'></div>");
-      $("#results").append("<p align='center'> Size: Dream Vivacity</p> <p align='center'> Color: Dream or Nightmare <font color='black'>-</font>/<font color='white'>+</font> </p>");
+      $("#results").append("<p align='center'> Size: Dream Vivacity</p> <p align='center'> Color: <font color='black'>Nightmare</font>/<font color='white'>Positive Dream</font> </p>");
 
       $("#results").append("<h3>Personality Analysis</h3>");
       $("#results").append("<p>Finally, the questionnaires you filled at the experiment's end and beginning intended to measure your Mindfulness, Dissociation, Ruminative and Reflective habits. Compare yourself to the average, and to how you scored a month ago. Have you become more mindful?</p>");
