@@ -52,6 +52,12 @@ $(document).ready(function () {
           getVersionCode: function () {
             return -1;
           },
+          getProfileWrap: function () {
+            return JSON.stringify({profile: {}});
+          },
+          getExpStartTimestamp: function() {
+            return -1;
+          },
           getResultsWrap: function () {
             return JSON.stringify(data);
           }
@@ -72,11 +78,17 @@ $(document).ready(function () {
     // TODO: in further versions, check versionCode if method of passing results changes.
 
     var onResultsReady = function (realResults) {
-      console.log('App versionCode: ' + realResults.getVersionCode());
-      var resultsWrap = JSON.parse(realResults.getResultsWrap());
+      var versionCode = realResults.getVersionCode(),
+          profileWrap = JSON.parse(realResults.getProfileWrap()),
+          expStartTimestamp = realResults.getExpStartTimestamp(),
+          resultsWrap = JSON.parse(realResults.getResultsWrap());
+
+      console.log('App versionCode: ' + versionCode);
+      console.log('expStartTimestamp: ' + expStartTimestamp);
+      console.log('Profile: ' + realResults.getProfileWrap());
 
       if (callback !== undefined) {
-        callback(resultsWrap.results);
+        callback(versionCode, expStartTimestamp, profileWrap.profile, resultsWrap.results);
       }
     };
 
@@ -94,8 +106,7 @@ $(document).ready(function () {
   };
 
 
-  onResults(function (results) {
-
+  onResults(function (versionCode, expStartTimestamp, profile, results) {
     // results downloaded are a single subject's results
 
     $("<p>Number of results: " + results.length + "</p>").insertAfter("div#main p:last-child");
@@ -1394,6 +1405,10 @@ $(document).ready(function () {
         resultsInterface.saveRawResults();
       });
     }
+    $("#results").append('<p>Debug info</p>');
+    $("#results").append('<p>Start: ' + expStartTimestamp + '</p>');
+    $("#results").append('<p>versionCode: ' + versionCode + '</p>');
+    $("#results").append('<p>Profile: ' + JSON.stringify(profile) + '</p>');
   });
 
 });
