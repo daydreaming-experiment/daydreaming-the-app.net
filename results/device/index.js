@@ -79,7 +79,7 @@ $(document).ready(function () {
 
     var onResultsReady = function (realResults) {
       var versionCode = realResults.getVersionCode(),
-          resultsWrap = JSON.parse(realResults.getResultsWrap());
+          resultsWrap = JSON.parse(realResults.getResultsWrap()),
           profileWrap, expStartTimestamp;
 
       if (realResults.getProfileWrap !== undefined) {
@@ -89,7 +89,7 @@ $(document).ready(function () {
       }
 
       if (realResults.getExpStartTimestamp !== undefined) {
-        expStartTimestamp = realResults.getExpStartTimestamp(),
+        expStartTimestamp = realResults.getExpStartTimestamp();
       } else {
         expStartTimestamp = -1;
       }
