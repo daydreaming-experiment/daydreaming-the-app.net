@@ -6,8 +6,6 @@ tag: press
 
 # Press, News & Media
 
-<p>  </p>
-
 ## Press release
 
 ### Four French researchers start an international game to explore the secrets of thinking
@@ -24,15 +22,13 @@ tag: press
 
 <p>Daydreaming app</p>
 <p>More information at http://daydreaming-the-app.net</p>
-<p>Follow us on facebook and twitter @daydreaming_app</p>
-
-<p>  </p>
+<p>Follow us on Facebook and Twitter @daydreaming_app</p>
 
 ## Communiqué de presse
 
 ### Quatre chercheurs Français lancent un jeu international pour explorer les secrets de la pensée
 
-<p>   La pensée humaine est aussi riche que mystérieuse. Elle peut se plonger pendant des heures dans des romans, et parfois, au contraire, elle divague sur des paragraphes entiers, que nos yeux lisent sans y rien comprendre, pendant que nous ignorons nous-même que nous pensons à totalement autre chose. Et même si la littérature a parfaitement décrit les trains de pensées de ses personnages, aujourd'hui personne ne comprend comment les pensées s’enchainent, et quels facteurs vont favoriser une plus grande concentration, ou une rêverie plus profonde. En effet, comment dépasser la subjectivité, et l’imprévisibilité de tous ces états mentaux dans un cadre scientifique?</p>
+<p>La pensée humaine est aussi riche que mystérieuse. Elle peut se plonger pendant des heures dans des romans, et parfois, au contraire, elle divague sur des paragraphes entiers, que nos yeux lisent sans y rien comprendre, pendant que nous ignorons nous-même que nous pensons à totalement autre chose. Et même si la littérature a parfaitement décrit les trains de pensées de ses personnages, aujourd'hui personne ne comprend comment les pensées s’enchainent, et quels facteurs vont favoriser une plus grande concentration, ou une rêverie plus profonde. En effet, comment dépasser la subjectivité, et l’imprévisibilité de tous ces états mentaux dans un cadre scientifique?</p>
 
 <p>Quatre chercheurs Français tentent justement de répondre à ces questions à l'aide des nouvelles technologies. En s’inspirant de grands projets de jeux sérieux (serious games) tel que Foldit, ou the Great Brain Experiment, et en y mêlant des outils de laboratoire tels que des questionnaires standardisés, et « l’échantillonage aléatoire des pensées » (experience sampling), ils ont pu développer une application mobile sur android : Daydreaming.</p>
 
@@ -44,4 +40,4 @@ tag: press
 
 <p>L'application Daydreaming</p>
 <p>Plus d'information à http://daydreaming-the-app.net</p>
-<p>Suivez nous sur facebook et twitter @daydreaming_app</p>
+<p>Suivez-nous sur Facebook et Twitter @daydreaming_app</p>
