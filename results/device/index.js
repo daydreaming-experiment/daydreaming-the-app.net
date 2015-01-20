@@ -134,6 +134,9 @@ $(document).ready(function () {
     var mindwandering_day_list = {
       "Mon": [], "Tue": [], "Wed": [], "Thu": [], "Fri": [], "Sat": [], "Sun": []
     };
+    
+    var mindwandering_day = [];   
+    
     var mw_aware_count = {
       "Mostly Unaware": 0,
       "Totally Unaware": 0,
@@ -291,6 +294,7 @@ $(document).ready(function () {
 
                     if (answer != undefined) {
                       mindwandering_day_list[day].push(answer)
+                      mindwandering_day.push(answer)
                       focus = (answer > 50) ? "Focused Mind" : "Wandering Mind";
                     }
                     // $("<p> Focus (1:focused, 0: mindwander)" + focus +  "</p>").insertAfter("div#main p:last-child");
@@ -509,6 +513,7 @@ $(document).ready(function () {
     var d2 = dict_to_list(mean_of_dict_lists(thinking_mw_list),["label","value"])
     var dataset_wsi = d1.concat([{"type":"none","value":0}]).concat(d2);
     var daily_rythm_mw = dict_to_list(mindwandering_day_av,["x","y"]);
+    var daily_rythm_mw_av = mean(mindwandering_day)
 
     // ------------------------------------------------------------
 
@@ -984,7 +989,7 @@ $(document).ready(function () {
               return x(d.x);
             })
             .y(function(d) {
-              return yRange(30);
+              return yRange(daily_rythm_mw_av);
             })
             .interpolate('linear');
 
