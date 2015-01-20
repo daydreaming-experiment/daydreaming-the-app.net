@@ -16,7 +16,7 @@ tag: press
 
 <p>Four French researchers try to address precisely these issues with the help of modern technology. Inspired by great scientific data-gathering games such as Foldit or the Great Brain Experiment, and adding laboratory tools such as standardized questionnaires and “experience sampling”, they managed to develop an android app for smartphones: Daydreaming.</p>
 
-<p>This English language app targets an international audience, and everyone is invited to be part of this great adventure by responding, day after day, to diverse questions on the nature of their thoughts, and, most importantly, to the contexts that engender these thoughts.</p>
+<p>This English language app targets an international audience, and everyone is invited to take part in this great adventure by responding, day after day, to diverse questions on the nature of their thoughts, and, most importantly, to the contexts that engender these thoughts.</p>
 
 <p>This alternative and participative method, which allows for the study of experiences that are broader than what the laboratory can muster, is totally anonymous and secure. The data will stay strictly within academic hands and will be used exclusively for research purposes.</p>
 
