@@ -73,7 +73,7 @@
         var isAndroid = ua.indexOf("android") > -1;
         if(isAndroid) {
           console.log("Android detected");
-          var appButton = $("#app-button");
+          var appButton = $(".app-button");
           if (appButton.length > 0) {
             var url = appButton.attr("href");
             var details = url.substring(url.indexOf("details?id="));
