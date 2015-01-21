@@ -6,7 +6,7 @@ tag: app
 
 ## Installing
 
-<a id="app-button" href="https://play.google.com/store/apps/details?id=com.brainydroid.daydreaming" >
+<a class="app-button" href="https://play.google.com/store/apps/details?id=com.brainydroid.daydreaming" >
   <img class="pull-right inside-picture" width="150" height="52" alt="Get it on Google Play" src="/images/brand/en_generic_rgb_wo_60.png" />
 </a>
 
