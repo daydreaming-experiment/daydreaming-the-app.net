@@ -134,6 +134,9 @@ $(document).ready(function () {
     var mindwandering_day_list = {
       "Mon": [], "Tue": [], "Wed": [], "Thu": [], "Fri": [], "Sat": [], "Sun": []
     };
+    
+    var mindwandering_day = [];   
+    
     var mw_aware_count = {
       "Mostly Unaware": 0,
       "Totally Unaware": 0,
@@ -291,6 +294,7 @@ $(document).ready(function () {
 
                     if (answer != undefined) {
                       mindwandering_day_list[day].push(answer)
+                      mindwandering_day.push(answer)
                       focus = (answer > 50) ? "Focused Mind" : "Wandering Mind";
                     }
                     // $("<p> Focus (1:focused, 0: mindwander)" + focus +  "</p>").insertAfter("div#main p:last-child");
@@ -470,10 +474,12 @@ $(document).ready(function () {
 	            	var question_name = question['questionName'].split(".")[1] // morning.valence, morning.sleep, morning dreams (Removing the morning)
 
 					   if('answer' in question) {       // si la reponse est dans la question ...
-		            	var question_string = Object.keys(question['answer']['sliders'])[0] // dictionnary has a single key
-		            	var answer = question['answer']['sliders'][question_string]
-		            	if (question_name === "sleep") { answer = Math.floor(answer*16/100); }
-	   	         	dict[question_name]=answer
+					   	if('sliders' in question['answer']) {
+		            		var question_string = Object.keys(question['answer']['sliders'])[0] // dictionnary has a single key
+		            		var answer = question['answer']['sliders'][question_string]
+		            		if (question_name === "sleep") { answer = Math.floor(answer*16/100); }
+	   	         		dict[question_name]=answer
+	   	         	}
 	            	}
 	            }
 	            morning_q.push(dict)
@@ -509,6 +515,7 @@ $(document).ready(function () {
     var d2 = dict_to_list(mean_of_dict_lists(thinking_mw_list),["label","value"])
     var dataset_wsi = d1.concat([{"type":"none","value":0}]).concat(d2);
     var daily_rythm_mw = dict_to_list(mindwandering_day_av,["x","y"]);
+    var daily_rythm_mw_av = mean(mindwandering_day)
 
     // ------------------------------------------------------------
 
@@ -647,8 +654,31 @@ $(document).ready(function () {
 //--------------------------------------------------
 
 
+var debug = false;
+
+if (debug){
+$("#results").append(JSON.stringify(data_awareness_mw)+"<p></p>");
+$("#results").append(JSON.stringify(score_av_pop)+"<p></p>");
+$("#results").append(JSON.stringify(dataset_wsi)+"<p></p>");
+$("#results").append(JSON.stringify(daily_rythm_mw)+"<p></p>");
+$("#results").append(JSON.stringify(dataset_awareness_loc)+"<p></p>");
+$("#results").append(JSON.stringify(morning_q)+"<p></p>");
+$("#results").append(JSON.stringify(dataset_awareness_ppl)+"<p></p>");
+}
+
+
+
     var awareness_pie = {
       data: data_awareness_mw,
+      
+      check : function () {
+      	   var total = 0;
+      		for (var i = 0; i < data_awareness_mw.length; i++) {
+        			total += data_awareness_mw[i].value;
+      		}
+      		return total>0;      
+		 },      
+      
       display: function () {
         var vis = d3.select("#mindwandering_awareness")
             .append("svg:svg") // SVG element in <body>
@@ -714,6 +744,15 @@ $(document).ready(function () {
 
     var quest_plot = {
 
+		check : function () {
+			for (var i = 0; i < score_av_pop.length; i++) {
+        			var item = score_av_pop[i];
+
+        			if ( isNaN(item.value) ) { return false; }
+        			if ( isNaN(item.name) ) { return false; }
+      	}
+      	return true;
+			},
 
       display : function () {
 
@@ -788,6 +827,15 @@ $(document).ready(function () {
 
       data : dataset_wsi,
       labels : labels_type,
+      
+		check : function () {
+			for (var i = 0; i < dataset_wsi.length; i++) {
+        			var item = dataset_wsi[i];
+        			if ( isNaN(item.value) ) { return false; }
+        			}
+      	return true;
+			 },      
+      
       display : function () {
 
         var rect_width = ((width-margins_bar.left-margins_bar.right) / ws_bar.data.length);
@@ -927,7 +975,16 @@ $(document).ready(function () {
     var weekly_line = {
 
       data : daily_rythm_mw,
-      labels : labels_days,
+      labels : labels_days,      
+
+		check : function () { 
+			for (var i = 0; i < daily_rythm_mw.length; i++) {
+        			var item = daily_rythm_mw[i];
+        			if ( isNaN(item.y) ) { return false; }
+        			}
+      	return true;
+		},      
+      
       display : function () {
 
         var vis =  d3.select("#focus_weekly_rythms")
@@ -984,7 +1041,7 @@ $(document).ready(function () {
               return x(d.x);
             })
             .y(function(d) {
-              return yRange(30);
+              return yRange(daily_rythm_mw_av);
             })
             .interpolate('linear');
 
@@ -1037,6 +1094,17 @@ $(document).ready(function () {
     var sleep_line = {
 
       data : morning_q,
+      
+		check : function () { 
+			for (var i = 0; i < daily_rythm_mw.length; i++) {
+        			var item = daily_rythm_mw[i];
+        			if ( isNaN(item.dreams) ) { return false; }
+        			if ( isNaN(item.valence) ) { return false; }
+        			if ( isNaN(item.sleep) ) { return false; }
+        			}
+			return true;
+		 },      
+      
       display : function () {
 
         var vis =  d3.select("#sleep_line")
@@ -1084,7 +1152,7 @@ $(document).ready(function () {
             .call(xAxis)
             .selectAll("text")
             .attr("transform", "rotate(-45)")
-            .style("text-anchor", "end");;
+            .style("text-anchor", "end");
 
 
 
@@ -1113,7 +1181,7 @@ $(document).ready(function () {
             //.attr("rx", 3.5)
             .attr("ry", function(d,i) { return 3.5 + d.dreams*0.1; })
             .attr("rx", function(d,i) { return 3.5 + d.dreams*0.1; })
-            .attr("fill", function(d,i) { var col = (Math.floor(d.dreams*2.55)).toString(); return "rgba("+col+","+col+","+col+",0.8)";} )
+            .attr("fill", function(d,i) { var col = (Math.floor(d.valence*2.55)).toString(); return "rgba("+col+","+col+","+col+",0.8)";} )
             .attr("cx", function(d,i) { return x(d.date); })
             .attr("cy", function(d) { return yRange(d.sleep); });
 
@@ -1139,6 +1207,9 @@ $(document).ready(function () {
     var aware_loc_bar = {
 
       data : dataset_awareness_loc,
+
+		check : function () { return true; },            
+      
       display : function () {
         var rect_width = ((width-margins_bar.left-margins_bar.right) / (aware_loc_bar.data.length));
         var nbars = (aware_loc_bar.data.length);
@@ -1229,6 +1300,9 @@ $(document).ready(function () {
     var aware_ppl_bar = {
 
       data : dataset_awareness_ppl,
+
+		check : function () { return true; },      
+      
       display : function () {
 
         var rect_width = ((width-margins_bar.left-margins_bar.right) / aware_loc_bar.data.length);
@@ -1361,48 +1435,63 @@ $(document).ready(function () {
 
       // Construct results dynamically
       $("#results").append("<h2>Personal results</h2>");
-      $("#results").append("<h3>Mind-wandering & Weekly rhythms</h3>");
-      $("#results").append("<p>People mind wander a lot: between 30% and 50% of their time. Look at the dotted line below to see your own percentage. And notice that mind-wandering also depends on the day of the week!</p>");
-      $("#results").append("<div id='focus_weekly_rythms'></div>");
-      $("#results").append("<h3>Knowing or loosing yourself in daydreams</h3>");
-      $("#results").append("<p>People are usually aware of their mind-wandering. Yet about 20% tends to be totally unnoticed. Has the phone ever caught you totally zoning out?</p>");
-      $("#results").append("<div id='mindwandering_awareness'></div>");
-      $("#results").append("<h3>Words or images? Maybe sounds</h3>");
-      $("#results").append("<p>Thought used to be described as a kind of inner speech. However, you may have noticed you were sometimes thinking with vivid visual or auditory images. See how this changed depending on whether you were focused or mind-wandering.</p>");
-      $("#results").append("<div id='words_and_sounds'></div>");
-      $("#results").append("<h3>Surroundings</h3>");
-      $("#results").append("<p>Awareness of your surroundings was pretty much independant of where you were...</p>");
-      $("#results").append("<div id='awareness_of_surroundings_location'></div>");
-      $("#results").append("<p>... but it sure depended on how many people were around you!</p>");
-      $("#results").append("<div id='awareness_of_surroundings_people'></div>");
 
-      $("#results").append("<h3>Sleep Analysis</h3>");
-      $("#results").append("<p>And what about nightdreaming? See how much you slept each night of this month, and how vivid (size of the dot) and positive (pale) or negative (dark) your dreams were these very nights!</p>");
-      $("#results").append("<div id='sleep_line'></div>");
-      $("#results").append("<p align='center'> Size: Dream Vivacity</p> <p align='center'> Color: <font color='black'>Nightmare</font>/<font color='white'>Positive Dream</font> </p>");
 
-      $("#results").append("<h3>Personality Analysis</h3>");
-      $("#results").append("<p>Finally, the questionnaires you filled at the experiment's end and beginning intended to measure your Mindfulness, Dissociation, Ruminative and Reflective habits. Compare yourself to the average, and to how you scored a month ago. Have you become more mindful?</p>");
-      $("#results").append("<div id='personality_questionnaire_results'></div>");
-      $("#results").append("<p align='center'>  <font color='white'>Begin</font>, <font color='red'>End</font>, <font color='grey'>Population average</font> </p>");
-      $("#results").append("<p>Note: Mindfulness is a tendency to be aware of yourself and your environment at each and every moment – without loosing yourself in automatization or in your thoughts. Meditation trains mindfulness. Dissociation is a tendency to totally ignore part of ourself or your environment. It seems a key component of hypnotizability, or the ability to be absorbed in games or movies. Rumination is related to the anxiety we sometimes feel about ourselves. Reflection is how much you a intectually interested by yourself – in philosophical ways. </p>");
-
+      // check awareness data
+      if (weekly_line.check()) { 
+     	 	$("#results").append("<h3>Mind-wandering & Weekly rhythms</h3>");
+      	$("#results").append("<p>People mind wander a lot: between 30% and 50% of their time. Look at the dotted line below to see your own percentage. And notice that mind-wandering also depends on the day of the week!</p>");
+      	$("#results").append("<div id='focus_weekly_rythms'></div>");
+      	weekly_line.display();
+      }
+      if (awareness_pie.check()) {  
+	      $("#results").append("<h3>Knowing or loosing yourself in daydreams</h3>");
+   	   $("#results").append("<p>People are usually aware of their mind-wandering. Yet about 20% tends to be totally unnoticed. Has the phone ever caught you totally zoning out?</p>");
+      	$("#results").append("<div id='mindwandering_awareness'></div>");
+      	awareness_pie.display();
+      }
+      if (ws_bar.check()) {
+	      $("#results").append("<h3>Words or images? Maybe sounds</h3>");
+   	   $("#results").append("<p>Thought used to be described as a kind of inner speech. However, you may have noticed you were sometimes thinking with vivid visual or auditory images. See how this changed depending on whether you were focused or mind-wandering.</p>");
+      	$("#results").append("<div id='words_and_sounds'></div>");
+      	 ws_bar.display();
+      }
+      if (aware_loc_bar.check()) {
+	      $("#results").append("<h3>Surroundings</h3>");
+   	   $("#results").append("<p>Awareness of your surroundings was pretty much independant of where you were...</p>");
+      	$("#results").append("<div id='awareness_of_surroundings_location'></div>");
+      	$("#results").append("<p>... but it sure depended on how many people were around you!</p>");
+      	$("#results").append("<div id='awareness_of_surroundings_people'></div>");
+      	aware_loc_bar.display();
+      }
+      if (aware_ppl_bar.check()) { 
+      	aware_ppl_bar.display();
+      }
+      
+		if (sleep_line.check()) { 
+	      $("#results").append("<h3>Sleep Analysis</h3>");
+   	   $("#results").append("<p>And what about nightdreaming? See how much you slept each night of this month, and how vivid (size of the dot) and positive (pale) or negative (dark) your dreams were these very nights!</p>");
+      	$("#results").append("<div id='sleep_line'></div>");
+      	$("#results").append("<p align='center'> Size: Dream Vivacity</p> <p align='center'> Color: <font color='black'>Nightmare</font>/<font color='white'>Positive Dream</font> </p>");
+			sleep_line.display();
+		}
+      if (quest_plot.check()) { 
+	      $("#results").append("<h3>Personality Analysis</h3>");
+	      $("#results").append("<p>Finally, the questionnaires you filled at the experiment's end and beginning intended to measure your Mindfulness, Dissociation, Ruminative and Reflective habits. Compare yourself to the average, and to how you scored a month ago. Have you become more mindful?</p>");
+   	   $("#results").append("<div id='personality_questionnaire_results'></div>");
+	      $("#results").append("<p align='center'>  <font color='white'>Begin</font>, <font color='red'>End</font>, <font color='grey'>Population average</font> </p>");
+   	   $("#results").append("<p>Note: Mindfulness is a tendency to be aware of yourself and your environment at each and every moment – without loosing yourself in automatization or in your thoughts. Meditation trains mindfulness. Dissociation is a tendency to totally ignore part of ourself or your environment. It seems a key component of hypnotizability, or the ability to be absorbed in games or movies. Rumination is related to the anxiety we sometimes feel about ourselves. Reflection is how much you a intectually interested by yourself – in philosophical ways. </p>");
+      	quest_plot.display(); 
+      }
+      
       $("#results").append("<h2>What now?</h2>");
       $("#results").append("<p>You can now tweet @daydreaming_app or tell us on facebook things you would like to see in your results. </p>");
       $("#results").append("<p>We are researchers, not commercials, but we’d be glad to help you if we can. </p>");
 
       $("#results").append("<p>Also, feel free to use the app as much as you want: from now on your results will always be available and up to date. </p>");
-
-      // check awareness data
-      if (pie_ok()) {
-        awareness_pie.display();
-      }
-      ws_bar.display();
-      weekly_line.display();
-      aware_loc_bar.display();
-      aware_ppl_bar.display();
-		sleep_line.display();
-      quest_plot.display();
+            
+      
+      
     } else {
       $('#stats-intro').append("Sorry! You haven't completed enough questionnaires for us to build results (Need more than 10 answers, you have "+n_probe_results.toString()+"). You can respond to more notifications and your results will be available");
     }
