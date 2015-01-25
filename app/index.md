@@ -44,7 +44,7 @@ Therefore, at any moment, you will be able to describe to the app your thoughts 
 
 ## Why should I use it?
 
-You're participating in a *research project* that might lead to very interesting discoveries in how the human mind works in everyday life. On top of that, you will be *immediately* able to:
+You're participating in a *research project* that might lead to very interesting discoveries in how the human mind works in everyday life. On top of that, you will *immediately* be able to:
 
 * concretely pay attention to each of your own thoughts with the tools of science
 * pay attention to specific behaviors and mental habits
