@@ -469,7 +469,9 @@ $(document).ready(function () {
 	            dict["day"]=day
 	            dict["day_string"]=d.toDateString().substring(0,10)	// String of the day
 	            dict["date"]=d
+            	var isValid = true;
 	            for (var k = 0; k < questions.length; k++){
+
 	            	var question = questions[k]
 	            	var question_name = question['questionName'].split(".")[1] // morning.valence, morning.sleep, morning dreams (Removing the morning)
 
@@ -480,9 +482,9 @@ $(document).ready(function () {
 		            		if (question_name === "sleep") { answer = Math.floor(answer*16/100); }
 	   	         		dict[question_name]=answer
 	   	         	}
-	            	}
+	            	} else { isValid = false; } // skipping questions without answers
 	            }
-	            morning_q.push(dict)
+	            if (isValid){ morning_q.push(dict); }
        }
       }
 
@@ -750,16 +752,14 @@ $("#results").append(JSON.stringify(dataset_awareness_ppl)+"<p></p>");
 
 
       data: score,
-      
       data_av_pop: score_av_pop,
 
 		check : function () {
-			return true;
-			for (var i = 0; i < score_av_pop.length; i++) {
-        			var item = score_av_pop[i];
 
+			for (var i = 0; i < score.length; i++) {
+        			var item = score[i];
         			if ( isNaN(item.value) ) { return false; }
-        			if ( isNaN(item.name) ) { return false; }
+        			if ( (item.name == undefined) ) { return false; }
       	}
       	return true;
 			},
@@ -1108,12 +1108,15 @@ $("#results").append(JSON.stringify(dataset_awareness_ppl)+"<p></p>");
       data : morning_q,
       
 		check : function () { 
-			return true;
+
 			for (var i = 0; i < this.data.length; i++) {
         			var item = this.data[i];
-        			if ( isNaN(item.dreams) ) { return false; }
-        			if ( isNaN(item.valence) ) { return false; }
-        			if ( isNaN(item.sleep) ) { return false; }
+        			if ( isNaN(item.dreams) ) {
+        				return false; }
+        			if ( isNaN(item.valence) ) { 
+        				return false; }
+        			if ( isNaN(item.sleep) ) { 
+        				return false; }
         			}
 			return true;
 		 },      
@@ -1221,7 +1224,18 @@ $("#results").append(JSON.stringify(dataset_awareness_ppl)+"<p></p>");
 
       data : dataset_awareness_loc,
 
-		check : function () { return true; },            
+		check : function () { 
+			for (var i = 0; i < this.data.length; i++) {
+					var item = this.data[i];
+					console.log(item)
+        			if ( item.value == undefined ) {
+        				return false; }
+        			if ( item.color == undefined ) {
+        				return false; }
+        			if ( item.label == undefined ) {
+        				return false; }
+     	 	}
+      return true; },            
       
       display : function () {
         var rect_width = ((width-margins_bar.left-margins_bar.right) / (this.data.length));
@@ -1314,7 +1328,18 @@ $("#results").append(JSON.stringify(dataset_awareness_ppl)+"<p></p>");
 
       data : dataset_awareness_ppl,
 
-		check : function () { return true; },      
+		check : function () { 
+			for (var i = 0; i < this.data.length; i++) {
+					var item = this.data[i];
+        			if ( item.value == undefined ) {
+        				return false; }
+        			if ( item.color == undefined ) {
+        				return false; }
+        			if ( item.label == undefined ) {
+        				return false; }
+     	 	}
+      return true; }, 		
+		
       
       display : function () {
 
