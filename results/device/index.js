@@ -669,20 +669,24 @@ $("#results").append(JSON.stringify(dataset_awareness_ppl)+"<p></p>");
 
 
     var awareness_pie = {
+    	
       data: data_awareness_mw,
       
       check : function () {
       	   var total = 0;
-      		for (var i = 0; i < data_awareness_mw.length; i++) {
-        			total += data_awareness_mw[i].value;
+      		for (var i = 0; i < this.data.length; i++) {
+        			total += this.data[i].value;
       		}
       		return total>0;      
 		 },      
       
       display: function () {
+      	
+        var o_data = this.data; // local copy of data in function
+      	
         var vis = d3.select("#mindwandering_awareness")
             .append("svg:svg") // SVG element in <body>
-            .data([awareness_pie.data]) // link data to document
+            .data([this.data]) // link data to document
             .attr("width", width)
             .attr("height", height)
             .append("svg:g") //make a group to hold our pie chart
@@ -707,7 +711,7 @@ $("#results").append(JSON.stringify(dataset_awareness_ppl)+"<p></p>");
 
         arcs.append("svg:path")
             .attr("fill", function (d, i) {
-              return awareness_pie.data[i].color;
+              return o_data[i].color;
             }) //set the color for each slice to be chosen from the color function defined above
             .attr("d", arc); //this creates the actual SVG path using the associated data (pie) with the arc drawing function
 
@@ -729,10 +733,10 @@ $("#results").append(JSON.stringify(dataset_awareness_ppl)+"<p></p>");
             })
             .text(function (d, i) {
               // Do not plot results pie label if no contribution to pie chart
-              if (awareness_pie.data[i].value < 1) {
+              if (o_data[i].value < 1) {
                 return "";
               } else {
-                return awareness_pie.data[i].label;
+                return o_data[i].label;
               }
             })
             .style("font-size","10pt")
@@ -744,7 +748,13 @@ $("#results").append(JSON.stringify(dataset_awareness_ppl)+"<p></p>");
 
     var quest_plot = {
 
+
+      data: score,
+      
+      data_av_pop: score_av_pop,
+
 		check : function () {
+			return true;
 			for (var i = 0; i < score_av_pop.length; i++) {
         			var item = score_av_pop[i];
 
@@ -798,7 +808,7 @@ $("#results").append(JSON.stringify(dataset_awareness_ppl)+"<p></p>");
             .call(yAxis);
 
         vis.selectAll("circle_mean")
-            .data(score_av_pop)
+            .data(this.data_av_pop)
             .enter()
             .append("circle")
             .attr("cx", function(d, i) { return x(d.value); })
@@ -808,7 +818,7 @@ $("#results").append(JSON.stringify(dataset_awareness_ppl)+"<p></p>");
             .style("opacity", "0.5");
 
         vis.selectAll("circle_sub")
-            .data(score)
+            .data(this.data)
             .enter()
             .append("circle")
             .attr('class', 'q')
@@ -826,6 +836,7 @@ $("#results").append(JSON.stringify(dataset_awareness_ppl)+"<p></p>");
     var ws_bar = {
 
       data : dataset_wsi,
+      
       labels : labels_type,
       
 		check : function () {
@@ -847,12 +858,12 @@ $("#results").append(JSON.stringify(dataset_awareness_ppl)+"<p></p>");
 
 
         var x = d3.scale.ordinal()
-                .domain(ws_bar.labels)
+                .domain(this.labels)
                 .rangePoints([rect_width*1.5 +margins_bar.left, width-margins_bar.right-rect_width*1.5]),
 
             yRange = d3.scale.linear().range([height - margins_bar.bottom, margins_bar.top])
-                .domain([d3.min(ws_bar.data, function(d) {return d.value;}),
-                  d3.max(ws_bar.data, function(d) {return d.value;})*1.3]), // extend graph by 20% to allow for legend on top
+                .domain([d3.min(this.data, function(d) {return d.value;}),
+                  d3.max(this.data, function(d) {return d.value;})*1.3]), // extend graph by 20% to allow for legend on top
 
             xAxis = d3.svg.axis()
                 .scale(x)
@@ -879,7 +890,7 @@ $("#results").append(JSON.stringify(dataset_awareness_ppl)+"<p></p>");
             .call(yAxis);
 
         vis.selectAll("rect")
-            .data(ws_bar.data)
+            .data(this.data)
             .enter()
             .append("rect")
             .attr("x", function(d, i) {
@@ -888,7 +899,7 @@ $("#results").append(JSON.stringify(dataset_awareness_ppl)+"<p></p>");
             .attr("y", function(d) {
               return yRange(d.value) ;
             })
-            .attr("width", (width-margins_bar.left-margins_bar.right) / ws_bar.data.length - barPadding)
+            .attr("width", (width-margins_bar.left-margins_bar.right) / this.data.length - barPadding)
             .attr("height", function(d) {
               return  (height - margins_bar.bottom) - (yRange(d.value) );
             })
@@ -899,14 +910,14 @@ $("#results").append(JSON.stringify(dataset_awareness_ppl)+"<p></p>");
 
         // adding labels
         vis.selectAll("text")
-            .data(ws_bar.data)
+            .data(this.data)
             .enter()
             .append("text")
             .text(function(d) {
               return d.value;
             })
             .attr("x", function(d, i) {
-              return i * (width / ws_bar.data.length) + (width / ws_bar.data.length - barPadding) / 2;
+              return i * (width / this.data.length) + (width / this.data.length - barPadding) / 2;
             })
             .attr("y", function(d) {
               return height - (d.value * 4) + 14;  //15 is now 14
@@ -916,8 +927,6 @@ $("#results").append(JSON.stringify(dataset_awareness_ppl)+"<p></p>");
             .attr("fill", "white")
             .attr("text-anchor", "middle");
 
-
-        //
 
         vis.append("text")
             .attr("transform", "rotate(-90)")
@@ -936,7 +945,7 @@ $("#results").append(JSON.stringify(dataset_awareness_ppl)+"<p></p>");
         var delta = 2;
 
         vis.selectAll("rect.legend")
-            .data(ws_bar.data.slice(0, 3)) // pick 3 first
+            .data(this.data.slice(0, 3)) // pick 3 first
             .enter()
             .append("rect")
             .attr("x", function(d, i) {
@@ -948,11 +957,11 @@ $("#results").append(JSON.stringify(dataset_awareness_ppl)+"<p></p>");
             .attr("width", legend_sq_size)
             .attr("height", legend_sq_size)
             .attr("fill", function(d) {
-              return d.color;//"rgb(0, 0, " + (d.value * 10) + ")"; // value dependent color
+              return d.color; //"rgb(0, 0, " + (d.value * 10) + ")"; // value dependent color
             });
 
         vis.selectAll("text.legend")
-            .data(ws_bar.data.slice(0, 3)) // pick 3 first
+            .data(this.data.slice(0, 3)) // pick 3 first
             .enter()
             .append("text")
             .attr("x", function(d, i) {
@@ -975,11 +984,12 @@ $("#results").append(JSON.stringify(dataset_awareness_ppl)+"<p></p>");
     var weekly_line = {
 
       data : daily_rythm_mw,
+      data_av: daily_rythm_mw_av,
       labels : labels_days,      
 
 		check : function () { 
-			for (var i = 0; i < daily_rythm_mw.length; i++) {
-        			var item = daily_rythm_mw[i];
+			for (var i = 0; i < this.data.length; i++) {
+        			var item = this.data[i];
         			if ( isNaN(item.y) ) { return false; }
         			}
       	return true;
@@ -987,19 +997,21 @@ $("#results").append(JSON.stringify(dataset_awareness_ppl)+"<p></p>");
       
       display : function () {
 
+
+		var o_labels = this.labels;
+
         var vis =  d3.select("#focus_weekly_rythms")
             .append("svg")
             .attr("width", width)
             .attr("height", height);
 
         var labels_days = [];
-        for (var i = 0; i < weekly_line.data.length; i++) {
-          labels_days.push(weekly_line.data[i].x);
+        for (var i = 0; i < this.data.length; i++) {
+          labels_days.push(this.data[i].x);
         }
 
-
         var x = d3.scale.ordinal()
-                .domain(weekly_line.labels)
+                .domain(this.labels)
                 .rangePoints([margins_bar.left, width-margins_bar.right]),
 
             yRange = d3.scale.linear().range([height - margins_bar.bottom , margins_bar.top]).domain([0,100]),
@@ -1029,7 +1041,7 @@ $("#results").append(JSON.stringify(dataset_awareness_ppl)+"<p></p>");
 
         var lineFunc = d3.svg.line()
             .x(function(d,i) {
-              return x(weekly_line.labels[i]);
+              return x(o_labels[i]);
             })
             .y(function(d) {
               return yRange(d.y);
@@ -1041,30 +1053,30 @@ $("#results").append(JSON.stringify(dataset_awareness_ppl)+"<p></p>");
               return x(d.x);
             })
             .y(function(d) {
-              return yRange(daily_rythm_mw_av);
+              return yRange(this.data_av);
             })
             .interpolate('linear');
 
 
         vis.append('svg:path')
-            .attr('d', lineFunc(weekly_line.data))
+            .attr('d', lineFunc(this.data))
             .attr('stroke-width', 2)
             .attr("stroke", "white")
             .attr('fill', 'none');
 
         vis.append('svg:path')
-            .attr('d', meanlineFunc(weekly_line.data))
+            .attr('d', meanlineFunc(this.data))
             .attr('stroke-width', 2)
             .attr("stroke", "white")
             .style("stroke-dasharray", "4,4")
             .attr('fill', 'none');
 
         vis.selectAll("dot")
-            .data(weekly_line.data)
+            .data(this.data)
             .enter().append("circle")
             .attr("r", 3.5)
             .attr("fill", "white")
-            .attr("cx", function(d,i) { return x(weekly_line.labels[i]); })
+            .attr("cx", function(d,i) { return x(o_labels[i]); })
             .attr("cy", function(d) { return yRange(d.y); });
 
         vis.append("text")
@@ -1096,8 +1108,9 @@ $("#results").append(JSON.stringify(dataset_awareness_ppl)+"<p></p>");
       data : morning_q,
       
 		check : function () { 
-			for (var i = 0; i < daily_rythm_mw.length; i++) {
-        			var item = daily_rythm_mw[i];
+			return true;
+			for (var i = 0; i < this.data.length; i++) {
+        			var item = this.data[i];
         			if ( isNaN(item.dreams) ) { return false; }
         			if ( isNaN(item.valence) ) { return false; }
         			if ( isNaN(item.sleep) ) { return false; }
@@ -1169,7 +1182,7 @@ $("#results").append(JSON.stringify(dataset_awareness_ppl)+"<p></p>");
 
 
         vis.append('svg:path')
-            .attr('d', lineFunc(morning_q))
+            .attr('d', lineFunc(this.data))
             .attr('stroke-width', 2)
             .attr("stroke", "white")
             .attr('fill', 'none')
@@ -1211,12 +1224,12 @@ $("#results").append(JSON.stringify(dataset_awareness_ppl)+"<p></p>");
 		check : function () { return true; },            
       
       display : function () {
-        var rect_width = ((width-margins_bar.left-margins_bar.right) / (aware_loc_bar.data.length));
-        var nbars = (aware_loc_bar.data.length);
+        var rect_width = ((width-margins_bar.left-margins_bar.right) / (this.data.length));
+        var nbars = (this.data.length);
 
         var labels = [];
-        for (var i = 0; i < aware_loc_bar.data.length; i++) {
-          labels.push(aware_loc_bar.data[i].label);
+        for (var i = 0; i < this.data.length; i++) {
+          labels.push(this.data[i].label);
         }
 
         var vis = d3.select("#awareness_of_surroundings_location")
@@ -1229,7 +1242,7 @@ $("#results").append(JSON.stringify(dataset_awareness_ppl)+"<p></p>");
                 .rangePoints([margins_bar.left + rect_width/2 , margins_bar.left + rect_width/2 + (nbars-1)*rect_width]),
 
             yRange = d3.scale.linear().range([height - margins_bar.bottom, margins_bar.top])
-                .domain([0, d3.max(aware_loc_bar.data, function(d) {
+                .domain([0, d3.max(this.data, function(d) {
                   return d.value;
                 })]),
 
@@ -1260,7 +1273,7 @@ $("#results").append(JSON.stringify(dataset_awareness_ppl)+"<p></p>");
             .call(yAxis);
 
         vis.selectAll("rect")
-            .data(aware_loc_bar.data)
+            .data(this.data)
             .enter()
             .append("rect")
             .attr("x", function(d, i) {
@@ -1305,12 +1318,12 @@ $("#results").append(JSON.stringify(dataset_awareness_ppl)+"<p></p>");
       
       display : function () {
 
-        var rect_width = ((width-margins_bar.left-margins_bar.right) / aware_loc_bar.data.length);
-        var nbars = (aware_loc_bar.data.length);
+        var rect_width = ((width-margins_bar.left-margins_bar.right) / this.data.length);
+        var nbars = (this.data.length);
 
         var labels = [];
-        for (var i = 0; i < aware_ppl_bar.data.length; i++) {
-          labels.push(aware_ppl_bar.data[i].label);
+        for (var i = 0; i < this.data.length; i++) {
+          labels.push(this.data[i].label);
         }
 
         var vis = d3.select("#awareness_of_surroundings_people")
@@ -1324,7 +1337,7 @@ $("#results").append(JSON.stringify(dataset_awareness_ppl)+"<p></p>");
                 .rangePoints([margins_bar.left + rect_width/2 , margins_bar.left + rect_width/2 + (nbars-1)*rect_width]),
 
             yRange = d3.scale.linear().range([height - margins_bar.bottom-margins_bar.bottom_caption, margins_bar.top])
-                .domain([0, d3.max(aware_ppl_bar.data, function(d) {
+                .domain([0, d3.max(this.data, function(d) {
                   return d.value;
                 })]),
 
@@ -1358,7 +1371,7 @@ $("#results").append(JSON.stringify(dataset_awareness_ppl)+"<p></p>");
             .call(yAxis);
 
         vis.selectAll("rect")
-            .data(aware_ppl_bar.data)
+            .data(this.data)
             .enter()
             .append("rect")
             .attr("x", function(d, i) {
@@ -1378,14 +1391,14 @@ $("#results").append(JSON.stringify(dataset_awareness_ppl)+"<p></p>");
 
         // adding labels
         vis.selectAll("text")
-            .data(aware_ppl_bar.data)
+            .data(this.data)
             .enter()
             .append("text")
             .text(function(d) {
               return d.label;
             })
             .attr("x", function(d, i) {
-              return i * (width / aware_ppl_bar.data.length) + (width / aware_ppl_bar.data.length - barPadding) / 2;
+              return i * (width /this.data.length) + (width / this.data.length - barPadding) / 2;
             })
             .attr("y", function(d) {
               return h - (d.value * 4) + 14;  //15 is now 14
@@ -1420,13 +1433,6 @@ $("#results").append(JSON.stringify(dataset_awareness_ppl)+"<p></p>");
 
 //------------- Display graph objects
 
-    function pie_ok() {
-      var total = 0;
-      for (var i = 0; i < data_awareness_mw.length; i++) {
-        total += data_awareness_mw[i].value;
-      }
-      return total>0;
-    }
 
 
     if (n_probe_results > 10) {
@@ -1437,7 +1443,7 @@ $("#results").append(JSON.stringify(dataset_awareness_ppl)+"<p></p>");
       $("#results").append("<h2>Personal results</h2>");
 
 
-      // check awareness data
+      // check data
       if (weekly_line.check()) { 
      	 	$("#results").append("<h3>Mind-wandering & Weekly rhythms</h3>");
       	$("#results").append("<p>People mind wander a lot: between 30% and 50% of their time. Look at the dotted line below to see your own percentage. And notice that mind-wandering also depends on the day of the week!</p>");
