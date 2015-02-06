@@ -10,15 +10,15 @@ echo
 git pull origin master
 git push origin master
 
+echo
 echo "##"
-echo "## Ssh-ing to Tal's server to update"
+echo "## Ssh-ing to Eauchat.org to update"
 echo "##"
 echo
 
-ssh daydreaming@74.207.250.156 'source /etc/bash_completion.d/virtualenvwrapper; workon jekyll; cd daydreaming/daydreaming-the-app.net; git pull; ./update.sh'
+ssh daydreaming@eauchat.org 'ssh ubuntu@natterjack-prod-daydreaming "cd daydreaming-the-app.net; git pull; ./update.sh"'
 
 echo
 echo "##"
 echo "## All done!"
 echo "##"
-echo
