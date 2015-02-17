@@ -1591,14 +1591,21 @@ function postCanvasToFacebook(canvas) {
 };
 
 
-    $("#share").append("<button type='button'> Share on Facebook! </button>")
+    $("#share").append("<button type='button'> Display as image! </button>")
     $('div#share').on('click', function() {
-        html2canvas([document.body], {
+    	     html2canvas($("#main"), {
             onrendered: function(canvas) {
-               postCanvasToFacebook(canvas)
-            }
-        });       
+				$("#share").html("");				
+				$("#main").html("");				
+            $("#main").append(canvas);  	
+              //postCanvasToFacebook(canvas)
+           }
+       });       
  	});
+
+    
+    // *** replace all svg by png
+   canvg();
 
 
     
