@@ -1592,7 +1592,10 @@ function postCanvasToFacebook(canvas) {
 
 
     $("#share").append("<button type='button'> Display as image! </button>")
+
     $('div#share').on('click', function() {
+    	    // *** replace all svg by png
+    		canvg();
     	     html2canvas($("#main"), {
             onrendered: function(canvas) {
 				$("#share").html("");				
@@ -1604,8 +1607,7 @@ function postCanvasToFacebook(canvas) {
  	});
 
     
-    // *** replace all svg by png
-   canvg();
+
 
 
     
