@@ -1581,11 +1581,11 @@ function postCanvasToFacebook(canvas) {
 	  } else if (response.status === "not_authorized") {
 		 FB.login(function(response) {
 			postImageToFacebook(response.authResponse.accessToken, "daydreaming-the-app", "image/png", decodedPng, "http://daydreaming-the-app.net/");
-		 }, {scope: "publish_stream"});
+		 }, {scope: "publish_stream, publish_actions", });
 	  } else {
 		 FB.login(function(response)  { 
 			postImageToFacebook(response.authResponse.accessToken, "daydreaming-the-app", "image/png", decodedPng, "http://daydreaming-the-app.net/");
-		 }, {scope: "publish_stream"});
+		 }, {scope: "publish_stream, publish_actions"});
 	  }
 	 });
 };
