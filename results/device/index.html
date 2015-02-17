@@ -9,6 +9,26 @@
 </head>
 <body>
 
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '913951618666996',
+      xfbml      : true,
+      version    : 'v2.2'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
   <div id="main">
     <h1>Results</h1>
     <!--<a id="switch" href="#">Global <-> personal</a>-->
@@ -19,39 +39,26 @@
       </div>
 
       <div class="static-plot-container" id="results">
-        <!--
-        <h2>Personal results</h2>
-        <p>On average, people mind-wander a lot: over 40% of their time.</p>
-        <h3>Weekly rhythms</h3>
-        <p>Mind-wandering depends on the day of the week!</p>
-        <div id="focus_weekly_rythms"></div>
-        <h3>Know yourself</h3>
-        <p>People are usually aware of their mind-wandering 49% of the time. But they can be more or less aware of it &mdash; see how much.</p>
-        <div id="mindwandering_awareness"></div>
-        <h3>Words or images? Maybe sounds</h3>
-        <p>Most people think a lot in words. See how this changes depending on whether people are mind-wandering or not.</p>
-        <div id="words_and_sounds"></div>
-        <h3>Surroundings</h3>
-        <p>People's awareness of their surroundings is pretty much independant of where they are...</p>
-        <div id="awareness_of_surroundings_location"></div>
-        <p>... but it sure depends on how many people are around! The more people around, the greater the awareness, except when we're alone or in a crowd.</p>
-        <div id="awareness_of_surroundings_people"></div>
-        <h2>That's it for today!</h2>
-        -->
       </div>
+ 
+
+     <div id="share"></div>
 
     </div>
-    <!--<div id="personal">-->
-        <!--<h2>Personal results</h2>-->
-        <!--<p>Your personal results are still being worked on! Come back around November 6 for these.</p>-->
-    <!--</div>-->
-  </div>
 
+  </div>
+  
+  <div id="fb-root"></div>
+
+	 
   <script src="/static/js/d3.v3.min.js"></script>
   <script src="/static/js/underscore-min.js"></script>
   <script src="/static/js/FileSaver.min.js"></script>
   <script src="/static/js/jquery-2.1.1.min.js"></script>
   <script src="/results/device/index.js"></script>
+  <script src="/static/js/html2canvas.js"></script>
+  <script src="/static/js/base64binary.js"></script>
+  <!--<script src="http://connect.facebook.net/en_US/all.js"></script>-->
 </body>
 </html>
 
