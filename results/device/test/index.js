@@ -134,9 +134,9 @@ $(document).ready(function () {
     var mindwandering_day_list = {
       "Mon": [], "Tue": [], "Wed": [], "Thu": [], "Fri": [], "Sat": [], "Sun": []
     };
-    
-    var mindwandering_day = [];   
-    
+
+    var mindwandering_day = [];
+
     var mw_aware_count = {
       "Mostly Unaware": 0,
       "Totally Unaware": 0,
@@ -669,21 +669,21 @@ $("#results").append(JSON.stringify(dataset_awareness_ppl)+"<p></p>");
 
 
     var awareness_pie = {
-    	
+
       data: data_awareness_mw,
-      
+
       check : function () {
       	   var total = 0;
       		for (var i = 0; i < this.data.length; i++) {
         			total += this.data[i].value;
       		}
-      		return total>0;      
-		 },      
-      
+      		return total>0;
+		 },
+
       display: function () {
-      	
+
         var o_data = this.data; // local copy of data in function
-      	
+
         var vis = d3.select("#mindwandering_awareness")
             .append("svg:svg") // SVG element in <body>
             .data([this.data]) // link data to document
@@ -834,17 +834,17 @@ $("#results").append(JSON.stringify(dataset_awareness_ppl)+"<p></p>");
     var ws_bar = {
 
       data : dataset_wsi,
-      
+
       labels : labels_type,
-      
+
 		check : function () {
 			for (var i = 0; i < dataset_wsi.length; i++) {
         			var item = dataset_wsi[i];
         			if ( isNaN(item.value) ) { return false; }
         			}
       	return true;
-			 },      
-      
+			 },
+
       display : function () {
 
         var rect_width = ((width-margins_bar.left-margins_bar.right) / ws_bar.data.length);
@@ -983,16 +983,16 @@ $("#results").append(JSON.stringify(dataset_awareness_ppl)+"<p></p>");
 
       data : daily_rythm_mw,
       data_av: daily_rythm_mw_av,
-      labels : labels_days,      
+      labels : labels_days,
 
-		check : function () { 
+		check : function () {
 			for (var i = 0; i < this.data.length; i++) {
         			var item = this.data[i];
         			if ( isNaN(item.y) ) { return false; }
         			}
       	return true;
-		},      
-      
+		},
+
       display : function () {
 
 
@@ -1104,21 +1104,21 @@ $("#results").append(JSON.stringify(dataset_awareness_ppl)+"<p></p>");
     var sleep_line = {
 
       data : morning_q,
-      
-		check : function () { 
+
+		check : function () {
 
 			for (var i = 0; i < this.data.length; i++) {
         			var item = this.data[i];
         			if ( isNaN(item.dreams) ) {
         				return false; }
-        			if ( isNaN(item.valence) ) { 
+        			if ( isNaN(item.valence) ) {
         				return false; }
-        			if ( isNaN(item.sleep) ) { 
+        			if ( isNaN(item.sleep) ) {
         				return false; }
         			}
 			return true;
-		 },      
-      
+		 },
+
       display : function () {
 
         var vis =  d3.select("#sleep_line")
@@ -1222,7 +1222,7 @@ $("#results").append(JSON.stringify(dataset_awareness_ppl)+"<p></p>");
 
       data : dataset_awareness_loc,
 
-		check : function () { 
+		check : function () {
 			for (var i = 0; i < this.data.length; i++) {
 					var item = this.data[i];
 					console.log(item)
@@ -1233,8 +1233,8 @@ $("#results").append(JSON.stringify(dataset_awareness_ppl)+"<p></p>");
         			if ( item.label == undefined ) {
         				return false; }
      	 	}
-      return true; },            
-      
+      return true; },
+
       display : function () {
         var rect_width = ((width-margins_bar.left-margins_bar.right) / (this.data.length));
         var nbars = (this.data.length);
@@ -1326,7 +1326,7 @@ $("#results").append(JSON.stringify(dataset_awareness_ppl)+"<p></p>");
 
       data : dataset_awareness_ppl,
 
-		check : function () { 
+		check : function () {
 			for (var i = 0; i < this.data.length; i++) {
 					var item = this.data[i];
         			if ( item.value == undefined ) {
@@ -1336,9 +1336,9 @@ $("#results").append(JSON.stringify(dataset_awareness_ppl)+"<p></p>");
         			if ( item.label == undefined ) {
         				return false; }
      	 	}
-      return true; }, 		
-		
-      
+      return true; },
+
+
       display : function () {
 
         var rect_width = ((width-margins_bar.left-margins_bar.right) / this.data.length);
@@ -1467,13 +1467,13 @@ $("#results").append(JSON.stringify(dataset_awareness_ppl)+"<p></p>");
 
 
       // check data
-      if (weekly_line.check()) { 
+      if (weekly_line.check()) {
      	 	$("#results").append("<h3>Mind-wandering & Weekly rhythms</h3>");
       	$("#results").append("<p>People mind wander a lot: between 30% and 50% of their time. Look at the dotted line below to see your own percentage. And notice that mind-wandering also depends on the day of the week!</p>");
       	$("#results").append("<div id='focus_weekly_rythms'></div>");
       	weekly_line.display();
       }
-      if (awareness_pie.check()) {  
+      if (awareness_pie.check()) {
 	      $("#results").append("<h3>Knowing or loosing yourself in daydreams</h3>");
    	   $("#results").append("<p>People are usually aware of their mind-wandering. Yet about 20% tends to be totally unnoticed. Has the phone ever caught you totally zoning out?</p>");
       	$("#results").append("<div id='mindwandering_awareness'></div>");
@@ -1493,34 +1493,34 @@ $("#results").append(JSON.stringify(dataset_awareness_ppl)+"<p></p>");
       	$("#results").append("<div id='awareness_of_surroundings_people'></div>");
       	aware_loc_bar.display();
       }
-      if (aware_ppl_bar.check()) { 
+      if (aware_ppl_bar.check()) {
       	aware_ppl_bar.display();
       }
-      
-		if (sleep_line.check()) { 
+
+		if (sleep_line.check()) {
 	      $("#results").append("<h3>Sleep Analysis</h3>");
    	   $("#results").append("<p>And what about nightdreaming? See how much you slept each night of this month, and how vivid (size of the dot) and positive (pale) or negative (dark) your dreams were these very nights!</p>");
       	$("#results").append("<div id='sleep_line'></div>");
       	$("#results").append("<p align='center'> Size: Dream Vivacity</p> <p align='center'> Color: <font color='black'>Nightmare</font>/<font color='white'>Positive Dream</font> </p>");
 			sleep_line.display();
 		}
-      if (quest_plot.check()) { 
+      if (quest_plot.check()) {
 	      $("#results").append("<h3>Personality Analysis</h3>");
 	      $("#results").append("<p>Finally, the questionnaires you filled at the experiment's end and beginning intended to measure your Mindfulness, Dissociation, Ruminative and Reflective habits. Compare yourself to the average, and to how you scored a month ago. Have you become more mindful?</p>");
    	   $("#results").append("<div id='personality_questionnaire_results'></div>");
 	      $("#results").append("<p align='center'>  <font color='white'>Begin</font>, <font color='red'>End</font>, <font color='grey'>Population average</font> </p>");
    	   $("#results").append("<p>Note: Mindfulness is a tendency to be aware of yourself and your environment at each and every moment – without loosing yourself in automatization or in your thoughts. Meditation trains mindfulness. Dissociation is a tendency to totally ignore part of ourself or your environment. It seems a key component of hypnotizability, or the ability to be absorbed in games or movies. Rumination is related to the anxiety we sometimes feel about ourselves. Reflection is how much you a intectually interested by yourself – in philosophical ways. </p>");
-      	quest_plot.display(); 
+      	quest_plot.display();
       }
-      
+
       $("#results").append("<h2>What now?</h2>");
       $("#results").append("<p>You can now tweet @daydreaming_app or tell us on facebook things you would like to see in your results. </p>");
       $("#results").append("<p>We are researchers, not commercials, but we’d be glad to help you if we can. </p>");
 
       $("#results").append("<p>Also, feel free to use the app as much as you want: from now on your results will always be available and up to date. </p>");
-            
-      
-      
+
+
+
     } else {
       $('#stats-intro').append("Sorry! You haven't completed enough questionnaires for us to build results (Need more than 10 answers, you have "+n_probe_results.toString()+"). You can respond to more notifications and your results will be available");
     }
@@ -1540,7 +1540,7 @@ $("#results").append(JSON.stringify(dataset_awareness_ppl)+"<p></p>");
         resultsInterface.saveRawResults();
       });
     }
-    
+
 //----------------------------------
 
 function postImageToFacebook( authToken, filename, mimeType, imageData, message ) {
@@ -1574,14 +1574,14 @@ function postCanvasToFacebook(canvas) {
 	var decodedPng = Base64Binary.decode(encodedPng);
 	FB.getLoginStatus(function(response) {
 		console.log(response.status);
-	  if (response.status === "connected") {	
+	  if (response.status === "connected") {
 		postImageToFacebook(response.authResponse.accessToken, "daydreaming-the-app", "image/png", decodedPng, "http://daydreaming-the-app.net/");
 	  } else if (response.status === "not_authorized") {
 		 FB.login(function(response) {
 			postImageToFacebook(response.authResponse.accessToken, "daydreaming-the-app", "image/png", decodedPng, "http://daydreaming-the-app.net/");
 		 }, {scope: "publish_stream, publish_actions", });
 	  } else {
-		 FB.login(function(response)  { 
+		 FB.login(function(response)  {
 			postImageToFacebook(response.authResponse.accessToken, "daydreaming-the-app", "image/png", decodedPng, "http://daydreaming-the-app.net/");
 		 }, {scope: "publish_stream, publish_actions"});
 	  }
@@ -1600,19 +1600,19 @@ if (typeof shareInterface == "undefined") {
     	     html2canvas($("#main"), {
             onrendered: function(canvas) {
  				var dataURL = canvas.toDataURL("image/png");
-        		shareInterface.shareResults(dataURL, 'image/png')
+        		shareInterface.shareResults('<img src="' + dataURL + '" alt="Daydreaming results" />', 'text/html');
            }
-       });       
+       });
  	});
 }
 
 
 
-    
 
 
 
-    
+
+
 
   });
 
