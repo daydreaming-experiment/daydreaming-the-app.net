@@ -1590,10 +1590,9 @@ function postCanvasToFacebook(canvas) {
 
 
 if (typeof shareInterface == "undefined") {
-		// The app doesn't provide raw results download
-		console.log("App doesn't provide raw results download -> not showing button");
+		console.log("App not loaded from webview");
 } else {
-    // The app does provide raw results download
+	 console.log("App loaded from webview");
     $("#share").append("<button type='button'> Display as image! </button>")
     $('div#share').on('click', function() {
     	    // *** replace all svg by png
