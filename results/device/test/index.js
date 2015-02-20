@@ -1600,7 +1600,7 @@ if (typeof shareInterface == "undefined") {
     	     html2canvas($("#main"), {
             onrendered: function(canvas) {
  				var dataURL = canvas.toDataURL("image/png");
-        		shareInterface.shareResults('<img src="' + dataURL + '" alt="Daydreaming results" />', 'text/html');
+        		shareInterface.shareResults(dataURL, 'image/png')
            }
        });
  	});
