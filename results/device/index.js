@@ -1593,7 +1593,7 @@ if (typeof shareInterface == "undefined") {
 		console.log("App not loaded from webview");
 } else {
 	 console.log("App loaded from webview");
-    $("#share").append("<button type='button' style="display: block; margin: 0 auto;"> Share your results! </button>")
+    $("#share").append("<button type='button' style='display: block; margin: 0 auto;'> Share your results! </button>")
     $('div#share').on('click', function() {
     	    // *** replace all svg by png
     		canvg();
