@@ -174,6 +174,8 @@ $(document).ready(function () {
     // function to discretize [0,100] into categories
     function getCategory(value, min, max, categories) {
       var n_cat = categories.length;
+      var step = (max - min) / n_cat;
+		var cat;
       for (var i_cat = 0; i_cat < n_cat; i_cat++) {
         if (step * i_cat <= value && (step * (i_cat + 1)) >= value) {
           cat = categories[i_cat];
@@ -1607,12 +1609,6 @@ if (typeof shareInterface == "undefined") {
 }
 
 
-
-    
-
-
-
-    
 
   });
 
