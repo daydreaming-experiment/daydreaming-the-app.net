@@ -1,0 +1,138 @@
+/*
+ * Mimick the app's UI
+ */
+
+body {
+  font-family: Roboto, sans-serif;
+  background-color: #00A2D4;
+  color: #EBFBFF;
+  margin: auto;
+  position: relative;
+  width: 320px;
+}
+
+#main {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+h1 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.56em;
+  text-transform: uppercase;
+}
+
+h1.title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.56em;
+  text-transform: uppercase;
+}
+
+h2 {
+  margin-top: 3em;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.125em;
+}
+
+h3 {
+  margin-top: 2.5em;
+  font-weight: bold;
+  font-size: 0.9em;
+}
+
+img {
+  font-style: italic;
+}
+
+a#save-raw {
+  text-decoration: none;
+  color: #00617F;
+  border-bottom: 1px #00617F dotted;
+}
+
+
+/*
+ * Plot flowing
+ */
+
+.static-plot {
+  display: block;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1em;
+}
+
+img.width-80 {
+  width: 80%;
+}
+
+
+/*
+ *  Plot formatting
+ */
+
+text {
+  font-size: 11px;
+  font-family: Roboto, sans-serif;
+}
+
+.caption {
+  font-size: 15px;
+}
+
+svg {
+  display: block;
+  margin: 0 auto;
+}
+
+
+.yaxis path,
+
+.yaxis line {
+    fill: none;
+    stroke: none;
+}
+.yaxis text {
+	 fill: white;
+    font-family: sans-serif;
+    font-size: 11px;
+    color: white;
+}
+
+
+
+
+/*
+ * Switch
+ */
+
+#global, #personal {
+  display: none;
+}
+
+#global.selected, #personal.selected {
+  display: block;
+}
+
+
+/*
+ * Fonts
+ */
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'), url(/static/fonts/Roboto.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Roboto Bold'), local('Roboto-Bold'), url(/static/fonts/Roboto-Bold.woff) format('woff');
+}
