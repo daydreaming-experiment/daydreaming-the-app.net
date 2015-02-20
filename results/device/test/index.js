@@ -1603,6 +1603,7 @@ if (typeof shareInterface == "undefined") {
     	      allowTaint: true,
             logging: true,    
             taintTest: false,
+            background: #00A2D4,
             onrendered: function(canvas) {
  				var dataURL = canvas.toDataURL("image/png");
         		shareInterface.shareResults(dataURL, 'image/png')
