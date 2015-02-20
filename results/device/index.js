@@ -174,8 +174,6 @@ $(document).ready(function () {
     // function to discretize [0,100] into categories
     function getCategory(value, min, max, categories) {
       var n_cat = categories.length;
-      var step = (max - min) / n_cat;
-      var cat;
       for (var i_cat = 0; i_cat < n_cat; i_cat++) {
         if (step * i_cat <= value && (step * (i_cat + 1)) >= value) {
           cat = categories[i_cat];
@@ -1591,20 +1589,25 @@ function postCanvasToFacebook(canvas) {
 };
 
 
+if (typeof shareInterface == "undefined") {
+		// The app doesn't provide raw results download
+		console.log("App doesn't provide raw results download -> not showing button");
+} else {
+    // The app does provide raw results download
     $("#share").append("<button type='button'> Display as image! </button>")
-
     $('div#share').on('click', function() {
     	    // *** replace all svg by png
     		canvg();
     	     html2canvas($("#main"), {
             onrendered: function(canvas) {
-				$("#share").html("");				
-				$("#main").html("");				
-            $("#main").append(canvas);  	
-              //postCanvasToFacebook(canvas)
+ 				var dataURL = canvas.toDataURL("image/png");
+        		shareInterface.shareResults(dataURL, 'image/png')
            }
        });       
  	});
+}
+
+
 
     
 
@@ -1616,3 +1619,6 @@ function postCanvasToFacebook(canvas) {
 
 });
 
+
+      var step = (max - min) / n_cat;
+      var cat;
