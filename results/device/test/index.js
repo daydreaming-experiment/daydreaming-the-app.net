@@ -1592,20 +1592,20 @@ function postCanvasToFacebook(canvas) {
 
 
 if (typeof shareInterface == "undefined") {
-		console.log("App not loaded from webview");
+      console.log("App doesn't provide results sharing interface -> not showing button");
 } else {
-	 console.log("App loaded from webview");
+      console.log("App provide results sharing interface -> showing button");
     $("#share").append("<button type='button' style='display: block; margin: 0 auto;'> Share your results! </button>")
     $('div#share').on('click', function() {
     	    // *** replace all svg by png
     		canvg();
     	     html2canvas($("#main"), {
     	      allowTaint: true,
-            logging: true,    
+            logging: true,
             taintTest: false,
             onrendered: function(canvas) {
  				var dataURL = canvas.toDataURL("image/png");
-        		shareInterface.shareResults(dataURL, 'image/png')
+        		shareInterface.shareResults(dataURL, 'image/png');
            }
        });
  	});
