@@ -1600,6 +1600,9 @@ if (typeof shareInterface == "undefined") {
     	    // *** replace all svg by png
     		canvg();
     	     html2canvas($("#main"), {
+    	      allowTaint: true,
+            logging: true,    
+            taintTest: false,
             onrendered: function(canvas) {
  				var dataURL = canvas.toDataURL("image/png");
         		shareInterface.shareResults(dataURL, 'image/png')
