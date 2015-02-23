@@ -1590,11 +1590,11 @@ function postCanvasToFacebook(canvas) {
 	 });
 };
 
-$("#share").append("<button type='button' class='share_btn' style='display: block; margin: 0 auto;'> Share your results! </button>")
 if (typeof shareInterface == "undefined") {
       console.log("App doesn't provide results sharing interface -> not showing button");
 } else {
-      console.log("App provide results sharing interface -> showing button");
+      console.log("App provides results sharing interface -> showing button");
+      $("#share").append("<button type='button' class='share_btn' style='display: block; margin: 0 auto;'> Share your results! </button>")
 
     $('div#share').on('click', function() {
     	    // *** replace all svg by png
