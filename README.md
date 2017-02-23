@@ -1,6 +1,6 @@
 Daydreaming website
 ===================
 
-Code for [daydreaming-the-app.net](http://daydreaming-the-app.net/).
+Code for the old daydreaming-the-app.net website, now not owned by us.
 
 Built with [Jekyll](http://jekyllrb.com/).
